@@ -8,7 +8,7 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.navbar-text
-            Logged in as #{current_user.email}.
+            Logged in as #{current_user.email}
           -# %li= link_to "Profile", user_path
           %li= link_to "Logout", destroy_user_session_path, method: :delete
         - else
