@@ -3,4 +3,5 @@ class Veterinarian < ActiveRecord::Base
   has_many :medical_record
   has_many :appointments
   has_many :vacations
+  has_many :working_days
 end

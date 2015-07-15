@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715214349) do
+ActiveRecord::Schema.define(version: 20150715215632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,17 @@ ActiveRecord::Schema.define(version: 20150715214349) do
 
   add_index "veterinarians", ["user_id"], name: "index_veterinarians_on_user_id", using: :btree
 
+  create_table "working_days", force: :cascade do |t|
+    t.date     "day"
+    t.time     "start"
+    t.time     "end"
+    t.integer  "veterinarian_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "working_days", ["veterinarian_id"], name: "index_working_days_on_veterinarian_id", using: :btree
+
   add_foreign_key "addresses", "users"
   add_foreign_key "animals", "species"
   add_foreign_key "animals", "users"
@@ -159,4 +170,5 @@ ActiveRecord::Schema.define(version: 20150715214349) do
   add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "vacations", "veterinarians"
   add_foreign_key "veterinarians", "users"
+  add_foreign_key "working_days", "veterinarians"
 end
