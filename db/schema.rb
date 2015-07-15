@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715212939) do
+ActiveRecord::Schema.define(version: 20150715214349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,16 @@ ActiveRecord::Schema.define(version: 20150715212939) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "vacations", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "veterinarian_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "vacations", ["veterinarian_id"], name: "index_vacations_on_veterinarian_id", using: :btree
+
   create_table "veterinarians", force: :cascade do |t|
     t.string   "title"
     t.string   "specialization"
@@ -147,5 +157,6 @@ ActiveRecord::Schema.define(version: 20150715212939) do
   add_foreign_key "images", "medical_records"
   add_foreign_key "medical_records", "users"
   add_foreign_key "medical_records", "veterinarians"
+  add_foreign_key "vacations", "veterinarians"
   add_foreign_key "veterinarians", "users"
 end
