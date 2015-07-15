@@ -31,6 +31,7 @@ gem 'ffaker'
 
 group :development do
   gem 'html2haml'
+  gem 'rails-erd'
 end
 
 group :development, :test do
