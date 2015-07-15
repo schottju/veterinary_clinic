@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715223419) do
+ActiveRecord::Schema.define(version: 20150715224207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,10 +96,10 @@ ActiveRecord::Schema.define(version: 20150715223419) do
     t.text     "comments"
     t.integer  "user_id"
     t.integer  "veterinarian_id"
-    t.float    "addictional_cost"
+    t.float    "additional_cost"
     t.float    "total_cost"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "medical_records", ["user_id"], name: "index_medical_records_on_user_id", using: :btree
