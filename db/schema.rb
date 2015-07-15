@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715211800) do
+ActiveRecord::Schema.define(version: 20150715212459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,21 @@ ActiveRecord::Schema.define(version: 20150715211800) do
 
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
   add_index "appointments", ["veterinarian_id"], name: "index_appointments_on_veterinarian_id", using: :btree
+
+  create_table "medical_records", force: :cascade do |t|
+    t.text     "anamnesis"
+    t.text     "description"
+    t.text     "comments"
+    t.integer  "user_id"
+    t.integer  "veterinarian_id"
+    t.float    "addictional_cost"
+    t.float    "total_cost"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "medical_records", ["user_id"], name: "index_medical_records_on_user_id", using: :btree
+  add_index "medical_records", ["veterinarian_id"], name: "index_medical_records_on_veterinarian_id", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
@@ -118,5 +133,7 @@ ActiveRecord::Schema.define(version: 20150715211800) do
   add_foreign_key "animals", "users"
   add_foreign_key "appointments", "users"
   add_foreign_key "appointments", "veterinarians"
+  add_foreign_key "medical_records", "users"
+  add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "veterinarians", "users"
 end

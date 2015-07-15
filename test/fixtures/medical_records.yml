@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  anamnesis: MyText
+  description: MyText
+  comments: MyText
+  user_id: 
+  veterinarian_id: 
+  addictional_cost: 1.5
+  total_cost: 1.5
+
+two:
+  anamnesis: MyText
+  description: MyText
+  comments: MyText
+  user_id: 
+  veterinarian_id: 
+  addictional_cost: 1.5
+  total_cost: 1.5
