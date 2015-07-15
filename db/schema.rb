@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715222813) do
+ActiveRecord::Schema.define(version: 20150715223419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,14 @@ ActiveRecord::Schema.define(version: 20150715222813) do
   add_index "medical_records_medicines", ["medical_record_id"], name: "index_medical_records_medicines_on_medical_record_id", using: :btree
   add_index "medical_records_medicines", ["medicine_id"], name: "index_medical_records_medicines_on_medicine_id", using: :btree
 
+  create_table "medical_records_treatments", id: false, force: :cascade do |t|
+    t.integer "medical_record_id", null: false
+    t.integer "treatment_id",      null: false
+  end
+
+  add_index "medical_records_treatments", ["medical_record_id"], name: "index_medical_records_treatments_on_medical_record_id", using: :btree
+  add_index "medical_records_treatments", ["treatment_id"], name: "index_medical_records_treatments_on_treatment_id", using: :btree
+
   create_table "medicines", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -132,6 +140,14 @@ ActiveRecord::Schema.define(version: 20150715222813) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "treatments", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "cost"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "units", force: :cascade do |t|

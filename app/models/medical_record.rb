@@ -4,4 +4,5 @@ class MedicalRecord < ActiveRecord::Base
   has_many :images
   has_and_belongs_to_many :diseases
   has_and_belongs_to_many :medicines
+  has_and_belongs_to_many :treatments
 end
