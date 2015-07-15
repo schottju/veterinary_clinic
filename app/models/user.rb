@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_one :address
   has_one :veterinarian
+  has_many :animals
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
