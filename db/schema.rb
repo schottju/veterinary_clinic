@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715191435) do
+ActiveRecord::Schema.define(version: 20150715210019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 20150715191435) do
   end
 
   add_index "animals", ["user_id"], name: "index_animals_on_user_id", using: :btree
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "status"
+    t.integer  "kind"
+    t.integer  "user_id"
+    t.integer  "veterinarian_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
+  add_index "appointments", ["veterinarian_id"], name: "index_appointments_on_veterinarian_id", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
@@ -102,6 +116,8 @@ ActiveRecord::Schema.define(version: 20150715191435) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "animals", "users"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "appointments", "veterinarians"
   add_foreign_key "species", "animals"
   add_foreign_key "veterinarians", "users"
 end
