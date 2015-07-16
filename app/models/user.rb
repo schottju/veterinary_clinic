@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_many :animals
   has_many :appointments
 
-  validates_presence_of :first_name, :last_name, :pesel, :phone_number, :email, :password, :password_confirmation
+  validates_presence_of :first_name, :last_name, :pesel
+  validates :pesel, length: { is:11 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
