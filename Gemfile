@@ -33,6 +33,7 @@ gem "recaptcha", :require => "recaptcha/rails"
 group :development do
   gem 'html2haml'
   gem 'rails-erd'
+  gem 'hirb'
 end
 
 group :development, :test do
