@@ -27,6 +27,7 @@ gem 'decent_decoration'
 gem 'quiet_assets'
 gem 'therubyracer', platforms: :ruby
 gem 'ffaker'
+gem "recaptcha", :require => "recaptcha/rails"
 
 
 group :development do
