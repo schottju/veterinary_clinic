@@ -11,12 +11,20 @@
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
         Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+    = f.simple_fields_for :address do |a|
+      = a.input :street
+      = a.input :house_number
+      = a.input :flat_number
+      = a.input :zip_code
+      = a.input :city
+      = a.input :borough
+      = a.input :district
+      = a.input :province
+      = a.input :country
     = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
     = f.input :password_confirmation, required: false
     = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
   .form-actions
-    = f.button :submit, "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+    = f.button :submit, "Update", class: "btn btn-success"
+    = link_to "Back", :back, class: "btn btn-warning"

@@ -1,4 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
+
+  def new
+    resource = build_resource({})
+    resource.build_address
+    respond_with resource
+  end
+
   def create
     if verify_recaptcha
       super
@@ -9,5 +16,13 @@ class RegistrationsController < Devise::RegistrationsController
       flash.delete :recaptcha_error
       render :new
     end
+  end
+
+  def edit
+    super
+  end
+
+  def update
+    super
   end
 end

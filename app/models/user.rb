@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
   has_many :animals
   has_many :appointments
 
+  accepts_nested_attributes_for :address
+
   validates_presence_of :first_name, :last_name, :pesel
-  validates :pesel, length: { is:11 }
+  validates :pesel, length: { is: 11 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
