@@ -86,6 +86,7 @@ GEM
     ffaker (2.0.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gravtastic (3.2.6)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -228,6 +229,7 @@ DEPENDENCIES
   devise
   draper
   ffaker
+  gravtastic
   haml-rails
   hirb
   html2haml

@@ -3,4 +3,6 @@
 %table
   %tbody
     %tr
+      %td= image_tag current_user.gravatar_url(size: 100)
       %td= "Email: #{user.email}"
+

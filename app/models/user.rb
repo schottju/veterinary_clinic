@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Gravtastic
+  gravtastic default: 'mm', secure: true, rating: 'PG'
+
   enum role: [ :patient, :veterinarian, :admin ]
 
   has_one :address

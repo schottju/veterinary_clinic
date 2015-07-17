@@ -6,4 +6,9 @@ module ApplicationHelper
       notice:  'alert-info'
     }[flash_type.to_sym] || flash_type.to_s
   end
+
+  def current_user
+    UserDecorator.decorate(super) unless super.nil?
+  end
+
 end
