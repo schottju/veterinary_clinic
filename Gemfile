@@ -30,7 +30,9 @@ gem 'quiet_assets'
 gem 'therubyracer', platforms: :ruby
 gem 'ffaker'
 gem "recaptcha", :require => "recaptcha/rails"
-
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails'
+gem 'enum_help'
 
 group :development do
   gem 'html2haml'

@@ -1,2 +1,19 @@
-%h1 Animals#index
-%p Find me in app/views/animals/index.html.haml
+%h1 Animals
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - animals.each do |animal|
+      %tr
+        %td= animal.name
+        %td
+          .pull-right
+            = link_to 'Show', user_animal_path(current_user, animal), class: "btn btn-primary"
+            = link_to 'Edit', edit_user_animal_path(current_user, animal), class: "btn btn-default"
+
+%br
+= link_to 'New animal', new_user_animal_path, class: "btn btn-primary"

@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,6 +90,7 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    enum_help (0.0.14)
     erubis (2.7.0)
     execjs (2.5.2)
     ffaker (2.0.0)
@@ -123,6 +133,8 @@ GEM
     mini_magick (4.2.7)
     mini_portile (0.6.2)
     minitest (5.7.0)
+    momentjs-rails (2.10.3)
+      railties (>= 3.1)
     multi_json (1.11.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -226,10 +238,12 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   country_select
+  datetimepicker-rails!
   decent_decoration
   decent_exposure
   devise
   draper
+  enum_help
   ffaker
   font-awesome-sass
   gravtastic
@@ -239,6 +253,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
+  momentjs-rails
   pg
   pry
   puma
