@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   expose(:user, attributes: :user_params)
-  expose(:patients) { User.where(role: 'patient') }
+  expose(:patients) { User.where(role: 'patient').order(:last_name) }
 
   def show
   end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
 
     if user.update(user_params)
-      redirect_to user_path(user), notice: "Edytowano dane."
+      redirect_to users_path, notice: "Edytowano dane."
     else
       render :edit
     end

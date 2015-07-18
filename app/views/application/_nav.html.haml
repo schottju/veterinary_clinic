@@ -5,7 +5,7 @@
         %span.navbar-brand Veterinary Clinic
       %ul.nav.navbar-nav
         - if user_signed_in? && (current_user.admin? || current_user.veterinarian?)
-          %li= link_to "Użytkownicy", users_path
+          %li= link_to "Pacjenci", users_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.navbar-text
