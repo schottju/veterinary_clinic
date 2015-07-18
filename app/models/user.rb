@@ -18,4 +18,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
+
+  def update_attributes(params)
+    if params[:password].blank?
+      params.delete :password
+      params.delete :password_confirmation
+      super params
+    end
+  end
 end

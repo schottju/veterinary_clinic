@@ -8,7 +8,7 @@
 
 
 
-= link_to "User edit profile", edit_user_registration_path, class: "btn btn-success"
-
-
-%h1 show action
+= link_to "Edytuj profil", edit_user_path(user), class: "btn btn-success"
+= link_to "Zwierzęta", user_animals_path(user), class: "btn btn-success"
+= link_to "Kartoteka", user_medical_records_path(user), class: "btn btn-success"
+= link_to "Nowa wizyta", new_user_medical_record_path(user), class: "btn btn-success"

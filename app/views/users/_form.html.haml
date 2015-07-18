@@ -1,4 +1,3 @@
-%h1 Edycja użytkownika
 = simple_form_for user do |f|
   = f.error_notification
   .form-inputs
@@ -6,8 +5,8 @@
     = f.input :last_name, required: true
     = f.input :pesel, required: true
     = f.input :email, required: true
-    = f.input :password
-    = f.input :password_confirmation
+    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+    = f.input :password_confirmation, required: true
     = f.input :phone_number
     = f.simple_fields_for :address do |ff|
       = ff.input :street

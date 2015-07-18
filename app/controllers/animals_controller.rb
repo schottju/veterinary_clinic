@@ -2,7 +2,7 @@ class AnimalsController < ApplicationController
   before_action :authenticate_user!
 
   expose(:animal)
-  expose(:animals) { current_user.animals }
+  expose(:animals) { Animal.where(user_id: params[:user_id]) }
   expose(:species)
 
   def index
