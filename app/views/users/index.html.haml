@@ -1,0 +1,16 @@
+%h1 Użytkownicy
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Imię
+      %th
+
+  %tbody
+    - patients.each do |patient|
+      %tr
+        %td= patient.first_name
+        %td
+          .pull-right
+            = link_to 'Szczegóły', user_path(patient), class: "btn btn-primary"
+            = link_to 'Edytuj', edit_user_path(patient), class: "btn btn-default"

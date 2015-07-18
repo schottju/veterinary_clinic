@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user, only: [:show], path: "/profile"
-
   resources :users do
     resources :animals
   end

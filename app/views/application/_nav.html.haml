@@ -4,7 +4,8 @@
       .navbar-header
         %span.navbar-brand Veterinary Clinic
       %ul.nav.navbar-nav
-        %li= link_to "User edit profile", edit_user_registration_path
+        - if current_user.admin? || current_user.veterinarian?
+          %li= link_to "Użytkownicy", users_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.navbar-text
@@ -14,7 +15,7 @@
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.full_name
             %ul.dropdown-menu
-              %li= link_to "Profile", user_path
+              %li= link_to "Profile", user_path(current_user)
               %li= link_to "Animals", user_animals_path(current_user)
               %li.divider{role: "separator"}
               %li= link_to "Logout", destroy_user_session_path, method: :delete
