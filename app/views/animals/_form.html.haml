@@ -1,4 +1,4 @@
-= simple_form_for [ current_user, animal ] do |f|
+= simple_form_for [ user, animal ] do |f|
   = f.error_notification
   .form-inputs
     = f.input :id_number, autofocus: true
@@ -10,7 +10,7 @@
     = f.input :age
     = f.input :description
     = f.input :species_id, collection: Species.all, selected: 1
-    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :user_id, value: user.id
   .form-actions
     = f.button :submit, "Save", class: "btn btn-success"
     = link_to "Back", :back, class: "btn btn-warning"

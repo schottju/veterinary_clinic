@@ -6,8 +6,6 @@
       %td= image_tag user.gravatar_url(size: 100)
       %td= "Email: #{user.email}"
 
-
-
 = link_to "Edytuj profil", edit_user_path(user), class: "btn btn-success"
 = link_to "Zwierzęta", user_animals_path(user), class: "btn btn-success"
 = link_to "Kartoteka", user_medical_records_path(user), class: "btn btn-success"

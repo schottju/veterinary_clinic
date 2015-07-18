@@ -12,8 +12,8 @@
         %td= animal.name
         %td
           .pull-right
-            = link_to 'Show', user_animal_path(current_user, animal), class: "btn btn-primary"
-            = link_to 'Edit', edit_user_animal_path(current_user, animal), class: "btn btn-default"
+            = link_to 'Show', user_animal_path(user, animal), class: "btn btn-primary"
+            = link_to 'Edit', edit_user_animal_path(user, animal), class: "btn btn-default"
 
 %br
 = link_to 'New animal', new_user_animal_path, class: "btn btn-primary"

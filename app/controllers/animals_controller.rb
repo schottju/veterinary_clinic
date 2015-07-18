@@ -1,7 +1,8 @@
 class AnimalsController < ApplicationController
   before_action :authenticate_user!
 
-  expose(:animal)
+  expose(:user) { User.find(params[:user_id]) }
+  expose(:animal, attributes: :animal_params)
   expose(:animals) { Animal.where(user_id: params[:user_id]) }
   expose(:species)
 
@@ -15,12 +16,10 @@ class AnimalsController < ApplicationController
   end
 
   def create
-    self.animal = Animal.new(animal_params)
-
     if animal.save
-      redirect_to user_animal_path(current_user, animal), notice: 'Animal was successfully created.'
+      redirect_to user_animals_path(params[:user_id]), notice: 'Animal was successfully created.'
     else
-      render action: 'new'
+      render :new
     end
   end
 
@@ -29,9 +28,9 @@ class AnimalsController < ApplicationController
 
   def update
     if animal.update(animal_params)
-      redirect_to user_animal_path(current_user, animal), notice: 'Animal was successfully updated.'
+      redirect_to user_animals_path(params[:user_id]), notice: 'Animal was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
