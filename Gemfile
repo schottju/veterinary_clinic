@@ -38,6 +38,7 @@ group :development do
   gem 'html2haml'
   gem 'rails-erd'
   gem 'hirb'
+  gem 'awesome_print'
 end
 
 group :development, :test do
