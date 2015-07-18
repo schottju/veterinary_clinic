@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/profile', to: 'users#show_profile'
+
   resources :users do
     resources :animals
   end

@@ -3,12 +3,9 @@
 %table
   %tbody
     %tr
-      %td= image_tag user.gravatar_url(size: 100)
-      %td= "Email: #{user.email}"
+      %td= image_tag current_user.gravatar_url(size: 100)
+      %td= "Email: #{current_user.email}"
 
 
 
 = link_to "User edit profile", edit_user_registration_path, class: "btn btn-success"
-
-
-%h1 show action

@@ -13,4 +13,7 @@ class UsersController < ApplicationController
 
   def update
   end
+
+  def show_profile
+  end
 end
