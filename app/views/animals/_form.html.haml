@@ -9,7 +9,7 @@
     = f.input :gender
     = f.input :age
     = f.input :description
-    = f.input :species_id, collection: Species.all
+    = f.input :species_id, collection: species
     = f.hidden_field :user_id, value: user.id
   .form-actions
     = f.button :submit, "Save", class: "btn btn-success"

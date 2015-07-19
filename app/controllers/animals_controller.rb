@@ -4,7 +4,7 @@ class AnimalsController < ApplicationController
   expose(:user) { User.find(params[:user_id]) }
   expose(:animal, attributes: :animal_params)
   expose(:animals) { Animal.where(user_id: params[:user_id]) }
-  expose(:species)
+  expose(:species) { Species.all.order(:name) }
 
   def index
   end
