@@ -31,8 +31,12 @@ Address.create!(street: 'Krótka', house_number: '22', flat_number: '', zip_code
 Address.create!(street: 'Adminowa', house_number: '12', flat_number: '3', zip_code: '37-400', city: 'Nisko', borough: 'Niżański', district: 'niżański', province: 'podkarpackie', country: 'PL', user_id: admin.id)
 
 #Species
-species_names = [ 'inny', 'kot', 'pies', 'krowa', 'świnia', 'kura' ]
-species_names.each { |name| Species.create!(name: name) }
+inny = Species.create!(name: 'inny')
+kot = Species.create!(name: 'kot')
+pies = Species.create!(name: 'pies')
+krowa = Species.create!(name: 'krowa')
+swinia = Species.create!(name: 'świnia')
+kura = Species.create!(name: 'kura')
 
 #Units
 units_names = [ 'kg', 'ml', 'l', 'mg' ]
@@ -50,3 +54,9 @@ Treatment.create!(name: 'Szczepienie', cost: 20, description: 'Wykonanie szczepi
 Treatment.create!(name: 'Badania I', cost: 50, description: 'Podstawowe badania')
 Treatment.create!(name: 'Badania II', cost: 50, description: 'Badania uzupełniające')
 Treatment.create!(name: 'Pobranie próbki', cost: 50, description: 'Pobranie próbki do badań laboratoryjnych')
+
+#Animals
+Animal.create!(id_number: '1234566', name: 'Miła', birth_date: DateTime.new(2011, 9, 15), amount: 1, weight: '', gender: :samica, description: 'W czarne łaty', user_id: justyna.id, species_id: krowa.id)
+Animal.create!(id_number: 'PL4245', amount: 13, gender: :mieszana, description: '', user_id: justyna.id, species_id: kura.id)
+Animal.create!(id_number: '345234534', amount: 20, weight: 100, gender: :mieszana, age: 2, description: 'Mieszane stado w różnym wieku, waga od 100 do 150 kg', user_id: justyna.id, species_id: swinia.id)
+Animal.create!(id_number: 'PL13434NN', name: 'Burek', birth_date: DateTime.new(2010, 11, 15), amount: 1, weight: 2.5, gender: :samiec, description: 'Bury kot', user_id: jan.id, species_id: kot.id)

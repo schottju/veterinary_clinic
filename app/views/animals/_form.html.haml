@@ -6,10 +6,10 @@
     = f.input :birth_date, as: :date_picker
     = f.input :amount
     = f.input :weight
-    = f.input :gender, selected: 1
+    = f.input :gender
     = f.input :age
     = f.input :description
-    = f.input :species_id, collection: Species.all, selected: 1
+    = f.input :species_id, collection: Species.all
     = f.hidden_field :user_id, value: user.id
   .form-actions
     = f.button :submit, "Save", class: "btn btn-success"
