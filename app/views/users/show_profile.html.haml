@@ -1,11 +1,12 @@
-%h2 User profile
+.panel.panel-default
+  .panel-heading Dane użytkownika
+  .panel-body
+    %table
+      %tbody
+        %tr
+          %td= image_tag current_user.gravatar_url(size: 100)
+          %td= "Email: #{current_user.email}"
 
-%table
-  %tbody
-    %tr
-      %td= image_tag current_user.gravatar_url(size: 100)
-      %td= "Email: #{current_user.email}"
 
 
-
-= link_to "User edit profile", edit_user_registration_path, class: "btn btn-success"
+    = link_to "User edit profile", edit_user_registration_path, class: "btn btn-success"

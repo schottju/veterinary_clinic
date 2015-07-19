@@ -18,10 +18,11 @@
 @import "font-awesome";
 @import "bootstrap";
 
-$bgDefault      : #e74c3c;
-$bgHighlight    : #c0392b;
-$colDefault     : #ecf0f1;
-$colHighlight   : #ffbbbc;
+$bgDefault      : #550055;
+$bgHighlight    : #620062;
+$colDefault     : #dbe1e3;
+$colHighlight   : #c379c3;
+$bgPanel        : #550055;
 $dropDown       : false;
 .navbar-default {
   background-color: $bgDefault;
@@ -37,7 +38,8 @@ $dropDown       : false;
       > a {
         color: $colDefault;
         &:hover,  &:focus {
-          color: $colHighlight; }}
+          color: $colHighlight;
+          background-color: $bgHighlight; }}
       @if $dropDown {
         > .dropdown-menu {
           background-color: $bgDefault;
@@ -83,7 +85,11 @@ $dropDown       : false;
 }
 
 
-
 img {
    margin: 5px;
+}
+
+.panel-default > .panel-heading {
+  color: white;
+  background-color: $bgPanel;
 }

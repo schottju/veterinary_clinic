@@ -9,5 +9,6 @@
   %body
     = render "nav"
     .container-fluid
-      = render "flash_messages"
-      = yield
+      .container
+        = render "flash_messages"
+        = yield
