@@ -1,0 +1,9 @@
+= simple_form_for treatment do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :cost
+    = f.input :description
+  .form-actions
+    = f.button :submit, "Save", class: "btn btn-success"
+    = link_to "Back", dictionaries_path, class: "btn btn-warning"

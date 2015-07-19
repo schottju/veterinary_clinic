@@ -1,0 +1,7 @@
+= simple_form_for disease do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+  .form-actions
+    = f.button :submit, "Save", class: "btn btn-success"
+    = link_to "Back", dictionaries_path, class: "btn btn-warning"
