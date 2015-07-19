@@ -1,8 +1,3 @@
-# Veterinarian.create!(title: '', specialization: '', pwz: '', user_id: veterinarian)
-# User.new(first_name: '', last_name: '', email: '', pesel: '', phone_number: '', role: , password: 'password', password_confirmation: 'password')
-# Address.create!(street: '', house_number: '', flat_number: '', zip_code: '', city: '', borough: '', district: '', province: '', country: '', user_id: )
-# Species.create!(name: '')
-
 #Patients
 edward = User.new(first_name: 'Edward', last_name: 'Wojtak', email: 'daktyr@o2.pl', pesel: '12345678911', phone_number: '123456781', role: :patient, password: 'password', password_confirmation: 'password')
 edward.skip_confirmation!
@@ -40,5 +35,18 @@ species_names = [ 'inny', 'kot', 'pies', 'krowa', 'świnia', 'kura' ]
 species_names.each { |name| Species.create!(name: name) }
 
 #Units
-unit_names = [ 'kg', 'ml', 'l', 'mg' ]
-unit_names.each { |name| Unit.create!(name: name) }
+units_names = [ 'kg', 'ml', 'l', 'mg' ]
+units_names.each { |name| Unit.create!(name: name) }
+
+#Diseases
+diseases_names = [ 'Padaczka', 'Wścieklizna', 'Pomór' ]
+diseases_names.each { |name| Disease.create!(name: name) }
+
+#Treatments
+Treatment.create!(name: 'Poród', cost: 100, description: 'Odebranie porodu')
+Treatment.create!(name: 'Porada', cost: 30, description: 'Porada lekarska')
+Treatment.create!(name: 'Diagnostyka', cost: 50, description: 'Rozpoznanie choroby')
+Treatment.create!(name: 'Szczepienie', cost: 20, description: 'Wykonanie szczepienia')
+Treatment.create!(name: 'Badania I', cost: 50, description: 'Podstawowe badania')
+Treatment.create!(name: 'Badania II', cost: 50, description: 'Badania uzupełniające')
+Treatment.create!(name: 'Pobranie próbki', cost: 50, description: 'Pobranie próbki do badań laboratoryjnych')
