@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static_pages/dictionaries'
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   devise_scope :user do
@@ -12,6 +14,12 @@ Rails.application.routes.draw do
   end
 
   get '/profile', to: 'users#show_profile'
+  get '/dictionaries', to: 'static_pages#dictionaries'
+
+  resources :units
+  resources :diseases
+  resources :treatments
+  resources :species
 
   resources :users do
     resources :animals

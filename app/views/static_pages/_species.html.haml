@@ -1,0 +1,20 @@
+- if species.empty?
+  .alert.alert-warning.table-warning Brak zdefiniowanych gatunków.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Nazwa
+        %th
+
+    %tbody
+      - species.each do |s|
+        %tr
+          %td= s.name
+          %td
+            .pull-right
+              = link_to 'Szczegóły', species_path(s), class: "btn btn-primary"
+              = link_to 'Edytuj', edit_species_path(s), class: "btn btn-default"
+
+.pull-right
+  = link_to 'Dodaj gatunek', new_species_path, class: "btn btn-primary"

@@ -1,0 +1,20 @@
+- if units.empty?
+  .alert.alert-warning.table-warning Brak zdefiniowanych jednostek.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Nazwa
+        %th
+
+    %tbody
+      - units.each do |unit|
+        %tr
+          %td= unit.name
+          %td
+            .pull-right
+              = link_to 'Szczegóły', unit_path(unit), class: "btn btn-primary"
+              = link_to 'Edytuj', edit_unit_path(unit), class: "btn btn-default"
+
+.pull-right
+  = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-primary"

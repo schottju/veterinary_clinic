@@ -1,0 +1,24 @@
+- if treatments.empty?
+  .alert.alert-warning.table-warning Brak zdefiniowanych zabiegów.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Nazwa
+        %th Koszt
+        %th Opis
+        %th
+
+    %tbody
+      - treatments.each do |treatment|
+        %tr
+          %td= treatment.name
+          %td= treatment.cost
+          %td= treatment.description
+          %td
+            .pull-right
+              = link_to 'Szczegóły', treatment_path(treatment), class: "btn btn-primary"
+              = link_to 'Edytuj', edit_treatment_path(treatment), class: "btn btn-default"
+
+.pull-right
+  = link_to 'Dodaj zabieg', new_treatment_path, class: "btn btn-primary"

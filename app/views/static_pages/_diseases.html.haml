@@ -1,0 +1,20 @@
+- if diseases.empty?
+  .alert.alert-warning.table-warning Brak zdefiniowanych chorób.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Nazwa
+        %th
+
+    %tbody
+      - diseases.each do |disease|
+        %tr
+          %td= disease.name
+          %td
+            .pull-right
+              = link_to 'Szczegóły', disease_path(disease), class: "btn btn-primary"
+              = link_to 'Edytuj', edit_disease_path(disease), class: "btn btn-default"
+
+.pull-right
+  = link_to 'Dodaj chorobę', new_disease_path, class: "btn btn-primary"

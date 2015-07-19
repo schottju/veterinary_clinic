@@ -1,0 +1,19 @@
+%ul.nav.nav-tabs
+  %li.active
+    %a{"data-toggle" => "tab", :href => "#species"} Gatunki
+  %li
+    %a{"data-toggle" => "tab", :href => "#treatments"} Zabiegi
+  %li
+    %a{"data-toggle" => "tab", :href => "#diseases"} Choroby
+  %li
+    %a{"data-toggle" => "tab", :href => "#units"} Jednostki
+
+.tab-content
+  #species.tab-pane.fade.in.active
+    = render 'species'
+  #treatments.tab-pane.fade
+    = render 'treatments'
+  #diseases.tab-pane.fade
+    = render 'diseases'
+  #units.tab-pane.fade
+    = render 'units'
