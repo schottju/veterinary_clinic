@@ -26,4 +26,10 @@ class User < ActiveRecord::Base
       super params
     end
   end
+
+  private
+
+  def self.search(query)
+    where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 0", { q: "%#{query.downcase}%" })
+  end
 end

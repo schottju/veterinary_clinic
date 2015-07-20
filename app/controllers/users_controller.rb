@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   end
 
   def index
+    if params[:search]
+      self.patients = User.search(params[:search]).order(:last_name).paginate(page: params[:page], per_page: 8)
+    end
   end
 
   def new
