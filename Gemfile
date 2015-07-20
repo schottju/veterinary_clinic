@@ -33,6 +33,7 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'momentjs-rails'
 gem 'enum_help'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'html2haml'
