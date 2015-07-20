@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   expose(:user, attributes: :user_params)
-  expose(:patients) { User.where(role: 'patient').order(:last_name) }
+  expose(:patients) { User.where(role: 'patient').order(:last_name).paginate(page: params[:page], per_page: 8) }
 
   def show
   end

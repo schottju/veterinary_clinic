@@ -21,3 +21,6 @@
 
 .pull-right
   = link_to 'Dodaj zabieg', new_treatment_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate treatments, param_name: 'treatments_page'

@@ -17,3 +17,6 @@
 
 .pull-right
   = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate units, param_name: 'units_page'

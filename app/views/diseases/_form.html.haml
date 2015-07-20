@@ -3,5 +3,5 @@
   .form-inputs
     = f.input :name
   .form-actions
-    = f.button :submit, "Save", class: "btn btn-success"
-    = link_to "Back", dictionaries_path, class: "btn btn-warning"
+    = f.button :submit, "Zapisz", class: "btn btn-success"
+    = link_to "Anuluj", dictionaries_path(tab: 'diseases'), class: "btn btn-warning"

@@ -17,3 +17,7 @@
               .pull-right
                 = link_to 'Szczegóły', user_path(patient), class: "btn btn-primary"
                 = link_to 'Edytuj', edit_user_path(patient), class: "btn btn-default"
+
+
+.flickr_pagination
+  = will_paginate patients

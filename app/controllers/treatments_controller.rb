@@ -6,7 +6,7 @@ class TreatmentsController < ApplicationController
 
   def create
     if treatment.save
-      redirect_to dictionaries_path, notice: 'Zabieg został pomyślnie dodany.'
+      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie dodany.'
     else
       render :new
     end
@@ -17,7 +17,7 @@ class TreatmentsController < ApplicationController
 
   def update
     if treatment.update(treatment_params)
-      redirect_to dictionaries_path, notice: 'Zabieg został pomyślnie edytowany.'
+      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie edytowany.'
     else
       render :edit
     end

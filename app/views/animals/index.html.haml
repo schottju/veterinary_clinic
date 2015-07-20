@@ -15,5 +15,8 @@
             = link_to 'Show', user_animal_path(user, animal), class: "btn btn-primary"
             = link_to 'Edit', edit_user_animal_path(user, animal), class: "btn btn-default"
 
-%br
+.pull-right
 = link_to 'New animal', new_user_animal_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate animals

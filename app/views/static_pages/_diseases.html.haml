@@ -17,3 +17,6 @@
 
 .pull-right
   = link_to 'Dodaj chorobę', new_disease_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate diseases, param_name: 'diseases_page'

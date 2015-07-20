@@ -25,7 +25,7 @@
           %ul.nav.navbar-nav
             %li{:class => active_class(users_path)}= link_to icon('users', 'Pacjenci'), users_path
           %ul.nav.navbar-nav.navbar-right
-            %li{:class => active_class(dictionaries_path)}= link_to icon('book', 'Słowniki'), dictionaries_path
+            %li{:class => active_class(dictionaries_path)}= link_to icon('book', 'Słowniki'), dictionaries_path(tab: 'species')
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = icon('user')

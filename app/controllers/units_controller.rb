@@ -6,7 +6,7 @@ class UnitsController < ApplicationController
 
   def create
     if unit.save
-      redirect_to dictionaries_path, notice: 'Jednostka została pomyślnie dodana.'
+      redirect_to dictionaries_path(tab: 'units'), notice: 'Jednostka została pomyślnie dodana.'
     else
       render :new
     end
@@ -17,7 +17,7 @@ class UnitsController < ApplicationController
 
   def update
     if unit.update(unit_params)
-      redirect_to dictionaries_path, notice: 'Jednostka została pomyślnie edytowana.'
+      redirect_to dictionaries_path(tab: 'units'), notice: 'Jednostka została pomyślnie edytowana.'
     else
       render :edit
     end
