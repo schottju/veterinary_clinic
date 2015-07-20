@@ -2,7 +2,7 @@
   = f.error_notification
   .form-inputs
     = f.input :name
-    = f.input :cost
+    = f.input :cost, as: :string
     = f.input :description
   .form-actions
     = f.button :submit, "Zapisz", class: "btn btn-success"
