@@ -1,7 +1,9 @@
 = simple_form_for unit do |f|
   = f.error_notification
   .form-inputs
-    = f.input :name
+    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę jednostki', required: true
   .form-actions
-    = f.button :submit, "Zapisz", class: "btn btn-success"
-    = link_to "Anuluj", dictionaries_path(tab: 'units'), class: "btn btn-warning"
+    = link_to "Anuluj", dictionaries_path(tab: 'units'), class: "btn btn-default"
+    .pull-right
+      = f.button :submit, "Zapisz", class: "btn btn-default"
+

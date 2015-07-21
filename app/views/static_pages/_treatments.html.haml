@@ -1,6 +1,6 @@
 = form_tag treatments_search_path, method: :get do
   .form-inline
-    = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
+    = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę zabiegu', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
 
     .pull-right

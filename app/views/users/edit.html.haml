@@ -4,22 +4,34 @@
     = simple_form_for user do |f|
       = f.error_notification
       .form-inputs
-        = f.input :first_name, label: 'Imię', required: true, autofocus: true
-        = f.input :last_name, label: 'Nazwisko', required: true
-        = f.input :pesel, label: 'Pesel', required: true
-        = f.input :email, label: 'Email', required: true
-        = f.input :password, label: 'Hasło'
-        = f.input :password_confirmation, label: 'Potwierdzenie hasła'
-        = f.input :phone_number, label: 'Numer telefonu'
-        = f.simple_fields_for :address do |ff|
-          = ff.input :street, label: 'Ulica'
-          = ff.input :house_number, label: 'Numer domu'
-          = ff.input :flat_number, label: 'Numer mieszkania'
-          = ff.input :zip_code, label: 'Kod pocztowy'
-          = ff.input :city, label: 'Miasto'
-          = ff.input :borough, label: 'Gmina'
-          = ff.input :district, label: 'Powiat'
-          = ff.input :province, label: 'Województwo'
-          = ff.input :country, label: 'Państwo'
-      .form-actions.pull-right
-        = f.button :submit, "Zapisz", class: "btn btn-success"
+        .row
+          .col-md-1
+          .col-md-5
+            = f.input :first_name, label: 'Imię', placeholder: 'Wpisz imię', required: true, autofocus: true
+            = f.input :last_name, label: 'Nazwisko', placeholder: 'Wpisz nazwisko', required: true
+            = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
+            = f.input :email, label: 'Email', placeholder: 'Wpisz adres email', required: true
+            = f.input :password, label: 'Hasło', placeholder: 'Wpisz nowe hasło'
+            = f.input :password_confirmation, label: 'Potwierdzenie nowego hasła', placeholder: 'Wpisz ponownie nowe hasło'
+            = f.input :phone_number, label: 'Numer telefonu', placeholder: 'Wpisz numer telefonu', required: true
+          .col-md-5
+            = f.simple_fields_for :address do |ff|
+              = ff.input :street, label: 'Ulica', placeholder: 'Wpisz nazwę ulicy', required: true
+              = ff.input :house_number, label: 'Numer domu', placeholder: 'Wpisz numer domu', required: true
+              = ff.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz numer mieszkania'
+              = ff.input :zip_code, label: 'Kod pocztowy', placeholder: 'Wpisz kod pocztowy', required: true
+              = ff.input :city, label: 'Miasto', placeholder: 'Wpisz nazwę miasta', required: true
+              = ff.input :borough, label: 'Gmina', placeholder: 'Wpisz nazwę gminy'
+              = ff.input :district, label: 'Powiat', placeholder: 'Wpisz nazwę powiatu'
+              = ff.input :province, label: 'Województwo', placeholder: 'Wpisz nazwę województwa'
+              = ff.input :country, label: 'Państwo'
+
+          .col-md-1
+        .row
+          .col-md-1
+          .col-md-10
+            .form-actions
+              = link_to 'Cofnij', :back, class: 'btn btn-default'
+              .pull-right
+                = f.button :submit, "Zapisz", class: "btn btn-default"
+          .col-md-1

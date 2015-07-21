@@ -1,12 +1,34 @@
-%h2 User profile
+.panel.panel-default
+  .panel-heading Dane pacjenta
+  .panel-body
+    .pull-right
+      = link_to "Edytuj profil", edit_user_path(user), class: "btn btn-default"
+    %table
+      %tbody
+        %tr
+          %td= image_tag user.gravatar_url(size: 100)
+          %td= "Email: #{user.email}"
 
-%table
-  %tbody
-    %tr
-      %td= image_tag user.gravatar_url(size: 100)
-      %td= "Email: #{user.email}"
+.panel.panel-default
+  .panel-heading Najbliższe wizyty
+  .panel-body
+    .pull-right
+      = link_to "Więcej wizyt", '#', class: "btn btn-default"
 
-= link_to "Edytuj profil", edit_user_path(user), class: "btn btn-success"
-= link_to "Zwierzęta", user_animals_path(user), class: "btn btn-success"
-= link_to "Kartoteka", user_medical_records_path(user), class: "btn btn-success"
-= link_to "Nowa wizyta", new_user_medical_record_path(user), class: "btn btn-success"
+.panel.panel-default
+  .panel-heading Zwierzęta
+  .panel-body
+    .pull-right
+      = link_to "Więcej zwierząt", user_animals_path(user), class: "btn btn-default"
+
+.panel.panel-default
+  .panel-heading Kartoteka
+  .panel-body
+    .pull-right
+      = link_to "Pełna kartoteka", user_medical_records_path(user), class: "btn btn-default"
+
+.panel.panel-default
+  .panel-heading Zdjęcia
+  .panel-body
+    .pull-right
+      = link_to "Więcej zdjęć", '#', class: "btn btn-default"
