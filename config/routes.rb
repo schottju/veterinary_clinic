@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#show_profile'
   get '/dictionaries', to: 'static_pages#dictionaries'
+  get '/help_page', to: 'static_pages#help_page'
 
   get '/units_search', to: 'static_pages#units_search'
   get '/species_search', to: 'static_pages#species_search'

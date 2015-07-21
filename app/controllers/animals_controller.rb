@@ -17,7 +17,7 @@ class AnimalsController < ApplicationController
 
   def create
     if animal.save
-      redirect_to user_animals_path(params[:user_id]), notice: 'Animal was successfully created.'
+      redirect_to user_animals_path(params[:user_id]), notice: 'Zwierzę zostało pomyślnie utworzone.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class AnimalsController < ApplicationController
 
   def update
     if animal.update(animal_params)
-      redirect_to user_animals_path(params[:user_id]), notice: 'Animal was successfully updated.'
+      redirect_to user_animals_path(params[:user_id]), notice: 'Zwierzę zostało pomyślnie edytowane.'
     else
       render :edit
     end

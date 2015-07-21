@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     user.skip_confirmation!
     if user.save
-      redirect_to users_path, notice: 'Użytkownik został utworzony.'
+      redirect_to users_path, notice: 'Użytkownik został pomyślnie utworzony.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     end
 
     if user.update(user_params)
-      redirect_to users_path, notice: "Edytowano dane."
+      redirect_to users_path, notice: "Użytkownik został pomyślnie edytowany."
     else
       render :edit
     end

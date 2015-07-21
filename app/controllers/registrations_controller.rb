@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       build_resource(sign_up_params)
       clean_up_passwords(resource)
-      flash.now[:error] = "There was an error with the recaptcha. Please reselect captcha below."
+      flash.now[:error] = "Wystąpił problem z reCaptcha, proszę zaznaczyć ponownie."
       flash.delete :recaptcha_error
       render :new
     end

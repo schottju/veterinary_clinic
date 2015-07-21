@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
 
-  validates_presence_of :first_name, :last_name, :pesel
+  validates_presence_of :first_name, :last_name, :pesel, :phone_number
   validates :pesel, length: { is: 11 }
 
   devise :database_authenticatable, :registerable,

@@ -34,4 +34,8 @@ class StaticPagesController < ApplicationController
       params[:tab] = 'treatments'
     end
   end
+
+  def help_page
+
+  end
 end
