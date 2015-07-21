@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :medical_record
   has_many :animals
   has_many :appointments
+  has_many :images
 
   accepts_nested_attributes_for :address
 

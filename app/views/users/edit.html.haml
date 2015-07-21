@@ -1,23 +1,25 @@
-%h1 Edycja użytkownika
-= simple_form_for user do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :first_name, required: true, autofocus: true
-    = f.input :last_name, required: true
-    = f.input :pesel, required: true
-    = f.input :email, required: true
-    = f.input :password
-    = f.input :password_confirmation
-    = f.input :phone_number
-    = f.simple_fields_for :address do |ff|
-      = ff.input :street
-      = ff.input :house_number
-      = ff.input :flat_number
-      = ff.input :zip_code
-      = ff.input :city
-      = ff.input :borough
-      = ff.input :district
-      = ff.input :province
-      = ff.input :country
-  .form-actions
-    = f.button :submit, "Zapisz"
+.panel.panel-default
+  .panel-heading Edycja danych użytownika
+  .panel-body
+    = simple_form_for user do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :first_name, label: 'Imię', required: true, autofocus: true
+        = f.input :last_name, label: 'Nazwisko', required: true
+        = f.input :pesel, label: 'Pesel', required: true
+        = f.input :email, label: 'Email', required: true
+        = f.input :password, label: 'Hasło'
+        = f.input :password_confirmation, label: 'Potwierdzenie hasła'
+        = f.input :phone_number, label: 'Numer telefonu'
+        = f.simple_fields_for :address do |ff|
+          = ff.input :street, label: 'Ulica'
+          = ff.input :house_number, label: 'Numer domu'
+          = ff.input :flat_number, label: 'Numer mieszkania'
+          = ff.input :zip_code, label: 'Kod pocztowy'
+          = ff.input :city, label: 'Miasto'
+          = ff.input :borough, label: 'Gmina'
+          = ff.input :district, label: 'Powiat'
+          = ff.input :province, label: 'Województwo'
+          = ff.input :country, label: 'Państwo'
+      .form-actions.pull-right
+        = f.button :submit, "Zapisz", class: "btn btn-success"
