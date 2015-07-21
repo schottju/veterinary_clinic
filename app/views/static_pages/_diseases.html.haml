@@ -3,6 +3,9 @@
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
 
+    .pull-right
+      = link_to 'Dodaj chorobę', new_disease_path, class: "btn btn-primary"
+
 - if diseases.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
@@ -11,7 +14,6 @@
       %tr
         %th Nazwa
         %th
-
     %tbody
       - diseases.each do |disease|
         %tr
@@ -19,9 +21,6 @@
           %td
             .pull-right
               = link_to 'Edytuj', edit_disease_path(disease), class: "btn btn-default"
-
-.pull-right
-  = link_to 'Dodaj chorobę', new_disease_path, class: "btn btn-primary"
 
 .flickr_pagination
   = will_paginate diseases, param_name: 'diseases_page'

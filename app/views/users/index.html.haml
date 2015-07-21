@@ -2,22 +2,25 @@
   .panel-heading Pacjenci
   .panel-body
     = render 'search_form'
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Imię
-          %th Nazwisko
-          %th
-
-      %tbody
-        - patients.each do |patient|
+    - if patients.empty?
+      .alert.alert-warning.table-warning Brak rekordów.
+    - else
+      %table.table.table-striped
+        %thead
           %tr
-            %td= patient.first_name
-            %td= patient.last_name
-            %td
-              .pull-right
-                = link_to 'Szczegóły', user_path(patient), class: "btn btn-primary"
-                = link_to 'Edytuj', edit_user_path(patient), class: "btn btn-default"
+            %th Imię
+            %th Nazwisko
+            %th
+
+        %tbody
+          - patients.each do |patient|
+            %tr
+              %td= patient.first_name
+              %td= patient.last_name
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_path(patient), class: "btn btn-primary"
+                  = link_to 'Edytuj', edit_user_path(patient), class: "btn btn-default"
 
 
 .flickr_pagination

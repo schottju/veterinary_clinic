@@ -3,6 +3,9 @@
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
 
+    .pull-right
+      = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-primary"
+
 - if units.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
@@ -11,7 +14,6 @@
       %tr
         %th Nazwa
         %th
-
     %tbody
       - units.each do |unit|
         %tr
@@ -19,9 +21,6 @@
           %td
             .pull-right
               = link_to 'Edytuj', edit_unit_path(unit), class: "btn btn-default"
-
-.pull-right
-  = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-primary"
 
 .flickr_pagination
   = will_paginate units, param_name: 'units_page'

@@ -3,6 +3,9 @@
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
 
+    .pull-right
+      = link_to 'Dodaj gatunek', new_species_path, class: "btn btn-primary"
+
 - if species.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
@@ -11,7 +14,6 @@
       %tr
         %th Nazwa
         %th
-
     %tbody
       - species.each do |s|
         %tr
@@ -19,9 +21,6 @@
           %td
             .pull-right
               = link_to 'Edytuj', edit_species_path(s), class: "btn btn-default"
-
-.pull-right
-  = link_to 'Dodaj gatunek', new_species_path, class: "btn btn-primary"
 
 .flickr_pagination
   = will_paginate species, param_name: 'species_page'

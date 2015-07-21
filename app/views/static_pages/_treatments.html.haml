@@ -3,6 +3,9 @@
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
 
+    .pull-right
+      = link_to 'Dodaj zabieg', new_treatment_path, class: "btn btn-primary"
+
 - if treatments.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
@@ -13,7 +16,6 @@
         %th Koszt
         %th Opis
         %th
-
     %tbody
       - treatments.each do |treatment|
         %tr
@@ -23,9 +25,6 @@
           %td
             .pull-right
               = link_to 'Edytuj', edit_treatment_path(treatment), class: "btn btn-default"
-
-.pull-right
-  = link_to 'Dodaj zabieg', new_treatment_path, class: "btn btn-primary"
 
 .flickr_pagination
   = will_paginate treatments, param_name: 'treatments_page'
