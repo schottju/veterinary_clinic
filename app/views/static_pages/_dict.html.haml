@@ -1,0 +1,22 @@
+.panel.panel-default
+  .panel-heading Słowniki
+  .panel-body#static_pages
+    %ul.nav.nav-tabs
+      %li{:class => ('active' if params[:tab] == 'species')}
+        = link_to 'Gatunki', dictionaries_path(tab: 'species')
+      %li{:class => ('active' if params[:tab] == 'treatments')}
+        = link_to 'Zabiegi', dictionaries_path(tab: 'treatments')
+      %li{:class => ('active' if params[:tab] == 'diseases')}
+        = link_to 'Choroby', dictionaries_path(tab: 'diseases')
+      %li{:class => ('active' if params[:tab] == 'units')}
+        = link_to 'Jednostki', dictionaries_path(tab: 'units')
+
+    .tab-content
+      #species.tab-pane{:class => ('active' if params[:tab] == 'species')}
+        = render 'species'
+      #treatments.tab-pane{:class => ('active' if params[:tab] == 'treatments')}
+        = render 'treatments'
+      #diseases.tab-pane{:class => ('active' if params[:tab] == 'diseases')}
+        = render 'diseases'
+      #units.tab-pane{:class => ('active' if params[:tab] == 'units')}
+        = render 'units'

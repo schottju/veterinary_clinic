@@ -1,5 +1,10 @@
+= form_tag treatments_search_path, method: :get do
+  .form-inline
+    = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę', class: 'form-control'
+    = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
+
 - if treatments.empty?
-  .alert.alert-warning.table-warning Brak zdefiniowanych zabiegów.
+  .alert.alert-warning.table-warning Brak rekordów.
 - else
   %table.table.table-striped
     %thead
