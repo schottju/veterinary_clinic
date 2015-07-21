@@ -34,7 +34,8 @@ gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: '
 gem 'momentjs-rails'
 gem 'enum_help'
 gem 'will_paginate', '~> 3.0.6'
-gem 'pry'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'devise-i18n'
 
 group :development do
   gem 'html2haml'
