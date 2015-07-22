@@ -1,0 +1,9 @@
+= simple_form_for [ user, file ] do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę pliku', autofocus: true
+    = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
+    = f.input :image, label: 'zdjęcie'
+  .form-actions
+    = f.button :submit, "Zapisz", class: "btn btn-default"
+    = link_to "Anuluj", , class: "btn btn-default"

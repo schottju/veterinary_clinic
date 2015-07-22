@@ -1,0 +1,22 @@
+%h1 pictures
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - pictures.each do |picture|
+      %tr
+        %td= picture.name
+        %td
+          .pull-right
+            = link_to 'Show', user_picture_path(user, picture), class: "btn btn-primary"
+            = link_to 'Edit', edit_user_picture_path(user, picture), class: "btn btn-default"
+
+.pull-right
+= link_to 'New picture', new_user_picture_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate pictures

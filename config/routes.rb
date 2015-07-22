@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :animals
     resources :medical_records
-    resources :images
+    resources :pictures
     resources :appointments
   end
 end

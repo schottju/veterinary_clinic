@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = picture.name
+%p
+  %b Description:
+  = picture.description
+%p
+  %b Image:
+  = picture.image
+%p
+  %b User:
+  = picture.user
+
+= link_to 'Edit', edit_picture_path(picture)
+\|
+= link_to 'Back', pictures_path

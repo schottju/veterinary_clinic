@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722090321) do
+ActiveRecord::Schema.define(version: 20150722113057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,26 +87,6 @@ ActiveRecord::Schema.define(version: 20150722090321) do
   add_index "diseases_medical_records", ["disease_id"], name: "index_diseases_medical_records_on_disease_id", using: :btree
   add_index "diseases_medical_records", ["medical_record_id"], name: "index_diseases_medical_records_on_medical_record_id", using: :btree
 
-  create_table "files", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.text     "image_data"
-    t.string   "image"
-  end
-
-  add_index "files", ["user_id"], name: "index_files_on_user_id", using: :btree
-
-  create_table "files_medical_records", id: false, force: :cascade do |t|
-    t.integer "medical_record_id", null: false
-    t.integer "file_id",           null: false
-  end
-
-  add_index "files_medical_records", ["file_id"], name: "index_files_medical_records_on_file_id", using: :btree
-  add_index "files_medical_records", ["medical_record_id"], name: "index_files_medical_records_on_medical_record_id", using: :btree
-
   create_table "medical_records", force: :cascade do |t|
     t.text     "anamnesis"
     t.text     "description"
@@ -130,6 +110,14 @@ ActiveRecord::Schema.define(version: 20150722090321) do
   add_index "medical_records_medicines", ["medical_record_id"], name: "index_medical_records_medicines_on_medical_record_id", using: :btree
   add_index "medical_records_medicines", ["medicine_id"], name: "index_medical_records_medicines_on_medicine_id", using: :btree
 
+  create_table "medical_records_pictures", id: false, force: :cascade do |t|
+    t.integer "medical_record_id", null: false
+    t.integer "picture_id",        null: false
+  end
+
+  add_index "medical_records_pictures", ["medical_record_id"], name: "index_medical_records_pictures_on_medical_record_id", using: :btree
+  add_index "medical_records_pictures", ["picture_id"], name: "index_medical_records_pictures_on_picture_id", using: :btree
+
   create_table "medical_records_treatments", id: false, force: :cascade do |t|
     t.integer "medical_record_id", null: false
     t.integer "treatment_id",      null: false
@@ -152,6 +140,18 @@ ActiveRecord::Schema.define(version: 20150722090321) do
   end
 
   add_index "medicines", ["unit_id"], name: "index_medicines_on_unit_id", using: :btree
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.text     "image_data"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
@@ -242,10 +242,10 @@ ActiveRecord::Schema.define(version: 20150722090321) do
   add_foreign_key "animals", "users"
   add_foreign_key "appointments", "users"
   add_foreign_key "appointments", "veterinarians"
-  add_foreign_key "files", "users"
   add_foreign_key "medical_records", "users"
   add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "medicines", "units"
+  add_foreign_key "pictures", "users"
   add_foreign_key "vacations", "veterinarians"
   add_foreign_key "veterinarians", "users"
   add_foreign_key "working_days", "veterinarians"

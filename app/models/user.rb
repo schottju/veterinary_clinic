@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
   has_many :medical_record
   has_many :animals
   has_many :appointments
-  has_many :files
-
+  has_many :pictures
   accepts_nested_attributes_for :address
 
   validates_presence_of :first_name, :last_name, :pesel, :phone_number

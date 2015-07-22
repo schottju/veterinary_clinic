@@ -3,3 +3,10 @@ pl:
     previous_label: "&#8592; Poprzednia"
     next_label: "Następna &#8594;"
     page_gap: "&hellip;"
+  errors:
+    messages:
+      carrierwave_processing_error: "Nie można zmienić rozmiaru zdjęcia."
+      carrierwave_integrity_error: "Nie jest zdjęciem."
+      carrierwave_download_error: "Nie można pobrać zdjęcia."
+      extension_white_list_error: "Nieobsługiwany format(%{extension}) pliku, dozwolone formaty: %{allowed_types}"
+      extension_black_list_error: "Nieobsługiwany format(%{extension}) pliku, nieobsługiwane formaty: %{prohibited_types}"

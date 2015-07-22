@@ -1,0 +1,22 @@
+%h1 files
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - files.each do |file|
+      %tr
+        %td= file.name
+        %td
+          .pull-right
+            = link_to 'Show', user_file_path(user, file), class: "btn btn-primary"
+            = link_to 'Edit', edit_user_file_path(user, file), class: "btn btn-default"
+
+.pull-right
+= link_to 'New file', new_user_file_path, class: "btn btn-primary"
+
+.flickr_pagination
+  = will_paginate files

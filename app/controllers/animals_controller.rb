@@ -3,7 +3,7 @@ class AnimalsController < ApplicationController
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:animal, attributes: :animal_params)
-  expose(:animals) { Animal.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 8) }
+  expose(:animals) { user.animals.paginate(page: params[:page], per_page: 8) }
   expose(:species) { Species.all.order(:name) }
 
   def index
@@ -17,7 +17,7 @@ class AnimalsController < ApplicationController
 
   def create
     if animal.save
-      redirect_to user_animals_path(params[:user_id]), notice: 'Zwierzę zostało pomyślnie utworzone.'
+      redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie utworzone.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class AnimalsController < ApplicationController
 
   def update
     if animal.update(animal_params)
-      redirect_to user_animals_path(params[:user_id]), notice: 'Zwierzę zostało pomyślnie edytowane.'
+      redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie edytowane.'
     else
       render :edit
     end
