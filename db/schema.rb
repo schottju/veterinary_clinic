@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722083058) do
+ActiveRecord::Schema.define(version: 20150722090321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,24 +87,25 @@ ActiveRecord::Schema.define(version: 20150722083058) do
   add_index "diseases_medical_records", ["disease_id"], name: "index_diseases_medical_records_on_disease_id", using: :btree
   add_index "diseases_medical_records", ["medical_record_id"], name: "index_diseases_medical_records_on_medical_record_id", using: :btree
 
-  create_table "images", force: :cascade do |t|
+  create_table "files", force: :cascade do |t|
     t.string   "name"
-    t.text     "source"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.text     "image_data"
+    t.string   "image"
   end
 
-  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
+  add_index "files", ["user_id"], name: "index_files_on_user_id", using: :btree
 
-  create_table "images_medical_records", id: false, force: :cascade do |t|
+  create_table "files_medical_records", id: false, force: :cascade do |t|
     t.integer "medical_record_id", null: false
-    t.integer "image_id",          null: false
+    t.integer "file_id",           null: false
   end
 
-  add_index "images_medical_records", ["image_id"], name: "index_images_medical_records_on_image_id", using: :btree
-  add_index "images_medical_records", ["medical_record_id"], name: "index_images_medical_records_on_medical_record_id", using: :btree
+  add_index "files_medical_records", ["file_id"], name: "index_files_medical_records_on_file_id", using: :btree
+  add_index "files_medical_records", ["medical_record_id"], name: "index_files_medical_records_on_medical_record_id", using: :btree
 
   create_table "medical_records", force: :cascade do |t|
     t.text     "anamnesis"
@@ -241,7 +242,7 @@ ActiveRecord::Schema.define(version: 20150722083058) do
   add_foreign_key "animals", "users"
   add_foreign_key "appointments", "users"
   add_foreign_key "appointments", "veterinarians"
-  add_foreign_key "images", "users"
+  add_foreign_key "files", "users"
   add_foreign_key "medical_records", "users"
   add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "medicines", "units"
