@@ -36,7 +36,6 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 gem 'devise-i18n'
 gem 'carrierwave'
-gem 'carrierwave-base64-storage'
 
 group :development do
   gem 'html2haml'

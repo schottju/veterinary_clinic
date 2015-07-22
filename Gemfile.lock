@@ -69,8 +69,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    carrierwave-base64-storage (1.0.0)
-      carrierwave
     choice (0.2.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -251,7 +249,6 @@ DEPENDENCIES
   awesome_print
   bootstrap-sass
   carrierwave
-  carrierwave-base64-storage
   coffee-rails (~> 4.1.0)
   country_select
   datetimepicker-rails!
