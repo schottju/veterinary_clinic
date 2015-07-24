@@ -133,3 +133,13 @@ img {
     margin-left: 1em;
   }
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: black;
+  text-decoration: underline;
+}
