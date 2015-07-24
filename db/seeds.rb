@@ -16,7 +16,8 @@ veterinarian = User.new(first_name: 'Adam', last_name: 'Winiarczyk', email: 'dak
 veterinarian.skip_confirmation!
 veterinarian.save!
 
-Veterinarian.create!(title: 'lek. wet.', specialization: 'zwierzęta hodowlane', pwz: '01234', user_id: veterinarian.id)
+veterinarian = Veterinarian.create!(title: 'lek. wet.', specialization: 'zwierzęta hodowlane', pwz: '01234', user_id: veterinarian.id)
+WorkingDay.create!(monday: true, tuesday: true, wednesday: true, thursday: true, friday: true, veterinarian_id: veterinarian.id)
 
 #Admin
 admin = User.new(first_name: 'Admin', last_name: 'Administrator', email: 'admin@example.com', pesel: '12345678900', phone_number: '123456780', role: :admin, password: 'password', password_confirmation: 'password')
