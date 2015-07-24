@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722122858) do
+ActiveRecord::Schema.define(version: 20150724123945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 20150722122858) do
   add_index "animals_medical_records", ["medical_record_id"], name: "index_animals_medical_records_on_medical_record_id", using: :btree
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
     t.integer  "status",          default: 0
     t.integer  "kind",            default: 0
     t.integer  "user_id"
     t.integer  "veterinarian_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.date     "day"
+    t.integer  "time",            default: 0
   end
 
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
@@ -205,8 +205,8 @@ ActiveRecord::Schema.define(version: 20150722122858) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "vacations", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.date     "start"
+    t.date     "end"
     t.integer  "veterinarian_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -226,12 +226,16 @@ ActiveRecord::Schema.define(version: 20150722122858) do
   add_index "veterinarians", ["user_id"], name: "index_veterinarians_on_user_id", using: :btree
 
   create_table "working_days", force: :cascade do |t|
-    t.date     "day"
-    t.time     "start"
-    t.time     "end"
     t.integer  "veterinarian_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "monday",          default: false
+    t.boolean  "tuesday",         default: false
+    t.boolean  "wednesday",       default: false
+    t.boolean  "thursday",        default: false
+    t.boolean  "friday",          default: false
+    t.boolean  "saturday",        default: false
+    t.boolean  "sunday",          default: false
   end
 
   add_index "working_days", ["veterinarian_id"], name: "index_working_days_on_veterinarian_id", using: :btree
