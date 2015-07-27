@@ -1,18 +1,18 @@
 #Patients
-edward = User.new(first_name: 'Edward', last_name: 'Wojtak', email: 'daktyr@o2.pl', pesel: '12345678911', phone_number: '123456781', role: :patient, password: 'password', password_confirmation: 'password')
+edward = User.new(first_name: 'Edward', last_name: 'Wojtak', email: 'daktyr@o2.pl', pesel: '12345678911', phone_number: '123456781', role: :pacjent, password: 'password', password_confirmation: 'password')
 edward.skip_confirmation!
 edward.save!
 
-justyna = User.new(first_name: 'Justyna', last_name: 'Kowal', email: 'daktyr@go2.pl', pesel: '12345678912', phone_number: '123456782', role: :patient, password: 'password', password_confirmation: 'password')
+justyna = User.new(first_name: 'Justyna', last_name: 'Kowal', email: 'daktyr@go2.pl', pesel: '12345678912', phone_number: '123456782', role: :pacjent, password: 'password', password_confirmation: 'password')
 justyna.skip_confirmation!
 justyna.save!
 
-jan = User.new(first_name: 'Jan', last_name: 'Nowak', email: 'daktyr@tlen.pl', pesel: '12345678913', phone_number: '123456783', role: :patient, password: 'password', password_confirmation: 'password')
+jan = User.new(first_name: 'Jan', last_name: 'Nowak', email: 'daktyr@tlen.pl', pesel: '12345678913', phone_number: '123456783', role: :pacjent, password: 'password', password_confirmation: 'password')
 jan.skip_confirmation!
 jan.save!
 
 #Veterinarians
-veterinarian = User.new(first_name: 'Adam', last_name: 'Winiarczyk', email: 'daktyr@gmail.com', pesel: '12345678901', phone_number: '123456789', role: :veterinarian, password: 'password', password_confirmation: 'password')
+veterinarian = User.new(first_name: 'Adam', last_name: 'Winiarczyk', email: 'daktyr@gmail.com', pesel: '12345678901', phone_number: '123456789', role: :weterynarz, password: 'password', password_confirmation: 'password')
 veterinarian.skip_confirmation!
 veterinarian.save!
 

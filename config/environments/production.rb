@@ -89,6 +89,11 @@ Rails.application.configure do
     password: ENV["SENDGRID_PASSWORD"]
   }
 
+
+
   config.assets.initialize_on_precompile = false
+
+  #Adds rails_admin assets
+  config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
 
 end
