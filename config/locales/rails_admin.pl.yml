@@ -10,8 +10,8 @@ pl:
       filter: "Filtruj"
       refresh: "Odśwież"
       show_all: "Pokaż wszystkie"
-      add_filter: "Dodaj filtr..."
-      bulk_menu_title: "Wybrane pozycje..."
+      add_filter: "Dodaj filtr"
+      bulk_menu_title: "Wybrane pozycje"
       remove: "Usuń"
       add_new: "Dodaj"
       chosen: "Wybrano %{name}"
@@ -40,8 +40,8 @@ pl:
     actions:
       dashboard:
         title: "Strona administracyjna"
-        menu: "Kokpit"
-        breadcrumb: "Kokpit"
+        menu: "Strona główna"
+        breadcrumb: "Strona główna"
       index:
         title: "Wyświetl %{model_label_plural}"
         menu: "Wyświetl"
@@ -74,7 +74,7 @@ pl:
         title: "Usuń %{model_label_plural}"
         menu: "Usuń wiele"
         breadcrumb: "Usuń wiele"
-        bulk_link: "Usunięto zaznaczone %{model_label_plural}"
+        bulk_link: "Usuń zaznaczone %{model_label_plural}"
       export:
         title: "Eksportuj %{model_label}"
         menu: "Eksportuj"
@@ -106,7 +106,7 @@ pl:
       confirmation: "Tak, jestem pewien"
       delete_confirmation: "Usuń potwierdzenie"
       bulk_delete: "Następujące obiekty zostaną usunięte, co może usunąć lub osierocić ich powiązane relacje:"
-    export:      
+    export:
       confirmation: "Eksportuj do %{name}"
       select: "Zaznacz pola do eksportu"
       fields_from: "Pola z %{name}"
