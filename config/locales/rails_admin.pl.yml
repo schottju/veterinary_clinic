@@ -1,7 +1,7 @@
 pl:
   admin:
     home:
-      name: Strona główna
+      name: "Klinika"
     pagination:
       previous: "&laquo; Poprzednie"
       next: "Następne &raquo;"
@@ -39,8 +39,8 @@ pl:
       message: "Wiadomość"
     actions:
       dashboard:
-        title: "Strona administracyjna"
-        menu: "Strona główna"
+        title: "Strona główna administracji"
+        menu: "Strona główna administracji"
         breadcrumb: "Strona główna"
       index:
         title: "%{model_label_plural}"
