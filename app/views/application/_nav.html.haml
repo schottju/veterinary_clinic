@@ -4,7 +4,7 @@
       .navbar-header
         %span.navbar-brand= icon('medkit', 'Veterinary Clinic')
       - if user_signed_in?
-        - if current_user.patient?
+        - if current_user.pacjent?
           %ul.nav.navbar-nav
             %li{:class => active_class('#')}= link_to icon('files-o', 'Kartoteka'), '#'
             %li{:class => active_class('#')}= link_to icon('hospital-o', 'Wizyty'), '#'
@@ -21,7 +21,7 @@
                 %li.divider{role: "separator"}
                 %li= link_to icon('power-off','Wyloguj'), destroy_user_session_path, method: :delete
 
-        - elsif current_user.veterinarian?
+        - elsif current_user.weterynarz?
           %ul.nav.navbar-nav
             %li{:class => active_class(users_path)}= link_to icon('users', 'Pacjenci'), users_path
             %li{:class => active_class('#')}= link_to icon('hospital-o', 'Wizyty'), '#'
