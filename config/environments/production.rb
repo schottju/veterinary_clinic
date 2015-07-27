@@ -89,4 +89,6 @@ Rails.application.configure do
     password: ENV["SENDGRID_PASSWORD"]
   }
 
+  config.assets.initialize_on_precompile = false
+
 end
