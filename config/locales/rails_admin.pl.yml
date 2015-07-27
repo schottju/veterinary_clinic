@@ -43,8 +43,8 @@ pl:
         menu: "Strona główna"
         breadcrumb: "Strona główna"
       index:
-        title: "Wyświetl %{model_label_plural}"
-        menu: "Wyświetl"
+        title: "%{model_label_plural}"
+        menu: "Lista wszystkich"
         breadcrumb: "%{model_label_plural}"
       show:
         title: "Szczegóły dla %{model_label} '%{object_label}'"
@@ -108,6 +108,7 @@ pl:
       bulk_delete: "Następujące obiekty zostaną usunięte, co może usunąć lub osierocić ich powiązane relacje:"
     export:
       confirmation: "Eksportuj do %{name}"
+      select_all_fields: "Zaznacz wszystkie pola"
       select: "Zaznacz pola do eksportu"
       fields_from: "Pola z %{name}"
       fields_from_associated: "Pola z asocjacji %{name}"
@@ -125,3 +126,21 @@ pl:
         default_col_sep: ","
         col_sep: "Separator kolumny"
         col_sep_help: "Zostw puste dla domyślnej wartości ('%{value}')" # value is default_col_sep
+    js:
+      true: "Prawda"
+      false: "Fałsz"
+      is_present: "Nie jest puste"
+      is_blank: "Jest puste"
+      date: "Data"
+      between_and_: "Między ... , a ..."
+      today: "Dzisiaj"
+      yesterday: "Wczoraj"
+      this_week: "W tym tygodniu"
+      last_week: "W poprzednim tygodniu"
+      number: "Numer ..."
+      contains: "Zawiera"
+      is_exactly: "Dokładnie takie"
+      starts_with: "Zaczyna się na"
+      ends_with: "Kończy się na"
+      too_many_objects: "Zbyt wiele wyników, użyj powyższej wyszukiwarki."
+      no_objects: "Brak wyników."
