@@ -41,7 +41,7 @@
         - elsif current_user.admin?
           %ul.nav.navbar-nav
           %ul.nav.navbar-nav.navbar-right
-            %li{:class => active_class('#')}= link_to "Administracja", '#'
+            %li{:class => active_class("#{rails_admin.dashboard_path}")}= link_to "Administracja", "#{rails_admin.dashboard_path}"
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = icon('user')
