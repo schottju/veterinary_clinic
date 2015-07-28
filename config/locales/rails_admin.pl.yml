@@ -3,8 +3,8 @@ pl:
     home:
       name: "Klinika"
     pagination:
-      previous: "&laquo; Poprzednie"
-      next: "Następne &raquo;"
+      previous: "&laquo; Poprzednia"
+      next: "Następna &raquo;"
     misc:
       search: "Szukaj"
       filter: "Filtruj"
@@ -23,7 +23,7 @@ pl:
       log_out: "Wyloguj"
       ago: "temu"
     flash:
-      successful: "%{name} pomyślnie %{action}"
+      successful: "Pomyślnie %{action} %{name}"
       error: "%{name} nie powiodło się %{action}"
       noaction: "Żadne akcje nie zostały przeprowadzone"
       model_not_found: "Model '%{model}' nie został znaleziony"
@@ -39,30 +39,30 @@ pl:
       message: "Wiadomość"
     actions:
       dashboard:
-        title: "Strona główna administracji"
-        menu: "Strona główna administracji"
+        title: "Strona administracyjna"
+        menu: "Strona administracyjna"
         breadcrumb: "Strona główna"
       index:
         title: "%{model_label_plural}"
-        menu: "Lista wszystkich"
+        menu: "%{model_label_plural}"
         breadcrumb: "%{model_label_plural}"
       show:
-        title: "Szczegóły dla %{model_label} '%{object_label}'"
+        title: "Szczegóły"
         menu: "Pokaż"
-        breadcrumb: "%{object_label}"
+        breadcrumb: "%{model_label}"
       show_in_app:
         menu: "Pokaż na żywo"
       new:
         title: "Dodaj %{model_label}"
         menu: "Dodaj"
         breadcrumb: "Dodaj"
-        link: "Dodaj %{model_label}"
+        link: "Dodaj"
         done: "utworzono"
       edit:
-        title: "Edytuj %{model_label} '%{object_label}'"
+        title: "Edytuj"
         menu: "Edytuj"
         breadcrumb: "Edytuj"
-        link: "Edytuj ten %{model_label}"
+        link: "Edytuj"
         done: "zaktualizowano"
       delete:
         title: "Usuń %{model_label} '%{object_label}'"
@@ -110,7 +110,7 @@ pl:
       confirmation: "Eksportuj do %{name}"
       select_all_fields: "Zaznacz wszystkie pola"
       select: "Zaznacz pola do eksportu"
-      fields_from: "Pola z %{name}"
+      fields_from: "Pola"
       fields_from_associated: "Pola z asocjacji %{name}"
       display: "Wyświetl %{name}: %{type}"
       options_for: "Opcje dla %{name}"
@@ -124,7 +124,7 @@ pl:
         skip_header: "Brak nagłówka"
         skip_header_help: "Nie dodawaj nagłówka (brak opisu pól)"
         default_col_sep: ","
-        col_sep: "Separator kolumny"
+        col_sep: "Separator kolumn"
         col_sep_help: "Zostw puste dla domyślnej wartości ('%{value}')" # value is default_col_sep
     js:
       true: "Prawda"

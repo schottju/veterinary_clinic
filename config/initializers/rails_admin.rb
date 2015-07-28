@@ -43,19 +43,43 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.default_items_per_page = 8
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
     new
     export
-    bulk_delete
+    #bulk_delete
     show
     edit
-    delete
+    #delete
     #show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model 'Address' do
+    configure :user do
+      label "użytkownik"
+    end
+
+    list do
+      field :id
+      field :street
+      field :house_number
+      field :flat_number
+      field :zip_code
+      field :city
+      field :borough
+      field :district
+      field :province
+      field :country
+      field :user
+      field :created_at
+      field :updated_at
+    end
   end
 end
