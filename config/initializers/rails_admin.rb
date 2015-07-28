@@ -50,10 +50,10 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new
     export
-    #bulk_delete
+    bulk_delete
     show
     edit
-    #delete
+    delete
     #show_in_app
 
     ## With an audit adapter, you can add:
@@ -64,6 +64,10 @@ RailsAdmin.config do |config|
   config.model 'Address' do
     configure :user do
       label "użytkownik"
+    end
+
+    object_label_method do
+      :custom_label_method
     end
 
     list do
@@ -80,6 +84,84 @@ RailsAdmin.config do |config|
       field :user
       field :created_at
       field :updated_at
+    end
+  end
+
+  config.model 'User' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Animal' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Appointment' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Disease' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Medical_record' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Medicine' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Picture' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Species' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Tretment' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Unit' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Vacation' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Veterinarian' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'WorkingDay' do
+    object_label_method do
+      :custom_label_method
     end
   end
 end

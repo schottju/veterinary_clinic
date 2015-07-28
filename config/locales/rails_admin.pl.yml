@@ -23,7 +23,7 @@ pl:
       log_out: "Wyloguj"
       ago: "temu"
     flash:
-      successful: "Pomyślnie %{action} %{name}"
+      successful: "Pomyślnie %{action} record"
       error: "%{name} nie powiodło się %{action}"
       noaction: "Żadne akcje nie zostały przeprowadzone"
       model_not_found: "Model '%{model}' nie został znaleziony"
@@ -49,7 +49,7 @@ pl:
       show:
         title: "Szczegóły"
         menu: "Pokaż"
-        breadcrumb: "%{model_label}"
+        breadcrumb: "%{object_label}"
       show_in_app:
         menu: "Pokaż na żywo"
       new:

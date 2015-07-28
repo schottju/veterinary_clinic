@@ -3,6 +3,10 @@ class Species < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def custom_label_method
+    "#{name}"
+  end
+
   private
 
   def self.search(query)

@@ -4,4 +4,8 @@ class Veterinarian < ActiveRecord::Base
   has_many :appointments
   has_many :vacations
   has_many :working_days
+
+  def custom_label_method
+    "#{user.first_name} #{user.last_name}, pwz: #{pwz}"
+  end
 end

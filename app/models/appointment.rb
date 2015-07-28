@@ -4,4 +4,8 @@ class Appointment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :veterinarian
+
+  def custom_label_method
+    "Dzień: #{day}, godzina: #{time}, rodzaj: #{kind}"
+  end
 end

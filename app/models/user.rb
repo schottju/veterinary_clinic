@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def custom_label_method
+    "#{first_name} #{last_name} #{pesel}"
+  end
+
   private
 
   def self.search(query)
