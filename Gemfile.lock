@@ -242,6 +242,10 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_form_fancy_uploads (0.2.0)
+      carrierwave
+      rails (>= 4.0.0)
+      simple_form (~> 3.1)
     slop (3.6.0)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
@@ -307,6 +311,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form (~> 3.1.0rc)
+  simple_form_fancy_uploads
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)

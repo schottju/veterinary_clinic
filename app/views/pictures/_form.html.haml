@@ -3,7 +3,7 @@
   .form-inputs
     = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę pliku', autofocus: true
     = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
-    = f.input :image, label: 'Zdjęcie'
+    = f.input :image, label: 'Zdjęcie', as: :image_preview, input_html: { preview_version: :thumb }
   .form-actions
     = f.button :submit, "Zapisz", class: "btn btn-default"
     = link_to "Anuluj", user_pictures_path, class: "btn btn-default"
