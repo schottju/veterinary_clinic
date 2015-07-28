@@ -29,7 +29,7 @@ Address.create!(street: 'Kilińskiego', house_number: '12', flat_number: '44', z
 Address.create!(street: 'Kościuszki', house_number: '4A', flat_number: '5', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: justyna.id)
 Address.create!(street: 'Bema', house_number: '123', flat_number: '', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: jan.id)
 Address.create!(street: 'Krótka', house_number: '22', flat_number: '', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: veterinarian.id)
-Address.create!(street: 'Adminowa', house_number: '12', flat_number: '3', zip_code: '37-400', city: 'Nisko', borough: 'Niżański', district: 'niżański', province: 'podkarpackie', country: 'PL', user_id: admin.id)
+Address.create!(street: 'Adminowa', house_number: '12', flat_number: '3', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: admin.id)
 
 #Species
 inny = Species.create!(name: 'inny')
