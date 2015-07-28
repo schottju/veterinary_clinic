@@ -96,6 +96,7 @@ pl:
       required: "Wymagane"
       optional: "Opcjonalne"
       one_char: "litera"
+      new_model: "Nowy %{name}"
       char_length_up_to: "długość do"
       char_length_of: "długość"
       save: "Zapisz"

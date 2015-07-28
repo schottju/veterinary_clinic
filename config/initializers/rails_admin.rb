@@ -23,8 +23,6 @@ ActiveRecord::Base.send(:extend, ActiveRecord::RailsAdminEnum)
 
 RailsAdmin.config do |config|
 
-  ### Popular gems integration
-
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
@@ -35,30 +33,17 @@ RailsAdmin.config do |config|
     (redirect_to main_app.authenticated_root_path, notice: "Brak uprawnień administratora.") unless current_user.admin?
   end
 
-  ## == Cancan ==
-  # config.authorize_with :cancan
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-
   config.default_items_per_page = 8
 
   config.actions do
-    dashboard                     # mandatory
-    index                         # mandatory
+    dashboard
+    index
     new
     export
     bulk_delete
     show
     edit
     delete
-    #show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
 
   config.model 'Address' do
@@ -82,6 +67,55 @@ RailsAdmin.config do |config|
       field :province
       field :country
       field :user
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+      field :street
+      field :house_number
+      field :flat_number
+      field :zip_code
+      field :city
+      field :borough
+      field :district
+      field :province
+      field :country do
+        help 'Opcjonalne. (Wpisz skrót państwa)'
+      end
+      field :user do
+        inline_add false
+        inline_edit false
+      end
+    end
+
+    show do
+      field :id
+      field :street
+      field :house_number
+      field :flat_number
+      field :zip_code
+      field :city
+      field :borough
+      field :district
+      field :province
+      field :country
+      field :user
+      field :created_at
+      field :updated_at
+    end
+
+    export do
+      field :id
+      field :street
+      field :house_number
+      field :flat_number
+      field :zip_code
+      field :city
+      field :borough
+      field :district
+      field :province
+      field :country
       field :created_at
       field :updated_at
     end
