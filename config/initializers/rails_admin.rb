@@ -118,6 +118,7 @@ RailsAdmin.config do |config|
       field :country
       field :created_at
       field :updated_at
+      field :user
     end
   end
 
@@ -125,11 +126,55 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
+    end
   end
 
   config.model 'Animal' do
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -137,17 +182,96 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
-  end
 
-  config.model 'Disease' do
-    object_label_method do
-      :custom_label_method
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
-  config.model 'Medical_record' do
+  config.model 'Disease' do
+    configure :medical_records do
+      label "karty użytkowników"
+    end
+
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :name
+      field :medical_records
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :name
+      field :medical_records
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+      field :name
+      field :medical_records do
+        inline_add false
+      end
+    end
+
+    export do
+      field :id
+      field :name
+      field :created_at
+      field :updated_at
+      field :medical_records
+    end
+  end
+
+  config.model 'MedicalRecord' do
+    object_label_method do
+      :custom_label_method
+    end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -155,11 +279,55 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
+    end
   end
 
   config.model 'Picture' do
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -167,11 +335,55 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
+    end
   end
 
   config.model 'Tretment' do
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -179,11 +391,55 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
+    end
   end
 
   config.model 'Vacation' do
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -191,11 +447,93 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+
+    list do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+
+    end
+
+    export do
+      field :id
+      field :created_at
+      field :updated_at
+    end
   end
 
   config.model 'WorkingDay' do
+    configure :veterinarian do
+     label 'weterynarz'
+    end
+
     object_label_method do
       :custom_label_method
+    end
+
+    list do
+      field :id
+      field :veterinarian
+      field :monday
+      field :tuesday
+      field :wednesday
+      field :thursday
+      field :friday
+      field :saturday
+      field :sunday
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :veterinarian
+      field :monday
+      field :tuesday
+      field :wednesday
+      field :thursday
+      field :friday
+      field :saturday
+      field :sunday
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+      field :veterinarian do
+        inline_add false
+        inline_edit false
+      end
+      field :monday
+      field :tuesday
+      field :wednesday
+      field :thursday
+      field :friday
+      field :saturday
+      field :sunday
+    end
+
+    export do
+      field :id
+      field :monday
+      field :tuesday
+      field :wednesday
+      field :thursday
+      field :friday
+      field :saturday
+      field :sunday
+      field :created_at
+      field :updated_at
+      field :veterinarian
     end
   end
 end

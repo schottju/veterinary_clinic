@@ -8,6 +8,6 @@ class MedicalRecord < ActiveRecord::Base
   has_and_belongs_to_many :treatments
 
   def custom_label_method
-    "Karta nr #{id}"
+    "#{id}"
   end
 end
