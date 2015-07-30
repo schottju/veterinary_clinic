@@ -23,7 +23,7 @@ pl:
       log_out: "Wyloguj"
       ago: "temu"
     flash:
-      successful: "Pomyślnie %{action} record"
+      successful: "Pomyślnie %{action} rekord"
       error: "%{name} nie powiodło się %{action}"
       noaction: "Żadne akcje nie zostały przeprowadzone"
       model_not_found: "Model '%{model}' nie został znaleziony"

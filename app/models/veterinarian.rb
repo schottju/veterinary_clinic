@@ -1,11 +1,13 @@
 class Veterinarian < ActiveRecord::Base
   belongs_to :user
-  has_many :medical_record
+  has_many :medical_records
   has_many :appointments
   has_many :vacations
-  has_many :working_days
+  has_one :working_day
+
+  accepts_nested_attributes_for :working_day
 
   def custom_label_method
-    "#{user.first_name} #{user.last_name}, pwz: #{pwz}"
+    "#{user.try(:first_name)} #{user.try(:last_name)}, pwz: #{pwz}"
   end
 end

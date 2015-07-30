@@ -137,7 +137,7 @@ pl:
         grace_period: "okres karencji"
         price: "cena"
         serial_number: "numer serii"
-        dosage: "dawka"
+        dosage: "dawkowanie"
         created_at: "data utworzenia"
         updated_at: "data edycji"
       picture:

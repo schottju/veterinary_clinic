@@ -6,11 +6,14 @@ class User < ActiveRecord::Base
 
   has_one :address
   has_one :veterinarian
-  has_many :medical_record
+  has_many :medical_records
   has_many :animals
   has_many :appointments
   has_many :pictures
   accepts_nested_attributes_for :address
+
+  #Rails_admin
+  accepts_nested_attributes_for :veterinarian
 
   validates_presence_of :first_name, :last_name, :pesel, :phone_number
   validates :pesel, length: { is: 11 }

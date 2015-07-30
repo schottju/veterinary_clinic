@@ -6,7 +6,7 @@ class Animal < ActiveRecord::Base
   has_and_belongs_to_many :medical_records
 
   def custom_label_method
-    "ID: #{id_number}, imię: #{name}, wiek: #{trim(age)}, ilość: #{amount}, gatunek: #{species.name}"
+    "ID: #{id_number}, imię: #{name}, wiek: #{trim(age)}, ilość: #{amount}, gatunek: #{species.try(name)}"
   end
 
   private
