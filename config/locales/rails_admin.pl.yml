@@ -74,13 +74,13 @@ pl:
         title: "Usuń %{model_label_plural}"
         menu: "Usuń wiele"
         breadcrumb: "Usuń wiele"
-        bulk_link: "Usuń zaznaczone %{model_label_plural}"
+        bulk_link: "Usuń zaznaczone pozycje"
       export:
         title: "Eksportuj %{model_label}"
         menu: "Eksportuj"
         breadcrumb: "Eksportuj"
         link: "Eksportuj %{model_label_plural}"
-        bulk_link: "Esportuj zaznaczone %{model_label_plural}"
+        bulk_link: "Eksportuj zaznaczone pozycje"
         done: "wyeksportowano"
       history_index:
         title: "Historia dla %{model_label_plural}"
@@ -121,7 +121,7 @@ pl:
         header_for_root_methods: "%{name}" # 'model' is available
         header_for_association_methods: "%{name} [%{association}]"
         encoding_to: "Koduj do"
-        encoding_to_help: "Wybierz docelowe kodowanie. Zostaw puste by skorzystać by zostawić aktualne kodowanie nietknięte: (%{name})"
+        encoding_to_help: "Wybierz docelowe kodowanie. Zostaw puste by zostawić aktualne kodowanie: (%{name})"
         skip_header: "Brak nagłówka"
         skip_header_help: "Nie dodawaj nagłówka (brak opisu pól)"
         default_col_sep: ","

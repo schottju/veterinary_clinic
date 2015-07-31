@@ -73,17 +73,17 @@ pl:
         many: "użytkowników"
         other: "użytkownicy"
       vacation:
-        one: "wakacje"
-        few: "wakacje"
-        many: "wakacje"
-        other: "wakacje"
+        one: "urlop"
+        few: "urlopy"
+        many: "urlopów"
+        other: "urlopy"
       veterinarian:
         one: "weterynarz"
         few: "weterynarzy"
         many: "weterynarzy"
         other: "weterynarze"
       working_day:
-        one: "dzień pracujący"
+        one: "dzień pracy"
         few: "dni pracujące"
         many: "dni pracujących"
         other: "dni pracy"
