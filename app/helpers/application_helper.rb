@@ -15,5 +15,12 @@ module ApplicationHelper
     current_page?(link_path) ? "active" : ""
   end
 
-
+  def trim_age(num)
+    if num.blank?
+      ""
+    else
+      i, f = num.to_i, num.to_f
+      i == f ? i : f
+    end
+  end
 end

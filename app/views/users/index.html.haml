@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Pacjenci
+  .panel-heading Właściciele
   .panel-body
     = render 'search_form'
     - if patients.empty?
@@ -10,6 +10,9 @@
           %tr
             %th Imię
             %th Nazwisko
+            %th Pesel
+            %th Email
+            %th Numer telefonu
             %th
 
         %tbody
@@ -17,11 +20,12 @@
             %tr
               %td= patient.first_name
               %td= patient.last_name
+              %td= patient.pesel
+              %td= patient.email
+              %td= patient.phone_number
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_path(patient), class: "btn btn-primary"
-                  = link_to 'Edytuj', edit_user_path(patient), class: "btn btn-default"
-                  = link_to "Nowa wizyta", new_user_medical_record_path(patient), class: "btn btn-default"
+                  = link_to 'Szczegóły', user_path(patient), class: "btn btn-default"
 
 
 .flickr_pagination

@@ -10,7 +10,7 @@
     = f.input :total_cost
     = f.input :animal_ids, collection: Animal.where(user_id: user.id), input_html: { multiple: true }
     = f.input :treatment_ids, collection: Treatment.all, input_html: { multiple: true }
-    = f.input :image_ids, collection: Image.all, input_html: { multiple: true }
+    = f.input :picture_ids, collection: Picture.all, input_html: { multiple: true }
     = f.input :disease_ids, collection: Disease.all, input_html: { multiple: true }
     = f.input :medicine_ids, collection: Medicine.all, input_html: { multiple: true }
   .form-actions

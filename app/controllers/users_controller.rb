@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   expose(:patients) { User.where(role: 'patient').order(:last_name).paginate(page: params[:page], per_page: 8) }
 
   def show
+    @appointments = user.appointments.where('day >= ?', Date.today).order(:day).limit(5)
+    @animals = user.animals.order(created_at: :desc).limit(5)
+    @medical_records = user.medical_records.order(created_at: :desc).limit(5)
+    @pictures = user.pictures.order(created_at: :desc).limit(5)
   end
 
   def index
@@ -11,20 +15,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    user.build_address
-  end
-
-  def create
-    user.skip_confirmation!
-    if user.save
-      redirect_to users_path, notice: 'Użytkownik został pomyślnie utworzony.'
-    else
-      render :new
-    end
-  end
-
   def edit
+    user.build_address if user.address.nil?
   end
 
   def update
@@ -34,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     if user.update(user_params)
-      redirect_to users_path, notice: "Użytkownik został pomyślnie edytowany."
+      redirect_to user_path(user), notice: "Użytkownik został pomyślnie edytowany."
     else
       render :edit
     end

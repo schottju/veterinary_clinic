@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def custom_label_method
     "#{first_name} #{last_name} #{pesel}"
   end

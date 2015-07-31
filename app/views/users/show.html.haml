@@ -1,34 +1,171 @@
 .panel.panel-default
-  .panel-heading Dane pacjenta
+  .panel-heading Dane właściciela
   .panel-body
+    .row
+      .col-md-2
+        = image_tag user.gravatar_url(size: 150)
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Imię: #{user.first_name}"
+            %tr
+              %td= "Nazwisko: #{user.last_name}"
+            %tr
+              %td= "Pesel: #{user.pesel}"
+            %tr
+              %td= "Numer telefonu: #{user.phone_number}"
+            %tr
+              %td= "Email: #{user.email}"
+            %tr
+              %td= "Państwo: #{user.try(:address).try(:country)}"
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Ulica: #{user.try(:address).try(:street)} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
+            %tr
+              %td= "Kod pocztowy: #{user.try(:address).try(:zip_code)}"
+            %tr
+              %td= "Miasto: #{user.try(:address).try(:city)}"
+            %tr
+              %td= "Gmina: #{user.try(:address).try(:borough)}"
+            %tr
+              %td= "Powiat: #{user.try(:address).try(:district)}"
+            %tr
+              %td= "Województwo: #{user.try(:address).try(:province)}"
     .pull-right
-      = link_to "Edytuj profil", edit_user_path(user), class: "btn btn-default"
-    %table
-      %tbody
-        %tr
-          %td= image_tag user.gravatar_url(size: 100)
-          %td= "Email: #{user.email}"
+      = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"
+      = link_to "Nowa karta", new_user_medical_record_path(user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Najbliższe wizyty
   .panel-body
-    .pull-right
-      = link_to "Więcej wizyt", '#', class: "btn btn-default"
+    - if @appointments.empty?
+      .alert.alert-warning.table-warning Brak wizyt.
+      .pull-right
+        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Data
+            %th Pora dnia
+            %th Rodzaj
+            %th Status
+            %th
+
+        %tbody
+          - @appointments.each do |appointment|
+            %tr
+              %td= appointment.day
+              %td= appointment.time
+              %td= appointment.kind
+              %td= appointment.status
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
+                  = link_to 'Edytuj', edit_user_appointment_path(user, appointment), class: "btn btn-default"
+      .pull-right
+        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_appointments_path(user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Zwierzęta
   .panel-body
-    .pull-right
-      = link_to "Więcej zwierząt", user_animals_path(user), class: "btn btn-default"
+    - if @animals.empty?
+      .alert.alert-warning.table-warning Brak zwierząt.
+      .pull-right
+        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Numer identyfikacyjny
+            %th Nazwa
+            %th Ilość
+            %th Wiek
+            %th Płeć
+            %th Gatunek
+            %th
+
+        %tbody
+          - @animals.each do |animal|
+            %tr
+              %td= animal.id_number
+              %td= animal.name
+              %td= animal.amount
+              %td= trim_age animal.age
+              %td= animal.gender
+              %td= animal.species.name
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
+                  = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
+      .pull-right
+        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_animals_path(user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Kartoteka
   .panel-body
-    .pull-right
-      = link_to "Pełna kartoteka", user_medical_records_path(user), class: "btn btn-default"
+    - if @medical_records.empty?
+      .alert.alert-warning.table-warning Brak kart.
+      .pull-right
+        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Id
+            %th Wywiad
+            %th Weterynarz
+            %th Opis
+            %th Komentarz
+            %th
+
+        %tbody
+          - @medical_records.each do |medical_record|
+            %tr
+              %td= medical_record.id
+              %td= medical_record.anamnesis
+              %td= medical_record.try(:veterinarian).try(:user).try(:full_name)
+              %td= medical_record.description
+              %td= medical_record.comment
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
+                  = link_to 'Edytuj', edit_user_medical_record_path(user, medical_record), class: "btn btn-default"
+      .pull-right
+        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_medical_records_path(user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Zdjęcia
   .panel-body
-    .pull-right
-      = link_to "Więcej zdjęć", user_pictures_path(user), class: "btn btn-default"
+    - if @pictures.empty?
+      .alert.alert-warning.table-warning Brak zdjęć.
+      .pull-right
+        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Nazwa
+            %th Zdjęcie
+            %th Opis
+            %th
+
+        %tbody
+          - @pictures.each do |picture|
+            %tr
+              %td= picture.name
+              %td= image_tag picture.image, height: "120"
+              %td= picture.description
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"
+                  = link_to 'Edytuj', edit_user_picture_path(user, picture), class: "btn btn-default"
+      .pull-right
+        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_pictures_path(user), class: "btn btn-default"
