@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/diseases_search', to: 'static_pages#diseases_search'
   get '/treatments_search', to: 'static_pages#treatments_search'
 
+  get '/veterinarian_appointments', to: 'appointments#veterinarian_appoinments'
+
   resources :units, only: [ :new, :create, :edit, :update ]
   resources :diseases, only: [ :new, :create, :edit, :update ]
   resources :treatments, only: [ :new, :create, :edit, :update ]

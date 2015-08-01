@@ -1,0 +1,38 @@
+.panel.panel-default
+  .panel-heading Dane profilowe
+  .panel-body
+    .row
+      .col-md-2
+        = image_tag current_user.gravatar_url(size: 150)
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Imię: #{current_user.first_name}"
+            %tr
+              %td= "Nazwisko: #{current_user.last_name}"
+            %tr
+              %td= "Pesel: #{current_user.pesel}"
+            %tr
+              %td= "Numer telefonu: #{current_user.phone_number}"
+            %tr
+              %td= "Email: #{current_user.email}"
+            %tr
+              %td= "Państwo: #{current_user.try(:address).try(:country)}"
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Ulica: #{current_user.try(:address).try(:street)} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
+            %tr
+              %td= "Kod pocztowy: #{current_user.try(:address).try(:zip_code)}"
+            %tr
+              %td= "Miasto: #{current_user.try(:address).try(:city)}"
+            %tr
+              %td= "Gmina: #{current_user.try(:address).try(:borough)}"
+            %tr
+              %td= "Powiat: #{current_user.try(:address).try(:district)}"
+            %tr
+              %td= "Województwo: #{current_user.try(:address).try(:province)}"
+    .pull-right
+      = link_to "Edytuj", edit_user_path(current_user), class: "btn btn-default"

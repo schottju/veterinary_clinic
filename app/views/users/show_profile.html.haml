@@ -1,31 +1,6 @@
-.panel.panel-default
-  .panel-heading Dane użytkownika
-  .panel-body
-    %table
-      %tbody
-        %tr
-          %td= image_tag current_user.gravatar_url(size: 100)
-          %td= "Email: #{current_user.email}"
-
-
-
-    = link_to "User edit profile", edit_user_registration_path, class: "btn btn-success"
-
-.panel.panel-default
-  .panel-heading Najbliższe wizyty
-  .panel-body
-
-
-.panel.panel-default
-  .panel-heading Zwierzęta
-  .panel-body
-
-
-.panel.panel-default
-  .panel-heading Kartoteka
-  .panel-body
-
-
-.panel.panel-default
-  .panel-heading Zdjęcia
-  .panel-body
+- if current_user.pacjent?
+  = render 'patient_profile'
+- elsif current_user.weterynarz?
+  = render 'veterinarian_profile'
+- elsif current_user.admin?
+  = render 'admin_profile'

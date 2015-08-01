@@ -1,42 +1,41 @@
 .panel.panel-default
-  .panel-heading Dane właściciela
+  .panel-heading Dane profilowe
   .panel-body
     .row
       .col-md-2
-        = image_tag user.gravatar_url(size: 150)
+        = image_tag current_user.gravatar_url(size: 150)
       .col-md-5
         %table.table
           %tbody
             %tr
-              %td= "Imię: #{user.first_name}"
+              %td= "Imię: #{current_user.first_name}"
             %tr
-              %td= "Nazwisko: #{user.last_name}"
+              %td= "Nazwisko: #{current_user.last_name}"
             %tr
-              %td= "Pesel: #{user.pesel}"
+              %td= "Pesel: #{current_user.pesel}"
             %tr
-              %td= "Numer telefonu: #{user.phone_number}"
+              %td= "Numer telefonu: #{current_user.phone_number}"
             %tr
-              %td= "Email: #{user.email}"
+              %td= "Email: #{current_user.email}"
             %tr
-              %td= "Państwo: #{user.try(:address).try(:country)}"
+              %td= "Państwo: #{current_user.try(:address).try(:country)}"
       .col-md-5
         %table.table
           %tbody
             %tr
-              %td= "Ulica: #{user.try(:address).try(:street)} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
+              %td= "Ulica: #{current_user.try(:address).try(:street)} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
             %tr
-              %td= "Kod pocztowy: #{user.try(:address).try(:zip_code)}"
+              %td= "Kod pocztowy: #{current_user.try(:address).try(:zip_code)}"
             %tr
-              %td= "Miasto: #{user.try(:address).try(:city)}"
+              %td= "Miasto: #{current_user.try(:address).try(:city)}"
             %tr
-              %td= "Gmina: #{user.try(:address).try(:borough)}"
+              %td= "Gmina: #{current_user.try(:address).try(:borough)}"
             %tr
-              %td= "Powiat: #{user.try(:address).try(:district)}"
+              %td= "Powiat: #{current_user.try(:address).try(:district)}"
             %tr
-              %td= "Województwo: #{user.try(:address).try(:province)}"
+              %td= "Województwo: #{current_user.try(:address).try(:province)}"
     .pull-right
-      = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"
-      = link_to "Nowa karta", new_user_medical_record_path(user), class: "btn btn-default"
+      = link_to "Edytuj", edit_user_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Najbliższe wizyty
@@ -44,7 +43,7 @@
     - if @appointments.empty?
       .alert.alert-warning.table-warning Brak wizyt.
       .pull-right
-        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+        = link_to "Dodaj", new_user_appointment_path(current_user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -64,11 +63,10 @@
               %td= appointment.status
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_appointment_path(user, appointment), class: "btn btn-default"
+                  = link_to 'Szczegóły', user_appointment_path(current_user, appointment), class: "btn btn-default"
       .pull-right
-        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_appointments_path(user), class: "btn btn-default"
+        = link_to "Dodaj", new_user_appointment_path(current_user), class: "btn btn-default"
+        = link_to "Więcej", user_appointments_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Zwierzęta
@@ -76,7 +74,7 @@
     - if @animals.empty?
       .alert.alert-warning.table-warning Brak zwierząt.
       .pull-right
-        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
+        = link_to "Dodaj", new_user_animal_path(current_user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -100,19 +98,17 @@
               %td= animal.species.name
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
+                  = link_to 'Szczegóły', user_animal_path(current_user, animal), class: "btn btn-default"
+
       .pull-right
-        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_animals_path(user), class: "btn btn-default"
+        = link_to "Dodaj", new_user_animal_path(current_user), class: "btn btn-default"
+        = link_to "Więcej", user_animals_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Kartoteka
   .panel-body
     - if @medical_records.empty?
       .alert.alert-warning.table-warning Brak kart.
-      .pull-right
-        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -134,19 +130,16 @@
               %td= medical_record.comment
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_medical_record_path(user, medical_record), class: "btn btn-default"
+                  = link_to 'Szczegóły', user_medical_record_path(current_user, medical_record), class: "btn btn-default"
+
       .pull-right
-        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_medical_records_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_medical_records_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Zdjęcia
   .panel-body
     - if @pictures.empty?
       .alert.alert-warning.table-warning Brak zdjęć.
-      .pull-right
-        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -164,8 +157,7 @@
               %td= picture.description
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_picture_path(user, picture), class: "btn btn-default"
+                  = link_to 'Szczegóły', user_picture_path(current_user, picture), class: "btn btn-default"
+
       .pull-right
-        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_pictures_path(user), class: "btn btn-default"
+        = link_to "Więcej", user_pictures_path(current_user), class: "btn btn-default"

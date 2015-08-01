@@ -33,6 +33,14 @@ class UsersController < ApplicationController
   end
 
   def show_profile
+    if current_user.pacjent?
+      @appointments = current_user.appointments.where('day >= ?', Date.today).order(:day).limit(5)
+      @animals = current_user.animals.order(created_at: :desc).limit(5)
+      @medical_records = current_user.medical_records.order(created_at: :desc).limit(5)
+      @pictures = current_user.pictures.order(created_at: :desc).limit(5)
+    elsif current_user.weterynarz?
+      @appointments = Appointment.where("veterinarian_id = ? AND day >= ?", current_user.try(:veterinarian), Date.today).order(:day).limit(5)
+    end
   end
 
   private
