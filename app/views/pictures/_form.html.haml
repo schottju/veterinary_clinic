@@ -5,5 +5,6 @@
     = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
     = f.input :image, label: 'Zdjęcie', as: :image_preview, input_html: { preview_version: :thumb }
   .form-actions
-    = f.button :submit, "Zapisz", class: "btn btn-default"
-    = link_to "Anuluj", user_pictures_path, class: "btn btn-default"
+    .pull-right
+      = f.button :submit, "Zapisz", class: "btn btn-default"
+    = link_to "Anuluj", :back, class: "btn btn-default"

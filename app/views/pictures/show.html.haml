@@ -1,18 +1,19 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = picture.name
-%p
-  %b Description:
-  = picture.description
-%p
-  %b Image:
-  = picture.image
-%p
-  %b User:
-  = picture.user.first_name
-
-= link_to 'Edit', edit_user_picture_path(user, picture)
-\|
-= link_to 'Back', user_pictures_path(user)
+.panel.panel-default
+  .panel-heading Zdjęcia
+  .panel-body
+    .row
+      .col-md-6
+        %table.table
+          %tbody
+            %tr
+              %td= "Nazwa: #{picture.name}"
+            %tr
+              %td= "Użytkownik: #{picture.try(:user).try(:full_name)}"
+            %tr
+              %td= "Opis zdjęcia: #{picture.description}"
+            %tr
+              %td
+      .col-md-6
+        = image_tag picture.image, width: "500"
+    .pull-right
+      = link_to 'Powrót', :back, class: 'btn btn-default'

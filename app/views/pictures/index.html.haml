@@ -1,22 +1,28 @@
-%h1 pictures
+.panel.panel-default
+  .panel-heading Zdjęcia
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Nazwa
+          %th Zdjęcie
+          %th Opis
+          %th
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Name
-      %th
+      %tbody
+        - pictures.each do |picture|
+          %tr
+            %td= picture.name
+            %td= image_tag picture.image, height: "100"
+            %td= picture.description
+            %td
+              .pull-right
+                = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"
+                = link_to 'Edytuj', edit_user_picture_path(user, picture), class: "btn btn-default"
 
-  %tbody
-    - pictures.each do |picture|
-      %tr
-        %td= picture.name
-        %td
-          .pull-right
-            = link_to 'Show', user_picture_path(user, picture), class: "btn btn-primary"
-            = link_to 'Edit', edit_user_picture_path(user, picture), class: "btn btn-default"
-
-.pull-right
-= link_to 'New picture', new_user_picture_path, class: "btn btn-primary"
+    = link_to 'Powrót', user_path(user), class: 'btn btn-default'
+    .pull-right
+      = link_to 'Nowe zdjęcie', new_user_picture_path, class: "btn btn-default"
 
 .flickr_pagination
   = will_paginate pictures
