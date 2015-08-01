@@ -53,6 +53,7 @@
             %th Pora dnia
             %th Rodzaj
             %th Status
+            %th Opis choroby
             %th
 
         %tbody
@@ -62,6 +63,7 @@
               %td= appointment.time
               %td= appointment.kind
               %td= appointment.status
+              %td= appointment.description
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
@@ -117,7 +119,7 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Id
+            %th Numer karty
             %th Wywiad
             %th Weterynarz
             %th Opis
