@@ -1049,7 +1049,7 @@ RailsAdmin.config do |config|
     end
 
     configure :working_day do
-      label "dni pracy"
+      label "dni robocze"
     end
 
     object_label_method do
@@ -1074,7 +1074,7 @@ RailsAdmin.config do |config|
       end
 
       configure :working_day do
-        label "Dni pracy"
+        label "dni robocze"
       end
     end
 

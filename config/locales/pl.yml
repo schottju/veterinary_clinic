@@ -83,10 +83,10 @@ pl:
         many: "weterynarzy"
         other: "weterynarze"
       working_day:
-        one: "dzień pracy"
-        few: "dni pracujące"
-        many: "dni pracujących"
-        other: "dni pracy"
+        one: "dzień roboczy"
+        few: "dni robocze"
+        many: "dni roboczych"
+        other: "dni robocze"
     attributes:
       address:
         street: "ulica"
