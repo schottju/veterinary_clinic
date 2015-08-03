@@ -7,6 +7,9 @@ class AnimalsController < ApplicationController
   expose(:species) { Species.all.order(:name) }
 
   def index
+    if params[:search]
+      self.animals = Animal.search(params[:search], params[:user_id]).order(:created_at).paginate(page: params[:page], per_page: 8)
+    end
   end
 
   def show

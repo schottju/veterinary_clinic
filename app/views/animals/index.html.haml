@@ -1,22 +1,36 @@
-%h1 Animals
+.panel.panel-default
+  .panel-heading Zwierzęta
+  .panel-body
+    = render 'search_form'
+    - if animals.empty?
+      .alert.alert-warning.table-warning Brak zwierząt.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Numer identyfikacyjny
+            %th Nazwa
+            %th Waga
+            %th Wiek
+            %th Płeć
+            %th Ilość
+            %th Gatunek
+            %th
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Name
-      %th
+        %tbody
+          - animals.each do |animal|
+            %tr
+              %td= animal.id_number
+              %td= animal.name
+              %td= animal.weight
+              %td= animal.age
+              %td= animal.gender
+              %td= animal.amount
+              %td= animal.try(:species).try(:name)
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
+                  = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
 
-  %tbody
-    - animals.each do |animal|
-      %tr
-        %td= animal.name
-        %td
-          .pull-right
-            = link_to 'Show', user_animal_path(user, animal), class: "btn btn-primary"
-            = link_to 'Edit', edit_user_animal_path(user, animal), class: "btn btn-default"
-
-.pull-right
-= link_to 'New animal', new_user_animal_path, class: "btn btn-primary"
-
-.flickr_pagination
-  = will_paginate animals
+      .flickr_pagination
+        = will_paginate animals

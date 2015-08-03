@@ -1,16 +1,19 @@
 = simple_form_for [ user, animal ] do |f|
   = f.error_notification
-  .form-inputs
-    = f.input :id_number, autofocus: true
-    = f.input :name
-    = f.input :birth_date, as: :date_picker
-    = f.input :amount
-    = f.input :weight
-    = f.input :gender
-    = f.input :age
-    = f.input :description
-    = f.input :species_id, collection: species
-    = f.hidden_field :user_id, value: user.id
+  .row
+    .form-inputs
+      .col-md-6
+        = f.input :id_number, label: 'Numer identyfikacyjny', placeholder: 'Wpisz numer identyfikacyjny', autofocus: true
+        = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
+        = f.input :birth_date, label: 'Data urodzenia', placeholder: 'Wpisz datę urodzenia', as: :date_picker
+        = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość'
+        = f.input :weight, label: 'Waga', placeholder: 'Wpisz wagę w kg'
+      .col-md-6
+        = f.input :gender, label: 'Płeć', placeholder: 'Wpisz płeć'
+        = f.input :age, label: 'Wiek', placeholder: 'Wpisz wiek w latach', as: :string
+        = f.input :species_id, label: 'Gatunek', collection: species
+        = f.input :description, label: 'Opis', placeholder: 'Wpisz opis (kolor, znaki szczególne, rasa)'
   .form-actions
-    = f.button :submit, "Save", class: "btn btn-success"
-    = link_to "Back", :back, class: "btn btn-warning"
+    .pull-right
+      = f.button :submit, "Zapisz", class: "btn btn-default"
+    = link_to "Anuluj", user_animals_path(user), class: "btn btn-default"

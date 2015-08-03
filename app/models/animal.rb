@@ -11,6 +11,10 @@ class Animal < ActiveRecord::Base
 
   private
 
+    def self.search(query, user_id)
+      where("(lower(id_number) like :q OR lower(name) like :q) AND user_id = :u", { q: "%#{query.downcase}%", u: user_id })
+    end
+
     def trim(num)
       if num.blank?
         "brak"

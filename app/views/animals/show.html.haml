@@ -1,2 +1,36 @@
-%h1 Animals#show
-%p Find me in app/views/animals/show.html.haml
+.panel.panel-default
+  .panel-heading Dane zwierzęcia
+  .panel-body
+    .row
+      .col-md-1
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Numer identyfikacyjny: #{animal.id_number}"
+            %tr
+              %td= "Nazwa: #{animal.name}"
+            %tr
+              %td= "Data urodzenia: #{animal.birth_date}"
+            %tr
+              %td= "Wiek (lata): #{animal.age}"
+            %tr
+              %td= "Ilość: #{animal.amount}"
+      .col-md-5
+        %table.table
+          %tbody
+            %tr
+              %td= "Płeć: #{animal.gender}"
+            %tr
+              %td= "Waga: #{animal.weight}"
+            %tr
+              %td= "Gatunek: #{animal.try(:species).try(:name)}"
+            %tr
+              %td= "Opis: #{animal.description}"
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-10
+      .col-md-1
+        .pull-right
+          = link_to "Powrót", user_animals_path(user), class: "btn btn-default"

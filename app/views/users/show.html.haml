@@ -99,7 +99,7 @@
               %td= animal.amount
               %td= trim_age animal.age
               %td= animal.gender
-              %td= animal.species.name
+              %td= animal.try(:species).try(:name)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
