@@ -35,7 +35,7 @@
             %tr
               %td= "Województwo: #{current_user.try(:address).try(:province)}"
     .pull-right
-      = link_to "Edytuj", edit_user_path(current_user), class: "btn btn-default"
+      = link_to "Edytuj", edit_registration_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
   .panel-heading Najbliższe wizyty
