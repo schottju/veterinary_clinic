@@ -2,5 +2,6 @@
   .form-inline
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę lub opis', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
-    .pull-right
-      = link_to 'Nowe zdjęcie', new_user_picture_path(user), class: "btn btn-default"
+    - unless current_user.pacjent?
+      .pull-right
+        = link_to 'Nowe zdjęcie', new_user_picture_path(user), class: "btn btn-default"
