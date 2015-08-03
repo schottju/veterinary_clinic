@@ -55,6 +55,12 @@ RailsAdmin.config do |config|
       :custom_label_method
     end
 
+    nested do
+      configure :user do
+        hide
+      end
+    end
+
     list do
       sort_by :id
 
@@ -205,8 +211,8 @@ RailsAdmin.config do |config|
       field :email
       field :password
       field :password_confirmation
-      field :address
       field :role
+      field :address
       field :veterinarian
       # field :confirmed_at, :hidden do
       #   default_value do
@@ -223,8 +229,8 @@ RailsAdmin.config do |config|
       field :email
       field :password
       field :password_confirmation
-      field :address
       field :role
+      field :address
       field :veterinarian
       field :sign_in_count
       field :confirmed_at
@@ -314,7 +320,26 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :id_number
+      field :name
+      field :birth_date
+      field :amount
+      field :weight
+      field :species do
+        inline_add false
+        inline_edit false
+      end
+      field :gender
+      field :age
+      field :description
+      field :user do
+        inline_add false
+        inline_edit false
+      end
+    end
+
+    update do
       field :id_number
       field :name
       field :birth_date
@@ -458,7 +483,11 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+    end
+
+    update do
       field :name
       field :medical_records do
         inline_add false
@@ -662,7 +691,21 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+      field :amount
+      field :unit do
+        inline_add false
+        inline_edit false
+      end
+      field :dosage
+      field :grace_period
+      field :price
+      field :serial_number
+      field :description
+    end
+
+    update do
       field :name
       field :amount
       field :unit do
@@ -738,7 +781,17 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+      field :description
+      field :image
+      field :user do
+        inline_add false
+        inline_edit false
+      end
+    end
+
+    update do
       field :name
       field :description
       field :image
@@ -794,7 +847,11 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+    end
+
+    update do
       field :name
       field :animal do
         inline_add false
@@ -845,7 +902,13 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+      field :cost
+      field :description
+    end
+
+    update do
       field :name
       field :cost
       field :description
@@ -896,7 +959,11 @@ RailsAdmin.config do |config|
       field :updated_at
     end
 
-    edit do
+    create do
+      field :name
+    end
+
+    update do
       field :name
       field :medicines do
         inline_add false
@@ -987,6 +1054,28 @@ RailsAdmin.config do |config|
 
     object_label_method do
       :custom_label_method
+    end
+
+    nested do
+      configure :user do
+        hide
+      end
+
+      configure :medical_records do
+        hide
+      end
+
+      configure :appointments do
+        hide
+      end
+
+      configure :vacations do
+        hide
+      end
+
+      configure :working_day do
+        label "Dni pracy"
+      end
     end
 
     list do
@@ -1087,6 +1176,12 @@ RailsAdmin.config do |config|
 
     object_label_method do
       :custom_label_method
+    end
+
+    nested do
+      configure :veterinarian do
+        hide
+      end
     end
 
     list do
