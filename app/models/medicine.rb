@@ -3,6 +3,6 @@ class Medicine < ActiveRecord::Base
   has_and_belongs_to_many :medical_records
 
   def custom_label_method
-    "#{name}"
+    "##{id} #{name}, ilość: #{amount} #{unit.try(:name)}"
   end
 end

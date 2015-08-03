@@ -4,7 +4,7 @@ class Species < ActiveRecord::Base
   validates_presence_of :name
 
   def custom_label_method
-    "#{name}"
+    "##{id} #{name}"
   end
 
   private

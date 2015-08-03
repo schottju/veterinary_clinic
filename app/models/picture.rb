@@ -7,6 +7,6 @@ class Picture < ActiveRecord::Base
   validates_presence_of :name, :image
 
   def custom_label_method
-    "#{name}"
+    "##{id} #{name}"
   end
 end

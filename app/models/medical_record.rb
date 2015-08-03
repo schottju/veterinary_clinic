@@ -9,6 +9,6 @@ class MedicalRecord < ActiveRecord::Base
   has_and_belongs_to_many :pictures
 
   def custom_label_method
-    "#{id}"
+    "##{id} właściciel: #{user.try(:full_name)}, weterynarz: #{veterinarian.try(:user).try(:full_name)}"
   end
 end

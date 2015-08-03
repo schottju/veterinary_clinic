@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def custom_label_method
-    "#{first_name} #{last_name} #{pesel}"
+    "##{id} #{first_name} #{last_name}, pesel: #{pesel}"
   end
 
   private
