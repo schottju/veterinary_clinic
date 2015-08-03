@@ -9,4 +9,10 @@ class Picture < ActiveRecord::Base
   def custom_label_method
     "##{id} #{name}"
   end
+
+  private
+
+    def self.search(query, user_id)
+      where("(lower(name) like :q OR lower(description) like :q) AND user_id = :u", { q: "%#{query.downcase}%", u: user_id })
+    end
 end

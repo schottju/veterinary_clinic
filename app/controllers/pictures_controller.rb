@@ -7,6 +7,9 @@ class PicturesController < ApplicationController
   end
 
   def index
+    if params[:search]
+      self.pictures = Picture.search(params[:search], params[:user_id]).order(:created_at).paginate(page: params[:page], per_page: 8)
+    end
   end
 
   def new

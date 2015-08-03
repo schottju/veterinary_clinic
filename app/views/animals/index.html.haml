@@ -15,7 +15,7 @@
             %th Płeć
             %th Ilość
             %th Gatunek
-            %th
+            %th.col-md-2
 
         %tbody
           - animals.each do |animal|
@@ -31,6 +31,9 @@
                 .pull-right
                   = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
                   = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
+
+      .pull-right
+        = link_to "Powrót", user_path(user), class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate animals

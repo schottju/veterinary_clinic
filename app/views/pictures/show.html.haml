@@ -2,7 +2,8 @@
   .panel-heading Zdjęcia
   .panel-body
     .row
-      .col-md-6
+      .col-md-1
+      .col-md-5
         %table.table
           %tbody
             %tr
@@ -13,7 +14,12 @@
               %td= "Opis zdjęcia: #{picture.description}"
             %tr
               %td
-      .col-md-6
-        = image_tag picture.image, width: "500"
-    .pull-right
-      = link_to 'Powrót', :back, class: 'btn btn-default'
+      .col-md-5
+        = image_tag picture.image, width: "430"
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-10
+        .pull-right
+          = link_to 'Powrót', user_pictures_path(user), class: 'btn btn-default'
+      .col-md-1

@@ -1,10 +1,18 @@
 = simple_form_for [ user, picture ] do |f|
   = f.error_notification
-  .form-inputs
-    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę pliku', autofocus: true
-    = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
-    = f.input :image, label: 'Zdjęcie', as: :image_preview, input_html: { preview_version: :thumb }
-  .form-actions
-    .pull-right
-      = f.button :submit, "Zapisz", class: "btn btn-default"
-    = link_to "Anuluj", :back, class: "btn btn-default"
+  .row
+    .col-md-1
+    .col-md-10
+      .form-inputs
+        = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę pliku', autofocus: true
+        = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
+        = f.input :image, label: 'Zdjęcie', as: :image_preview, input_html: { preview_version: :thumb }
+    .col-md-1
+  .row
+    .col-md-1
+    .col-md-10
+      .form-actions
+        .pull-right
+          = f.button :submit, "Zapisz", class: "btn btn-default"
+        = link_to "Anuluj", user_pictures_path(user), class: "btn btn-default"
+    .col-md-1

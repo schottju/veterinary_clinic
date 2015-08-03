@@ -95,6 +95,7 @@ img {
 }
 
 .flickr_pagination {
+  margin-top: 25px;
   text-align: center;
   padding: 0.3em;
   cursor: default;
@@ -111,11 +112,11 @@ img {
   }
   a {
     border: 1px solid #dddddd;
-    color: #0063dc;
+    color: #550055;
     text-decoration: none;
     &:hover, &:focus {
-      border-color: #003366;
-      background: #0063dc;
+      border-color: #620062;
+      background: #550055;
       color: white;
     }
   }

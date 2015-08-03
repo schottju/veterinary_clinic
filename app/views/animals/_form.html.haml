@@ -2,18 +2,25 @@
   = f.error_notification
   .row
     .form-inputs
-      .col-md-6
+      .col-md-1
+      .col-md-5
         = f.input :id_number, label: 'Numer identyfikacyjny', placeholder: 'Wpisz numer identyfikacyjny', autofocus: true
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
         = f.input :birth_date, label: 'Data urodzenia', placeholder: 'Wpisz datę urodzenia', as: :date_picker
         = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość'
         = f.input :weight, label: 'Waga', placeholder: 'Wpisz wagę w kg'
-      .col-md-6
+      .col-md-5
         = f.input :gender, label: 'Płeć', placeholder: 'Wpisz płeć'
         = f.input :age, label: 'Wiek', placeholder: 'Wpisz wiek w latach', as: :string
         = f.input :species_id, label: 'Gatunek', collection: species
         = f.input :description, label: 'Opis', placeholder: 'Wpisz opis (kolor, znaki szczególne, rasa)'
-  .form-actions
-    .pull-right
-      = f.button :submit, "Zapisz", class: "btn btn-default"
-    = link_to "Anuluj", user_animals_path(user), class: "btn btn-default"
+      .col-md-1
+  .row
+    .form-actions
+      .col-md-1
+      .col-md-5
+        = link_to "Anuluj", user_animals_path(user), class: "btn btn-default"
+      .col-md-5
+        .pull-right
+          = f.button :submit, "Zapisz", class: "btn btn-default"
+      .col-md-1
