@@ -19,3 +19,4 @@
 //= require moment/pl.js
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require cocoon

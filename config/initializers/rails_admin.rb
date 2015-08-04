@@ -607,6 +607,7 @@ RailsAdmin.config do |config|
         inline_add false
       end
       field :medicines do
+        nested_form false
         inline_add false
       end
       field :pictures do

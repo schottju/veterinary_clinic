@@ -16,7 +16,7 @@ class UnitsController < ApplicationController
   end
 
   def update
-    if unit.update(unit_params)
+    if unit.save
       redirect_to dictionaries_path(tab: 'units'), notice: 'Jednostka została pomyślnie edytowana.'
     else
       render :edit

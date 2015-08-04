@@ -30,7 +30,7 @@ class AnimalsController < ApplicationController
   end
 
   def update
-    if animal.update(animal_params)
+    if animal.save
       redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie edytowane.'
     else
       render :edit

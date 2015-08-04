@@ -27,7 +27,7 @@ class PicturesController < ApplicationController
   end
 
   def update
-    if picture.update(picture_params)
+    if picture.save
       redirect_to user_pictures_path(user), notice: 'Zdjęcie zostało pomyślnie edytowane.'
     else
       render :edit

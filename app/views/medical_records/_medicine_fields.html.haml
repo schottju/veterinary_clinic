@@ -1,0 +1,27 @@
+.nested-fields
+  .row
+    .col-md-1
+    .col-md-10
+      .jumbotron
+        .row
+          .col-md-6
+            = f.input :serial_number, label: 'Numer serii', placeholder: 'Wpisz numer serii'
+          .col-md-6
+            = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
+        .row
+          .col-md-3
+            = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string
+          .col-md-3
+            = f.input :unit_id, label: 'Jednostka', collection: Unit.all
+          .col-md-3
+            = f.input :grace_period, label: 'Okres karencji (dni)', placeholder: 'Wpisz okres karencji', as: :string
+          .col-md-3
+            = f.input :price, label: 'Cena', placeholder: 'Wpisz cenę', as: :string
+        .row
+          .col-md-6
+            = f.input :dosage, label: 'Dawkowanie', placeholder: 'Wpisz sposób dawkowania'
+          .col-md-6
+            = f.input :description, label: 'Dodatkowe informacje', placeholder: 'Wpisz dodatkowe informacje'
+    .col-md-1
+      .pull-right
+        = link_to_remove_association icon('trash-o'), f, class: 'btn btn-default'

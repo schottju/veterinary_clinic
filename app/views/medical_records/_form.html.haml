@@ -1,17 +1,33 @@
 = simple_form_for [ user, medical_record ] do |f|
   = f.error_notification
   .form-inputs
-    = f.input :anamnesis, autofocus: true
-    = f.input :description
-    = f.input :comment
+    = f.input :anamnesis, label: 'Wywiad', placeholder: 'Wpisz wywiad', autofocus: true
     = f.hidden_field :user_id, value: user.id
-    = f.hidden_field :veterinarian_id, value: current_user
-    = f.input :additional_cost
-    = f.input :total_cost
-    = f.input :animal_ids, collection: Animal.where(user_id: user.id), input_html: { multiple: true }
-    = f.input :treatment_ids, collection: Treatment.all, input_html: { multiple: true }
-    = f.input :picture_ids, collection: Picture.all, input_html: { multiple: true }
-    = f.input :disease_ids, collection: Disease.all, input_html: { multiple: true }
-    = f.input :medicine_ids, collection: Medicine.all, input_html: { multiple: true }
+    = f.hidden_field :veterinarian_id, value: current_user.try(:veterinarian).try(:id)
+    = f.input :animal_ids, label: 'Zwierzęta', collection: Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }, input_html: { multiple: true }
+    .row
+      .col-md-4
+        = f.input :treatment_ids, label: 'Wykonane zabiegi', collection: Treatment.all, input_html: { multiple: true }
+      .col-md-4
+        = f.input :disease_ids, label: 'Rozpoznane choroby', collection: Disease.all, input_html: { multiple: true }
+      .col-md-4
+        = f.input :picture_ids, label: 'Zdjęcia', collection: Picture.all.map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }, input_html: { multiple: true }
+    .panel.panel-info
+      .panel-heading Lekarstwa
+      .panel-body
+        #medicines
+          = f.simple_fields_for :medicines do |medicine|
+            = render 'medicine_fields', f: medicine
+          .links.centered
+            = link_to_add_association 'Dodaj lekarstwo', f, :medicines, class: 'btn btn-default'
+    .row
+      .col-md-5
+        = f.input :description, label: 'Opis', placeholder: 'Wpisz opis'
+      .col-md-4
+        = f.input :comment, label: 'Komentarz', placeholder: 'Wpisz komentarz'
+      .col-md-3
+        = f.input :additional_cost, label: 'Koszt dodatkowy', placeholder: 'Wpisz koszt dodatkowy (dojazd)', as: :string
   .form-actions
-    = f.button :submit, "Zapisz"
+    = link_to 'Anuluj', user_medical_records_path(user), class: 'btn btn-default'
+    .pull-right
+      = f.button :submit, "Zapisz"

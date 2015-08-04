@@ -16,7 +16,7 @@ class TreatmentsController < ApplicationController
   end
 
   def update
-    if treatment.update(treatment_params)
+    if treatment.save
       redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie edytowany.'
     else
       render :edit

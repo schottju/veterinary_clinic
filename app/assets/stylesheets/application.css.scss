@@ -94,6 +94,17 @@ img {
   background-color: $bgPanel;
 }
 
+.panel-info {
+  border-color: #F1F1F1;
+}
+
+.panel-info > .panel-heading {
+  color: black;
+  background-color: #F1F1F1;
+  border-color: #F1F1F1;
+}
+
+
 .flickr_pagination {
   margin-top: 25px;
   text-align: center;
@@ -143,4 +154,9 @@ a {
 a:hover, a:focus {
   color: black;
   text-decoration: underline;
+}
+
+
+.centered {
+  text-align: center;
 }

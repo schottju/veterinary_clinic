@@ -16,7 +16,7 @@ class DiseasesController < ApplicationController
   end
 
   def update
-    if disease.update(disease_params)
+    if disease.save
       redirect_to dictionaries_path(tab: 'diseases'), notice: 'Choroba została pomyślnie edytowana.'
     else
       render :edit
