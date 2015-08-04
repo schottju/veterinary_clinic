@@ -1,0 +1,7 @@
+= form_tag user_medical_records_path(user), method: :get do
+  .form-inline
+    = text_field_tag :search, params[:search], placeholder: 'Wpisz numer karty lub datę', class: 'form-control'
+    = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
+    - unless current_user.pacjent?
+      .pull-right
+        = link_to 'Nowa karta', new_user_medical_record_path(user), class: "btn btn-default"

@@ -21,4 +21,10 @@ class MedicalRecord < ActiveRecord::Base
   def custom_label_method
     "##{id} właściciel: #{user.try(:full_name)}, weterynarz: #{veterinarian.try(:user).try(:full_name)}"
   end
+
+  private
+
+    def self.search(query, user_id)
+      where("(id::varchar(255) like :q OR to_char(created_at, 'YYYY-MM-DD') like :q) AND user_id = :u", { q: "%#{query}%", u: user_id })
+    end
 end

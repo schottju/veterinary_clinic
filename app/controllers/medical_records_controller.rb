@@ -1,8 +1,12 @@
 class MedicalRecordsController < ApplicationController
   expose(:medical_record, attributes: :medical_record_params)
   expose(:user) { User.find(params[:user_id]) }
+  expose(:medical_records) { user.medical_records.paginate(page: params[:page], per_page: 8) }
 
   def index
+    if params[:search]
+      self.medical_records = MedicalRecord.search(params[:search], params[:user_id]).order(:created_at).paginate(page: params[:page], per_page: 8)
+    end
   end
 
   def show

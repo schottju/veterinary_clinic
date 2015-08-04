@@ -1,0 +1,39 @@
+.panel.panel-default
+  .panel-heading Kartoteka
+  .panel-body
+    = render 'search_form'
+    - if medical_records.empty?
+      .alert.alert-warning.table-warning Brak rekordów.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Numer karty
+            %th Wywiad
+            %th Koszt wizyty
+            %th Weterynarz
+            %th Data
+            %th
+
+        %tbody
+          - medical_records.each do |medical_record|
+            %tr
+              %td= medical_record.id
+              %td= medical_record.anamnesis
+              %td= medical_record.total_cost
+              %td= medical_record.try(:veterinarian).try(:user).try(:full_name)
+              %td= medical_record.created_at.to_date
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
+                  - unless current_user.pacjent?
+                    = link_to 'Edytuj', edit_user_medical_record_path(user, medical_record), class: "btn btn-default"
+
+      .pull-right
+        - if current_user.pacjent?
+          = link_to 'Powrót', profile_path, class: 'btn btn-default'
+        - else
+          = link_to 'Powrót', user_path(user), class: 'btn btn-default'
+
+      .flickr_pagination
+        = will_paginate medical_records
