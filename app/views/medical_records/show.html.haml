@@ -1,5 +1,215 @@
 .panel.panel-default
-  .panel-heading Karta pacjenta
+  .panel-heading= "Karta nr #{medical_record.id}/#{medical_record.created_at.to_date}"
   .panel-body
+    .panel.panel-info
+      .panel-heading Dane właściciela
+      .panel-body
+        .row
+          .col-md-2
+            = image_tag user.gravatar_url(size: 150)
+          .col-md-5
+            %table.table
+              %tbody
+                %tr
+                  %td= "Imię: #{medical_record.try(:user).try(:first_name)}"
+                %tr
+                  %td= "Nazwisko: #{medical_record.try(:user).try(:last_name)}"
+                %tr
+                  %td= "Pesel: #{medical_record.try(:user).try(:pesel)}"
+                %tr
+                  %td= "Numer telefonu: #{medical_record.try(:user).try(:phone_number)}"
+                %tr
+                  %td= "Email: #{medical_record.try(:user).try(:email)}"
+                %tr
+                  %td= "Państwo: #{medical_record.try(:user).try(:address).try(:country)}"
+          .col-md-5
+            %table.table
+              %tbody
+                %tr
+                  %td= "Ulica: #{medical_record.try(:user).try(:address).try(:street)} #{medical_record.try(:user).try(:address).try(:house_number)}#{' / ' unless medical_record.try(:user).try(:address).try(:flat_number).blank?}#{medical_record.try(:user).try(:address).try(:flat_number)}"
+                %tr
+                  %td= "Kod pocztowy: #{medical_record.try(:user).try(:address).try(:zip_code)}"
+                %tr
+                  %td= "Miasto: #{medical_record.try(:user).try(:address).try(:city)}"
+                %tr
+                  %td= "Gmina: #{medical_record.try(:user).try(:address).try(:borough)}"
+                %tr
+                  %td= "Powiat: #{medical_record.try(:user).try(:address).try(:district)}"
+                %tr
+                  %td= "Województwo: #{medical_record.try(:user).try(:address).try(:province)}"
+
+    .panel.panel-info
+      .panel-heading Dane weterynarza
+      .panel-body
+        - if medical_record.try(:veterinarian).try(:user).nil?
+          Brak danych.
+        - else
+          .row
+            .col-md-2
+              = image_tag medical_record.veterinarian.user.gravatar_url(size: 150)
+            .col-md-5
+              %table.table
+                %tbody
+                  %tr
+                    %td= "Imię: #{medical_record.veterinarian.user.first_name}"
+                  %tr
+                    %td= "Tytuł: #{medical_record.veterinarian.title}"
+                  %tr
+                    %td= "Prawo wykonywania zawodu (pwz): #{medical_record.veterinarian.pwz}"
+            .col-md-5
+              %table.table
+                %tbody
+                  %tr
+                    %td= "Nazwisko: #{medical_record.veterinarian.user.last_name}"
+                  %tr
+                    %td= "Specjalizacja: #{medical_record.veterinarian.specialization}"
+                  %tr
+                    %td= "Numer telefonu: #{medical_record.veterinarian.user.phone_number}"
+
+    .panel.panel-info
+      .panel-heading Zwierzęta
+      .panel-body
+        - if medical_record.animals.empty?
+          Brak zwierząt.
+        - else
+          - medical_record.animals.each do |animal|
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th.col-md-2 Numer id:
+                  %td= animal.id_number
+                %tr
+                  %th.col-md-2 Nazwa:
+                  %td= animal.name
+                %tr
+                  %th.col-md-2 Ilość:
+                  %td= animal.amount
+                %tr
+                  %th.col-md-2 Płeć:
+                  %td= animal.gender
+                %tr
+                  %th.col-md-2 Waga:
+                  %td= animal.weight
+                %tr
+                  %th.col-md-2 Data urodzenia:
+                  %td= animal.birth_date
+                %tr
+                  %th.col-md-2 Wiek:
+                  %td= animal.age
+                %tr
+                  %th.col-md-2 Gatunek:
+                  %td= animal.try(:species).try(:name)
+                %tr
+                  %th.col-md-2 Dodatkowe informacje:
+                  %td= animal.description
+
+    .panel.panel-info
+      .panel-heading Choroby
+      .panel-body
+        - if medical_record.diseases.empty?
+          Brak chorób.
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Nazwa
+            %tbody
+              - medical_record.diseases.each do |disease|
+                %tr
+                  %td= disease.name
+
+    .panel.panel-info
+      .panel-heading Zabiegi
+      .panel-body
+        - if medical_record.treatments.empty?
+          Brak zabiegów.
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Nazwa
+                %th koszt
+                %th Opis
+
+
+            %tbody
+              - medical_record.treatments.each do |treatment|
+                %tr
+                  %td= treatment.name
+                  %td= treatment.cost
+                  %td= treatment.description
+
+    .panel.panel-info
+      .panel-heading Lekarstwa
+      .panel-body
+        - if medical_record.medicines.empty?
+          Brak lekarstw.
+        - else
+          - medical_record.medicines.each do |medicine|
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th.col-md-2 Numer serii:
+                  %td= medicine.serial_number
+                %tr
+                  %th.col-md-2 Nazwa:
+                  %td= medicine.name
+                %tr
+                  %th.col-md-2 Ilość:
+                  %td= "#{medicine.amount} #{medicine.try(:unit).try(:name)}"
+                %tr
+                  %th.col-md-2 Dawkowanie:
+                  %td= medicine.dosage
+                %tr
+                  %th.col-md-2 Okres karencji (dni):
+                  %td= medicine.grace_period
+                %tr
+                  %th.col-md-2 Dodatkowe informacje:
+                  %td= medicine.description
+                %tr
+                  %th.col-md-2 Cena:
+                  %td= medicine.price
+
+    .panel.panel-info
+      .panel-heading Zdjęcia
+      .panel-body
+        - if medical_record.pictures.empty?
+          Brak zdjęć.
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Nazwa
+                %th Zdjęcie
+                %th Opis
+
+            %tbody
+              - medical_record.pictures.each do |picture|
+                %tr
+                  %td= picture.name
+                  %td= image_tag picture.image, height: "100"
+                  %td= picture.description
+
+    .panel.panel-info
+      .panel-heading Dodatkowe informacje
+      .panel-body
+        %table.table
+          %tbody
+            %tr
+              %th Wywiad:
+              %td= medical_record.anamnesis
+            %tr
+              %th Opis:
+              %td= medical_record.description
+            %tr
+              %th Komentarz:
+              %td= medical_record.comment
+            %tr
+              %th Koszt dodatkowy:
+              %td= medical_record.additional_cost
+            %tr
+              %th Koszt całkowity:
+              %td= medical_record.total_cost
+
     .pull-right
       = link_to "Powrót", user_medical_records_path(user), class: "btn btn-default"

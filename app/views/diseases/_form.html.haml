@@ -1,7 +1,7 @@
 = simple_form_for disease do |f|
   = f.error_notification
   .form-inputs
-    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę choroby', required: true
+    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę choroby', required: true, autofocus: true
   .form-actions
     = link_to "Anuluj", dictionaries_path(tab: 'diseases'), class: "btn btn-default"
     .pull-right

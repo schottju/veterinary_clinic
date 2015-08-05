@@ -1,7 +1,7 @@
 = simple_form_for treatment do |f|
   = f.error_notification
   .form-inputs
-    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę zabiegu', required: true
+    = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę zabiegu', required: true, autofocus: true
     = f.input :cost, as: :string, label: 'Koszt', placeholder: 'Wpisz koszt zabiegu', required: true
     = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zabiegu'
   .form-actions

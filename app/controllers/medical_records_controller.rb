@@ -1,7 +1,7 @@
 class MedicalRecordsController < ApplicationController
   expose(:medical_record, attributes: :medical_record_params)
   expose(:user) { User.find(params[:user_id]) }
-  expose(:medical_records) { user.medical_records.paginate(page: params[:page], per_page: 8) }
+  expose(:medical_records) { user.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
@@ -39,7 +39,7 @@ class MedicalRecordsController < ApplicationController
   def medical_record_params
     params.require(:medical_record).permit(
         :anamnesis, :description, :comment, :user_id, :veterinarian_id, :additional_cost, :total_cost,
-        treatment_ids: [], image_ids: [], disease_ids: [], animal_ids: [],
+        treatment_ids: [], picture_ids: [], disease_ids: [], animal_ids: [],
         medicines_attributes: [ :id, :name, :description, :amount, :grace_period, :price, :serial_number, :dosage, :unit_id, :_destroy ]
     )
   end
