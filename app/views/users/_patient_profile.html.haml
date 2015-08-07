@@ -75,8 +75,6 @@
   .panel-body
     - if @animals.empty?
       .alert.alert-warning.table-warning Brak zwierząt.
-      .pull-right
-        = link_to "Dodaj", new_user_animal_path(current_user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -103,7 +101,6 @@
                   = link_to 'Szczegóły', user_animal_path(current_user, animal), class: "btn btn-default"
 
       .pull-right
-        = link_to "Dodaj", new_user_animal_path(current_user), class: "btn btn-default"
         = link_to "Więcej", user_animals_path(current_user), class: "btn btn-default"
 
 .panel.panel-default
@@ -155,7 +152,7 @@
           - @pictures.each do |picture|
             %tr
               %td= picture.name
-              %td= image_tag picture.image, height: "100"
+              %td= image_tag picture.image.thumb
               %td= picture.description
               %td
                 .pull-right

@@ -2,5 +2,6 @@
   .form-inline
     = text_field_tag :search, params[:search], placeholder: 'Wpisz numer identyfikacyjny lub nazwę', class: 'form-control', size: 30
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
-    .pull-right
-      = link_to 'Nowe zwierzę', new_user_animal_path(params[:user_id]), class: "btn btn-default"
+    - unless current_user.pacjent?
+      .pull-right
+        = link_to 'Nowe zwierzę', new_user_animal_path(params[:user_id]), class: "btn btn-default"

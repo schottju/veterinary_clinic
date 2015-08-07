@@ -30,7 +30,7 @@ pl:
       object_not_found: "%{model} z ID '%{id}' nie został znaleziony"
     table_headers:
       model_name: "Nazwa"
-      last_used: "Ostatnio"
+      last_used: "Ostatnio zmienione"
       records: "Rekordów"
       username: "Użytkownik"
       changes: "Zmiany"
