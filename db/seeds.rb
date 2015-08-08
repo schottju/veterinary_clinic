@@ -39,7 +39,6 @@ Address.create!(street: 'Krótka', house_number: '22', flat_number: '', zip_code
 Address.create!(street: 'Adminowa', house_number: '12', flat_number: '3', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: admin.id)
 
 #Species
-inny = Species.create!(name: 'inny')
 kot = Species.create!(name: 'kot')
 pies = Species.create!(name: 'pies')
 krowa = Species.create!(name: 'krowa')

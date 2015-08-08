@@ -5,6 +5,8 @@ class Animal < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :medical_records
 
+  validates_presence_of :amount, :gender, :species_id
+
   def custom_label_method
     "##{id} ID: #{id_number}, imię: #{name}, wiek: #{trim(age)}, ilość: #{amount}, gatunek: #{species.try(:name)}"
   end

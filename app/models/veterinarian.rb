@@ -7,6 +7,8 @@ class Veterinarian < ActiveRecord::Base
 
   accepts_nested_attributes_for :working_day
 
+  validates_presence_of :title, :pwz, :user_id
+
   def custom_label_method
     "##{id} #{title} #{user.try(:first_name)} #{user.try(:last_name)}, pwz: #{pwz}"
   end
