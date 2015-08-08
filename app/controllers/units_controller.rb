@@ -1,4 +1,6 @@
 class UnitsController < ApplicationController
+  before_action :authenticate_veterinarian!
+
   expose(:unit, attributes: :unit_params)
 
   def new

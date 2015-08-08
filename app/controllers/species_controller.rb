@@ -1,4 +1,6 @@
 class SpeciesController < ApplicationController
+  before_action :authenticate_veterinarian!
+
   def new
     @species = Species.new
   end

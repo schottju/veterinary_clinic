@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:animal, attributes: :animal_params)
@@ -35,9 +36,6 @@ class AnimalsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def destroy
   end
 
   private

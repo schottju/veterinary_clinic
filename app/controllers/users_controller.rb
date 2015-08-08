@@ -1,18 +1,21 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [ :show_profile ]
+  before_action :authenticate_veterinarian!, only: [ :index, :show, :edit, :update ]
+
   expose(:user, attributes: :user_params)
   expose(:patients) { User.where(role: 'patient').order(:last_name).paginate(page: params[:page], per_page: 8) }
+
+  def index
+    if params[:search]
+      self.patients = User.search(params[:search]).order(:last_name).paginate(page: params[:page], per_page: 8)
+    end
+  end
 
   def show
     @appointments = user.appointments.where('day >= ?', Date.today).order(:day).limit(5)
     @animals = user.animals.order(created_at: :desc).limit(5)
     @medical_records = user.medical_records.order(created_at: :desc).limit(5)
     @pictures = user.pictures.order(created_at: :desc).limit(5)
-  end
-
-  def index
-    if params[:search]
-      self.patients = User.search(params[:search]).order(:last_name).paginate(page: params[:page], per_page: 8)
-    end
   end
 
   def edit

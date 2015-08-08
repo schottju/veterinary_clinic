@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
                                      :country, :zip_code, :user_id ])
     end
   end
+
+  def authenticate_veterinarian!
+    if current_user.nil?
+      authenticate_user!
+    elsif !current_user.weterynarz?
+      render file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false
+    end
+  end
 end

@@ -1,15 +1,18 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
+
   expose(:user) { User.find(params[:user_id]) }
   expose(:picture, attributes: :picture_params)
   expose(:pictures) { user.pictures.order(:name).paginate(page: params[:page], per_page: 8) }
-
-  def show
-  end
 
   def index
     if params[:search]
       self.pictures = Picture.search(params[:search], params[:user_id]).order(:created_at).paginate(page: params[:page], per_page: 8)
     end
+  end
+
+  def show
   end
 
   def new

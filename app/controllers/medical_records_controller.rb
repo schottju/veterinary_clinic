@@ -1,4 +1,7 @@
 class MedicalRecordsController < ApplicationController
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
+
   expose(:medical_record, attributes: :medical_record_params)
   expose(:user) { User.find(params[:user_id]) }
   expose(:medical_records) { user.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 8) }

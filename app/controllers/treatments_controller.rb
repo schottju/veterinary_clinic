@@ -1,4 +1,6 @@
 class TreatmentsController < ApplicationController
+  before_action :authenticate_veterinarian!
+
   expose(:treatment, attributes: :treatment_params)
 
   def new

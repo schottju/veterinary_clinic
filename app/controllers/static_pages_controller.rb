@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_veterinarian!, except: [ :help_page ]
+
   expose(:units) { Unit.all.order(:name).paginate(page: params[:units_page], per_page: 8) }
   expose(:species) { Species.all.order(:name).paginate(page: params[:species_page], per_page: 8) }
   expose(:diseases) { Disease.all.order(:name).paginate(page: params[:diseases_page], per_page: 8) }
