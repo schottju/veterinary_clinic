@@ -138,19 +138,19 @@ medical_record_01.medicines << tympachol
 medical_record_01.treatments << Treatment.where(name: 'Sondowanie')
 medical_record_01.animals << krowa
 medical_record_01.pictures << picture1
-medical_record_01.diseases << Disease.where(name: 'wzdęcie')
+medical_record_01.diseases << Disease.where(name: 'Wzdęcie')
 medical_record_01.save!
 
 medical_record_02 = MedicalRecord.new(anamnesis: 'Wymię bardzo spuchnięte, mleko z domieszką skrzepów, zmieniony kolor mleka, brak apetytu', description: 'Podano lek do każdego gruczołu mlecznego', comment: 'Objawy powinny zacząć ustępować po 3 dniach od podania leku. Całkowite ustąpienie objawów nastąpi po 3-5 dniach od zaczęcia smarowania wymion maścią.', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 30)
 medical_record_02.medicines << Medicine.where(name: [ 'Mastisan', 'Maść Jodo-kamforowa' ])
 medical_record_02.treatments << Treatment.where(name: 'Diagnostyka')
 medical_record_02.animals << krowa
-medical_record_02.diseases << Disease.where(name: 'zapalenie wymienia')
+medical_record_02.diseases << Disease.where(name: 'Zapalenie wymienia')
 medical_record_02.save!
 
 medical_record_03 = MedicalRecord.new(anamnesis: 'Biegunka z domieszką krwi, kurczaki są bardzo spiące', description: 'Przepisano lek', comment: 'Po 4 dniach od podania leku nastąpi poprawa stanu zdrowia', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 0)
 medical_record_03.medicines << sulfatyf
 medical_record_03.treatments << Treatment.where(name: 'Porada')
 medical_record_03.animals << kury
-medical_record_03.diseases << Disease.where(name: 'zapalenie jelit ślepych')
+medical_record_03.diseases << Disease.where(name: 'Zapalenie jelit ślepych')
 medical_record_03.save!
