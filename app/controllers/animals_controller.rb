@@ -20,6 +20,8 @@ class AnimalsController < ApplicationController
   end
 
   def create
+    animal.weight = change_comma_to_period(params[:animal][:weight])
+    animal.age = change_comma_to_period(params[:animal][:age])
     if animal.save
       redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie utworzone.'
     else
@@ -31,6 +33,8 @@ class AnimalsController < ApplicationController
   end
 
   def update
+    animal.weight = change_comma_to_period(params[:animal][:weight])
+    animal.age = change_comma_to_period(params[:animal][:age])
     if animal.save
       redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie edytowane.'
     else

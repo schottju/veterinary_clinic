@@ -17,7 +17,7 @@
     %tbody
       - units.each do |unit|
         %tr
-          %td= unit.name
+          %td= change_blank_to_dash(unit.name)
           %td
             .pull-right
               = link_to 'Edytuj', edit_unit_path(unit), class: "btn btn-default"

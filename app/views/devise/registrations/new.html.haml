@@ -4,28 +4,52 @@
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = f.error_notification
       .row
-        .col-md-1
-        .col-md-5
-          .form-inputs
-            = f.input :first_name, label: 'Imię', placeholder: 'Wpisz imię', required: true, autofocus: true
-            = f.input :last_name, label: 'Nazwisko', placeholder: 'Wpisz nazwisko', required: true
-            = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
-            = f.input :email, label: 'Email', placeholder: 'Wpisz adres email', required: true
-            = f.input :password, label: 'Hasło', placeholder: 'Wpisz hasło', required: true, hint: ("minimalnie #{@minimum_password_length} znaków" if @minimum_password_length)
-            = f.input :password_confirmation, label: 'Potwierdzenie hasła', placeholder: 'Wpisz ponownie hasło', required: true
-            = f.input :phone_number, label: 'Numer telefonu', placeholder: 'Wpisz numer telefonu', required: true
-            = recaptcha_tags
-        .col-md-5
-          = f.simple_fields_for :address do |a|
-            = a.input :street, label: 'Ulica', placeholder: 'Wpisz nazwę ulicy', required: true
-            = a.input :house_number, label: 'Numer domu', placeholder: 'Wpisz numer domu', required: true
-            = a.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz numer mieszkania'
-            = a.input :zip_code, label: 'Kod pocztowy', placeholder: 'Wpisz kod pocztowy', required: true
-            = a.input :city, label: 'Miasto', placeholder: 'Wpisz nazwę miasta', required: true
-            = a.input :borough, label: 'Gmina', placeholder: 'Wpisz nazwę gminy'
-            = a.input :district, label: 'Powiat', placeholder: 'Wpisz nazwę powiatu'
-            = a.input :province, label: 'Województwo', placeholder: 'Wpisz nazwę województwa'
-            = a.input :country, label: 'Państwo'
+        .col-md-2
+        .col-md-8
+          .panel.panel-info
+            .panel-heading Dane podstawowe
+            .panel-body
+              .form-inputs
+                .row
+                  .col-md-6
+                    = f.input :first_name, label: 'Imię', placeholder: 'Wpisz imię', required: true, autofocus: true
+                    = f.input :email, label: 'Email', placeholder: 'Wpisz adres email', required: true
+                    = f.input :password, label: 'Hasło', placeholder: 'Wpisz hasło', required: true, hint: ("minimalnie #{@minimum_password_length} znaków" if @minimum_password_length)
+                    = f.input :phone_number, label: 'Numer telefonu', placeholder: 'Wpisz numer telefonu', required: true
+                  .col-md-6
+                    = f.input :last_name, label: 'Nazwisko', placeholder: 'Wpisz nazwisko', required: true
+                    = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
+                    = f.input :password_confirmation, label: 'Potwierdzenie hasła', placeholder: 'Wpisz ponownie hasło', required: true
+                    = recaptcha_tags
+        .col-md-2
+      .row
+        .col-md-2
+        .col-md-8
+          .panel.panel-info
+            .panel-heading Dane adresowe
+            .panel-body
+              = f.simple_fields_for :address do |a|
+                .row
+                  .col-md-6
+                    = a.input :street, label: 'Ulica', placeholder: 'Wpisz nazwę ulicy', required: true
+                  .col-md-3
+                    = a.input :house_number, label: 'Numer domu', placeholder: 'Wpisz numer domu', required: true
+                  .col-md-3
+                    = a.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz numer mieszkania'
+                .row
+                  .col-md-6
+                    = a.input :zip_code, label: 'Kod pocztowy', placeholder: 'Wpisz kod pocztowy', required: true
+
+                    = a.input :borough, label: 'Gmina', placeholder: 'Wpisz nazwę gminy'
+                    = a.input :province, label: 'Województwo', placeholder: 'Wpisz nazwę województwa'
+                  .col-md-6
+                    = a.input :city, label: 'Miasto', placeholder: 'Wpisz nazwę miasta', required: true
+                    = a.input :district, label: 'Powiat', placeholder: 'Wpisz nazwę powiatu'
+                    = a.input :country, label: 'Państwo'
+        .col-md-2
+      .row
+        .col-md-2
+        .col-md-8
           .form-actions.pull-right
             = f.button :submit, "Zarejestruj"
-        .col-md-1
+        .col-md-2

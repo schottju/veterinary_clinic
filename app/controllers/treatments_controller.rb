@@ -7,6 +7,7 @@ class TreatmentsController < ApplicationController
   end
 
   def create
+    treatment.cost = change_comma_to_period(params[:treatment][:cost])
     if treatment.save
       redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie dodany.'
     else
@@ -18,6 +19,7 @@ class TreatmentsController < ApplicationController
   end
 
   def update
+    treatment.cost = change_comma_to_period(params[:treatment][:cost])
     if treatment.save
       redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie edytowany.'
     else

@@ -23,4 +23,12 @@ module ApplicationHelper
       i == f ? i : f
     end
   end
+
+  def change_period_to_comma(number)
+    trim_float(number).to_s.gsub('.', ',') unless number.nil?
+  end
+
+  def change_blank_to_dash(value)
+    value.blank? ? '-' : value
+  end
 end

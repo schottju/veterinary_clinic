@@ -162,6 +162,7 @@ pl:
         updated_at: "data edycji"
       user:
         email: "email"
+        password: 'hasło'
         encrypted_password: "zaszyfrowane hasło"
         reset_password_token: "token resetu hasła"
         reset_password_sent_at: "data wysłania tokenu"

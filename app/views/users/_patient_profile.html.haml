@@ -6,34 +6,40 @@
         = image_tag current_user.gravatar_url(size: 150)
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
-              %td= "Imię: #{current_user.first_name}"
+              %td= "Imię: #{change_blank_to_dash(current_user.first_name)}"
             %tr
-              %td= "Nazwisko: #{current_user.last_name}"
+              %td= "Nazwisko: #{change_blank_to_dash(current_user.last_name)}"
             %tr
-              %td= "Pesel: #{current_user.pesel}"
+              %td= "Pesel: #{change_blank_to_dash(current_user.pesel)}"
             %tr
-              %td= "Numer telefonu: #{current_user.phone_number}"
+              %td= "Numer telefonu: #{change_blank_to_dash(current_user.phone_number)}"
             %tr
-              %td= "Email: #{current_user.email}"
+              %td= "Email: #{change_blank_to_dash(current_user.email)}"
             %tr
-              %td= "Państwo: #{current_user.try(:address).try(:country)}"
+              %td= "Państwo: #{change_blank_to_dash(current_user.try(:address).try(:country))}"
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
-              %td= "Ulica: #{current_user.try(:address).try(:street)} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
+              %td= "Ulica: #{change_blank_to_dash(current_user.try(:address).try(:street))} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
             %tr
-              %td= "Kod pocztowy: #{current_user.try(:address).try(:zip_code)}"
+              %td= "Kod pocztowy: #{change_blank_to_dash(current_user.try(:address).try(:zip_code))}"
             %tr
-              %td= "Miasto: #{current_user.try(:address).try(:city)}"
+              %td= "Miasto: #{change_blank_to_dash(current_user.try(:address).try(:city))}"
             %tr
-              %td= "Gmina: #{current_user.try(:address).try(:borough)}"
+              %td= "Gmina: #{change_blank_to_dash(current_user.try(:address).try(:borough))}"
             %tr
-              %td= "Powiat: #{current_user.try(:address).try(:district)}"
+              %td= "Powiat: #{change_blank_to_dash(current_user.try(:address).try(:district))}"
             %tr
-              %td= "Województwo: #{current_user.try(:address).try(:province)}"
+              %td= "Województwo: #{change_blank_to_dash(current_user.try(:address).try(:province))}"
     .pull-right
       = link_to "Edytuj", edit_registration_path(current_user), class: "btn btn-default"
 
@@ -52,17 +58,17 @@
             %th Pora dnia
             %th Rodzaj
             %th Status
-            %th Opis choroby
+            %th Weterynarz
             %th
 
         %tbody
           - @appointments.each do |appointment|
             %tr
-              %td= appointment.day
-              %td= appointment.time
-              %td= appointment.kind
-              %td= appointment.status
-              %td= appointment.description
+              %td= change_blank_to_dash(appointment.day)
+              %td= change_blank_to_dash(appointment.time)
+              %td= change_blank_to_dash(appointment.kind)
+              %td= change_blank_to_dash(appointment.status)
+              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_appointment_path(current_user, appointment), class: "btn btn-default"
@@ -82,7 +88,7 @@
             %th Numer identyfikacyjny
             %th Nazwa
             %th Ilość
-            %th Wiek
+            %th Wiek (lata)
             %th Płeć
             %th Gatunek
             %th
@@ -90,12 +96,12 @@
         %tbody
           - @animals.each do |animal|
             %tr
-              %td= animal.id_number
-              %td= animal.name
-              %td= animal.amount
-              %td= trim_float animal.age
-              %td= animal.gender
-              %td= animal.try(:species).try(:name)
+              %td= change_blank_to_dash(animal.id_number)
+              %td= change_blank_to_dash(animal.name)
+              %td= change_blank_to_dash(animal.amount)
+              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
+              %td= change_blank_to_dash(animal.gender)
+              %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_animal_path(current_user, animal), class: "btn btn-default"
@@ -122,11 +128,11 @@
         %tbody
           - @medical_records.each do |medical_record|
             %tr
-              %td= medical_record.id
-              %td= medical_record.anamnesis
-              %td= medical_record.try(:veterinarian).try(:user).try(:full_name)
-              %td= medical_record.description
-              %td= medical_record.comment
+              %td= change_blank_to_dash(medical_record.id)
+              %td= change_blank_to_dash(medical_record.anamnesis)
+              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
+              %td= change_blank_to_dash(medical_record.description)
+              %td= change_blank_to_dash(medical_record.comment)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_medical_record_path(current_user, medical_record), class: "btn btn-default"
@@ -151,9 +157,9 @@
         %tbody
           - @pictures.each do |picture|
             %tr
-              %td= picture.name
-              %td= image_tag picture.image.thumb
-              %td= picture.description
+              %td= change_blank_to_dash(picture.name)
+              %td= change_blank_to_dash(image_tag(picture.image.thumb))
+              %td= change_blank_to_dash(picture.description)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_picture_path(current_user, picture), class: "btn btn-default"

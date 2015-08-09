@@ -6,34 +6,40 @@
         = image_tag user.gravatar_url(size: 150)
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
-              %td= "Imię: #{user.first_name}"
+              %td= "Imię: #{change_blank_to_dash(user.first_name)}"
             %tr
-              %td= "Nazwisko: #{user.last_name}"
+              %td= "Nazwisko: #{change_blank_to_dash(user.last_name)}"
             %tr
-              %td= "Pesel: #{user.pesel}"
+              %td= "Pesel: #{change_blank_to_dash(user.pesel)}"
             %tr
-              %td= "Numer telefonu: #{user.phone_number}"
+              %td= "Numer telefonu: #{change_blank_to_dash(user.phone_number)}"
             %tr
-              %td= "Email: #{user.email}"
+              %td= "Email: #{change_blank_to_dash(user.email)}"
             %tr
-              %td= "Państwo: #{user.try(:address).try(:country)}"
+              %td= "Państwo: #{change_blank_to_dash(user.try(:address).try(:country))}"
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
-              %td= "Ulica: #{user.try(:address).try(:street)} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
+              %td= "Ulica: #{change_blank_to_dash(user.try(:address).try(:street))} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
             %tr
-              %td= "Kod pocztowy: #{user.try(:address).try(:zip_code)}"
+              %td= "Kod pocztowy: #{change_blank_to_dash(user.try(:address).try(:zip_code))}"
             %tr
-              %td= "Miasto: #{user.try(:address).try(:city)}"
+              %td= "Miasto: #{change_blank_to_dash(user.try(:address).try(:city))}"
             %tr
-              %td= "Gmina: #{user.try(:address).try(:borough)}"
+              %td= "Gmina: #{change_blank_to_dash(user.try(:address).try(:borough))}"
             %tr
-              %td= "Powiat: #{user.try(:address).try(:district)}"
+              %td= "Powiat: #{change_blank_to_dash(user.try(:address).try(:district))}"
             %tr
-              %td= "Województwo: #{user.try(:address).try(:province)}"
+              %td= "Województwo: #{change_blank_to_dash(user.try(:address).try(:province))}"
     .pull-right
       = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"
       = link_to "Nowa karta", new_user_medical_record_path(user), class: "btn btn-default"
@@ -53,17 +59,17 @@
             %th Pora dnia
             %th Rodzaj
             %th Status
-            %th Opis choroby
+            %th Weterynarz
             %th.col-md-2
 
         %tbody
           - @appointments.each do |appointment|
             %tr
-              %td= appointment.day
-              %td= appointment.time
-              %td= appointment.kind
-              %td= appointment.status
-              %td= appointment.description
+              %td= change_blank_to_dash(appointment.day)
+              %td= change_blank_to_dash(appointment.time)
+              %td= change_blank_to_dash(appointment.kind)
+              %td= change_blank_to_dash(appointment.status)
+              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
@@ -86,7 +92,7 @@
             %th Numer identyfikacyjny
             %th Nazwa
             %th Ilość
-            %th Wiek
+            %th Wiek (lata)
             %th Płeć
             %th Gatunek
             %th.col-md-2
@@ -94,12 +100,12 @@
         %tbody
           - @animals.each do |animal|
             %tr
-              %td= animal.id_number
-              %td= animal.name
-              %td= animal.amount
-              %td= trim_float animal.age
-              %td= animal.gender
-              %td= animal.try(:species).try(:name)
+              %td= change_blank_to_dash(animal.id_number)
+              %td= change_blank_to_dash(animal.name)
+              %td= change_blank_to_dash(animal.amount)
+              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
+              %td= change_blank_to_dash(animal.gender)
+              %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
@@ -129,11 +135,11 @@
         %tbody
           - @medical_records.each do |medical_record|
             %tr
-              %td= medical_record.id
-              %td= medical_record.anamnesis
-              %td= medical_record.try(:veterinarian).try(:user).try(:full_name)
-              %td= medical_record.description
-              %td= medical_record.created_at.to_date
+              %td= change_blank_to_dash(medical_record.id)
+              %td= change_blank_to_dash(medical_record.anamnesis)
+              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
+              %td= change_blank_to_dash(medical_record.description)
+              %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
@@ -161,9 +167,9 @@
         %tbody
           - @pictures.each do |picture|
             %tr
-              %td= picture.name
-              %td= image_tag picture.image.thumb
-              %td= picture.description
+              %td= change_blank_to_dash(picture.name)
+              %td= change_blank_to_dash(image_tag(picture.image.thumb))
+              %td= change_blank_to_dash(picture.description)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"

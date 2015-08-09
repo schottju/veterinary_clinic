@@ -17,7 +17,7 @@
     %tbody
       - diseases.each do |disease|
         %tr
-          %td= disease.name
+          %td= change_blank_to_dash(disease.name)
           %td
             .pull-right
               = link_to 'Edytuj', edit_disease_path(disease), class: "btn btn-default"

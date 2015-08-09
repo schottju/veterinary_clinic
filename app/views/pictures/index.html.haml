@@ -16,9 +16,9 @@
         %tbody
           - pictures.each do |picture|
             %tr
-              %td= picture.name
-              %td= image_tag picture.image.thumb
-              %td= picture.description
+              %td= change_blank_to_dash(picture.name)
+              %td= change_blank_to_dash(image_tag(picture.image.thumb))
+              %td= change_blank_to_dash(picture.description)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"

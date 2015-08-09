@@ -10,13 +10,13 @@
             = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
         .row
           .col-md-3
-            = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string
+            = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string, input_html: { value: change_period_to_comma(f.object.amount) }
           .col-md-3
             = f.input :unit_id, label: 'Jednostka', collection: Unit.all
           .col-md-3
             = f.input :grace_period, label: 'Okres karencji (dni)', placeholder: 'Wpisz okres karencji', as: :string
           .col-md-3
-            = f.input :price, label: 'Cena', placeholder: 'Wpisz cenę', as: :string
+            = f.input :price, label: 'Cena', placeholder: 'Wpisz cenę', as: :string, input_html: { value: change_period_to_comma(f.object.price) }
         .row
           .col-md-6
             = f.input :dosage, label: 'Dawkowanie', placeholder: 'Wpisz sposób dawkowania'

@@ -20,13 +20,13 @@
         %tbody
           - animals.each do |animal|
             %tr
-              %td= animal.id_number
-              %td= animal.name
-              %td= number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ",")
-              %td= number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ",")
-              %td= animal.gender
-              %td= animal.amount
-              %td= animal.try(:species).try(:name)
+              %td= change_blank_to_dash(animal.id_number)
+              %td= change_blank_to_dash(animal.name)
+              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))
+              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
+              %td= change_blank_to_dash(animal.gender)
+              %td= change_blank_to_dash(animal.amount)
+              %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"

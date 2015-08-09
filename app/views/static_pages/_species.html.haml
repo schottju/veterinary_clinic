@@ -17,7 +17,7 @@
     %tbody
       - species.each do |s|
         %tr
-          %td= s.name
+          %td= change_blank_to_dash(s.name)
           %td
             .pull-right
               = link_to 'Edytuj', edit_species_path(s), class: "btn btn-default"

@@ -19,9 +19,9 @@
     %tbody
       - treatments.each do |treatment|
         %tr
-          %td= treatment.name
-          %td= treatment.cost
-          %td= treatment.description
+          %td= change_blank_to_dash(treatment.name)
+          %td= change_blank_to_dash(number_to_currency(treatment.cost, separator: ',', unit: 'PLN', precision: 2))
+          %td= change_blank_to_dash(treatment.description)
           %td
             .pull-right
               = link_to 'Edytuj', edit_treatment_path(treatment), class: "btn btn-default"

@@ -8,10 +8,10 @@
         = f.input :birth_date, label: 'Data urodzenia', placeholder: 'dd/mm/rr', as: :date_picker
       .col-md-2
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
-        = f.input :age, label: 'Wiek', placeholder: 'Wpisz wiek w latach', as: :string
+        = f.input :age, label: 'Wiek (lata)', placeholder: 'Wpisz wiek', as: :string, input_html: { value: change_period_to_comma(f.object.age) }
       .col-md-2
         = f.input :gender, label: 'Płeć', placeholder: 'Wpisz płeć'
-        = f.input :weight, label: 'Waga', placeholder: 'Wpisz wagę w kg', as: :string
+        = f.input :weight, label: 'Waga (kg)', placeholder: 'Wpisz wagę',as: :string, input_html: { value: change_period_to_comma(f.object.weight) }
       .col-md-2
         = f.input :species_id, label: 'Gatunek', collection: species
         = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string

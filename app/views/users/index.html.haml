@@ -18,11 +18,11 @@
         %tbody
           - patients.each do |patient|
             %tr
-              %td= patient.first_name
-              %td= patient.last_name
-              %td= patient.pesel
-              %td= patient.email
-              %td= patient.phone_number
+              %td= change_blank_to_dash(patient.first_name)
+              %td= change_blank_to_dash(patient.last_name)
+              %td= change_blank_to_dash(patient.pesel)
+              %td= change_blank_to_dash(patient.email)
+              %td= change_blank_to_dash(patient.phone_number)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_path(patient), class: "btn btn-default"

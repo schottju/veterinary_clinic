@@ -7,26 +7,26 @@
         %table.table
           %tbody
             %tr
-              %td= "Numer identyfikacyjny: #{animal.id_number}"
+              %td= "Numer identyfikacyjny: #{change_blank_to_dash(animal.id_number)}"
             %tr
-              %td= "Nazwa: #{animal.name}"
+              %td= "Nazwa: #{change_blank_to_dash(animal.name)}"
             %tr
-              %td= "Data urodzenia: #{animal.birth_date}"
+              %td= "Data urodzenia: #{change_blank_to_dash(animal.birth_date)}"
             %tr
-              %td= "Wiek (lata): #{number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ",")}"
+              %td= "Wiek (lata): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))}"
             %tr
-              %td= "Ilość: #{animal.amount}"
+              %td= "Ilość: #{change_blank_to_dash(animal.amount)}"
       .col-md-5
         %table.table
           %tbody
             %tr
-              %td= "Płeć: #{animal.gender}"
+              %td= "Płeć: #{change_blank_to_dash(animal.gender)}"
             %tr
-              %td= "Waga (kg): #{number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ",")}"
+              %td= "Waga (kg): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))}"
             %tr
-              %td= "Gatunek: #{animal.try(:species).try(:name)}"
+              %td= "Gatunek: #{change_blank_to_dash(animal.try(:species).try(:name))}"
             %tr
-              %td= "Opis: #{animal.description}"
+              %td= "Opis: #{change_blank_to_dash(animal.description)}"
       .col-md-1
     .row
       .col-md-1

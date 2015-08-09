@@ -19,6 +19,9 @@ class MedicalRecordsController < ApplicationController
   end
 
   def create
+    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
+    # medical_record.medicine.amount = change_comma_to_period(params[:medical_record][:age])
+    # medical_record.weight = change_comma_to_period(params[:medical_record][:weight])
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Nowy wpis w kartotece został utworzony.'
     else
@@ -30,6 +33,10 @@ class MedicalRecordsController < ApplicationController
   end
 
   def update
+    # binding.pry
+    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
+    # medical_record.medicine.amount = change_comma_to_period(params[:medical_record][:age])
+    # medical_record.weight = change_comma_to_period(params[:medical_record][:weight])
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Wpis w kartotece został edytowany.'
     else

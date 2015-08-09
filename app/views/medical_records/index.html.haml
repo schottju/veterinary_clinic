@@ -18,11 +18,11 @@
         %tbody
           - medical_records.each do |medical_record|
             %tr
-              %td= medical_record.id
-              %td= medical_record.anamnesis
-              %td= medical_record.total_cost
-              %td= medical_record.try(:veterinarian).try(:user).try(:full_name)
-              %td= medical_record.created_at.to_date
+              %td= change_blank_to_dash(medical_record.id)
+              %td= change_blank_to_dash(medical_record.anamnesis)
+              %td= change_blank_to_dash(number_to_currency(medical_record.total_cost, separator: ',', unit: 'PLN', precision: 2))
+              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
+              %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"

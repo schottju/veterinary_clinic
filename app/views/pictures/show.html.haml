@@ -4,18 +4,21 @@
     .row
       .col-md-1
       .col-md-5
+        = image_tag picture.image, width: "430"
+      .col-md-5
         %table.table
+          %thead
+            %tr
+              %th Szczegółowe informacje
           %tbody
             %tr
-              %td= "Nazwa: #{picture.name}"
+              %td= "Nazwa: #{change_blank_to_dash(picture.name)}"
             %tr
-              %td= "Użytkownik: #{picture.try(:user).try(:full_name)}"
+              %td= "Użytkownik: #{change_blank_to_dash(picture.try(:user).try(:full_name))}"
             %tr
-              %td= "Opis zdjęcia: #{picture.description}"
+              %td= "Opis zdjęcia: #{change_blank_to_dash(picture.description)}"
             %tr
               %td
-      .col-md-5
-        = image_tag picture.image, width: "430"
       .col-md-1
     .row
       .col-md-1
