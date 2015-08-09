@@ -10,8 +10,8 @@
           %tr
             %th Numer identyfikacyjny
             %th Nazwa
-            %th Waga
-            %th Wiek
+            %th Waga (kg)
+            %th Wiek (lata)
             %th Płeć
             %th Ilość
             %th Gatunek
@@ -22,8 +22,8 @@
             %tr
               %td= animal.id_number
               %td= animal.name
-              %td= animal.weight
-              %td= animal.age
+              %td= number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ",")
+              %td= number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ",")
               %td= animal.gender
               %td= animal.amount
               %td= animal.try(:species).try(:name)

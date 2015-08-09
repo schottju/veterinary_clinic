@@ -15,7 +15,7 @@ module ApplicationHelper
     current_page?(link_path) ? "active" : ""
   end
 
-  def trim_age(num)
+  def trim_float(num)
     if num.blank?
       ""
     else

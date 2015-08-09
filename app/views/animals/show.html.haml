@@ -13,7 +13,7 @@
             %tr
               %td= "Data urodzenia: #{animal.birth_date}"
             %tr
-              %td= "Wiek (lata): #{animal.age}"
+              %td= "Wiek (lata): #{number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ",")}"
             %tr
               %td= "Ilość: #{animal.amount}"
       .col-md-5
@@ -22,7 +22,7 @@
             %tr
               %td= "Płeć: #{animal.gender}"
             %tr
-              %td= "Waga: #{animal.weight}"
+              %td= "Waga (kg): #{number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ",")}"
             %tr
               %td= "Gatunek: #{animal.try(:species).try(:name)}"
             %tr
