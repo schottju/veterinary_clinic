@@ -283,6 +283,7 @@ DEPENDENCIES
   carrierwave
   cocoon
   coffee-rails (~> 4.1.0)
+  countries
   country_select
   datetimepicker-rails!
   decent_decoration

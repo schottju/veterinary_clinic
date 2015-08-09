@@ -39,6 +39,7 @@ gem 'devise-i18n'
 gem 'carrierwave'
 gem 'rails_admin'
 gem "cocoon"
+gem 'countries'
 
 group :development do
   gem 'html2haml'

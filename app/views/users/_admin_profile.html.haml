@@ -21,7 +21,7 @@
             %tr
               %td= "Email: #{change_blank_to_dash(current_user.email)}"
             %tr
-              %td= "Państwo: #{change_blank_to_dash(current_user.try(:address).try(:country))}"
+              %td= "Państwo: #{change_blank_to_dash(current_user.try(:address).try(:country_name))}"
       .col-md-5
         %table.table
           %thead

@@ -24,7 +24,7 @@
                 %tr
                   %td= "Email: #{change_blank_to_dash(medical_record.try(:user).try(:email))}"
                 %tr
-                  %td= "Państwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:country))}"
+                  %td= "Państwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:country_name))}"
           .col-md-5
             %table.table
               %thead
