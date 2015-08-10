@@ -11,7 +11,7 @@
       .col-md-4
         = f.input :disease_ids, label: 'Rozpoznane choroby', collection: Disease.all, input_html: { multiple: true }
       .col-md-4
-        = f.input :picture_ids, label: 'Zdjęcia', collection: Picture.all.map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }, input_html: { multiple: true }
+        = f.input :picture_ids, label: 'Zdjęcia', collection: Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }, input_html: { multiple: true }
     .panel.panel-info
       .panel-heading Lekarstwa
       .panel-body
