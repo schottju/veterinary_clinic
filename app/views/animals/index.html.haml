@@ -33,11 +33,11 @@
                   - unless current_user.pacjent?
                     = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
 
-      .pull-right
-        - if current_user.pacjent?
-          = link_to 'Powrót', profile_path, class: 'btn btn-default'
-        - else
-          = link_to "Powrót", user_path(user), class: "btn btn-default"
+    .pull-right
+      - if current_user.pacjent?
+        = link_to 'Powrót', profile_path, class: 'btn btn-default'
+      - else
+        = link_to "Powrót", user_path(user), class: "btn btn-default"
 
-      .flickr_pagination
-        = will_paginate animals
+    .flickr_pagination
+      = will_paginate animals
