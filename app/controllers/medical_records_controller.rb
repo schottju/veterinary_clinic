@@ -20,6 +20,15 @@ class MedicalRecordsController < ApplicationController
 
   def create
     medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
+
+    i = 0
+    params[:medical_record][:medicines_attributes].values.each do |medicine|
+      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
+      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
+      i = i + 1
+    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
+
+    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
     # medical_record.medicine.amount = change_comma_to_period(params[:medical_record][:age])
     # medical_record.weight = change_comma_to_period(params[:medical_record][:weight])
     if medical_record.save
@@ -33,10 +42,15 @@ class MedicalRecordsController < ApplicationController
   end
 
   def update
-    # binding.pry
     medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
-    # medical_record.medicine.amount = change_comma_to_period(params[:medical_record][:age])
-    # medical_record.weight = change_comma_to_period(params[:medical_record][:weight])
+
+    i = 0
+    params[:medical_record][:medicines_attributes].values.each do |medicine|
+      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
+      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
+      i = i + 1
+    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
+
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Wpis w kartotece został edytowany.'
     else
