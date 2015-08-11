@@ -132,7 +132,7 @@ Medicine.create!(name: 'Maść Jodo-kamforowa', description: 'Zmniejsza zapaleni
 sulfatyf = Medicine.create!(name: 'Sulfatyf', description: 'Proszek do sporządzania roztworu doustnego dla kur i indyków', amount: 50, grace_period: 0, price: 35, serial_number: '342543345', dosage: '1-3g na litr wody do picia przez 7 dni', unit_id: g_unit.id)
 
 #Medical records
-medical_record_01 = MedicalRecord.new(anamnesis: 'Krowa zjadła zielonkę oraz ziemniaki, widocznie uwypuklone powłoki brzuszne, jest niespokojna, kładzie się, postękuje', description: 'Wypompowano gazy oraz podano lek za pomocą sondy', comment: 'Po wykonaniu zabiegu objawy ustąpiły, zaobserwowano poprawę', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 50)
+medical_record_01 = MedicalRecord.new(anamnesis: 'Krowa po zjedzeniu zielonki oraz ziemniaków kładzie się, postękuje, jest niespokojna, widocznie uwypuklone powłoki brzuszne', description: 'Wypompowano gazy oraz podano lek za pomocą sondy', comment: 'Po wykonaniu zabiegu objawy ustąpiły, zaobserwowano poprawę', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 50)
 medical_record_01.medicines << tympachol
 medical_record_01.treatments << Treatment.where(name: 'Sondowanie')
 medical_record_01.animals << krowa
@@ -147,7 +147,7 @@ medical_record_02.animals << krowa
 medical_record_02.diseases << Disease.where(name: 'Zapalenie wymienia')
 medical_record_02.save!
 
-medical_record_03 = MedicalRecord.new(anamnesis: 'Biegunka z domieszką krwi, kurczaki są bardzo spiące', description: 'Przepisano lek', comment: 'Po 4 dniach od podania leku nastąpi poprawa stanu zdrowia', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 0)
+medical_record_03 = MedicalRecord.new(anamnesis: 'Biegunka z domieszką krwi, senność', description: 'Przepisano lek', comment: 'Po 4 dniach od podania leku nastąpi poprawa stanu zdrowia', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 0)
 medical_record_03.medicines << sulfatyf
 medical_record_03.treatments << Treatment.where(name: 'Porada')
 medical_record_03.animals << kury
