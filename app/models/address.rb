@@ -4,10 +4,8 @@ class Address < ActiveRecord::Base
   validates_presence_of :street, :house_number, :city, :zip_code
 
   def country_name
-    unless country.blank?
       country_full_name = ISO3166::Country[self.country]
-      country_full_name.translations[I18n.locale.to_s] || country_full_name.name
-    end
+      (country_full_name.translations[I18n.locale.to_s] || country_full_name.name) unless country_full_name.nil?
   end
 
   def custom_label_method
