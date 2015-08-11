@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'appointments/index'
+
+  get 'appointments/show'
+
+  get 'appointments/new'
+
+  get 'appointments/create'
+
+  get 'appointments/edit'
+
+  get 'appointments/update'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'registrations' }
 
@@ -14,7 +26,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#show_profile'
 
-  get '/veterinarian_appointments', to: 'appointments#veterinarian_appoinments'
+  get '/veterinarians_appointments', to: 'appointments#veterinarians_appoinments'
 
   #Dictionaries
   get '/dictionaries', to: 'static_pages#dictionaries'
