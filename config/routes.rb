@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#show_profile'
 
-  get '/veterinarians_appointments', to: 'appointments#veterinarians_appoinments'
+  get '/veterinarians_appointments', to: 'appointments#veterinarians_appointments'
 
   #Dictionaries
   get '/dictionaries', to: 'static_pages#dictionaries'
