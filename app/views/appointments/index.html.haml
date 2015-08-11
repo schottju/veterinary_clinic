@@ -1,2 +1,41 @@
-%h1 Appointments#index
-%p Find me in app/views/appointments/index.html.haml
+.panel.panel-default
+  .panel-heading Najbliższe wizyty
+  .panel-body
+    = render 'search_form'
+    - if appointments.empty?
+      .alert.alert-warning.table-warning Brak wizyt.
+      .pull-right
+        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Data
+            %th Pora dnia
+            %th Rodzaj
+            %th Status
+            %th Weterynarz
+            %th.col-md-2
+
+        %tbody
+          - appointments.each do |appointment|
+            %tr
+              %td= change_blank_to_dash(appointment.day)
+              %td= change_blank_to_dash(appointment.time)
+              %td= change_blank_to_dash(appointment.kind)
+              %td= change_blank_to_dash(appointment.status)
+              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
+              %td
+                .pull-right
+                  = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
+                  - unless current_user.pacjent?
+                    = link_to 'Edytuj', edit_user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
+
+    .pull-right
+      - if current_user.pacjent?
+        = link_to 'Powrót', profile_path, class: 'btn btn-default'
+      - else
+        = link_to "Powrót", user_path(user), class: "btn btn-default"
+
+    .flickr_pagination
+      = will_paginate appointments

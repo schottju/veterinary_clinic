@@ -69,7 +69,7 @@
             %th Rodzaj
             %th Status
             %th Właściciel
-            %th
+            %th.col-md-2
 
         %tbody
           - @appointments.each do |appointment|
@@ -84,4 +84,4 @@
                   = link_to 'Szczegóły', user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
                   = link_to 'Edytuj', edit_user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
       .pull-right
-        = link_to "Więcej", veterinarians_appointments_path, class: "btn btn-default"
+        = link_to "Więcej", veterinarian_appointments_path, class: "btn btn-default"

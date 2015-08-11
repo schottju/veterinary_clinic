@@ -5,6 +5,9 @@
       .col-md-1
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
               %td= "Numer identyfikacyjny: #{change_blank_to_dash(animal.id_number)}"
@@ -18,6 +21,9 @@
               %td= "Ilość: #{change_blank_to_dash(animal.amount)}"
       .col-md-5
         %table.table
+          %thead
+            %tr
+              %td
           %tbody
             %tr
               %td= "Płeć: #{change_blank_to_dash(animal.gender)}"

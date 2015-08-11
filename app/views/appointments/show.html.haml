@@ -1,2 +1,38 @@
-%h1 Appointments#show
-%p Find me in app/views/appointments/show.html.haml
+.panel.panel-default
+  .panel-heading Dane zwierzęcia
+  .panel-body
+    .row
+      .col-md-1
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %td
+          %tbody
+            %tr
+              %td= "Data: #{change_blank_to_dash(appointment.day)}"
+            %tr
+              %td= "Pora dnia: #{change_blank_to_dash(appointment.time)}"
+            %tr
+              %td= "Status: #{change_blank_to_dash(appointment.status)}"
+            %tr
+              %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
+            %tr
+              %td= "Właściciel: #{change_blank_to_dash(appointment.try(:user).try(:full_name))}"
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %td
+          %tbody
+            %tr
+              %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
+            %tr
+              %td= "Opis: #{change_blank_to_dash(appointment.description)}"
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-10
+        .pull-right
+          = link_to "Powrót", user_appointments_path(user), class: "btn btn-default"
+      .col-md-1
