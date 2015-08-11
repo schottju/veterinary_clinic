@@ -100,6 +100,7 @@ pl:
         created_at: "data utworzenia"
         updated_at: "data edycji"
         zip_code: "kod pocztowy"
+        user_id: "użytkownik"
       animal:
         id_number: "numer indentyfikacyjny"
         name: "nazwa"
@@ -111,6 +112,8 @@ pl:
         description: "opis"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        user_id: "użytkownik"
+        species_id: "gatunek"
       appointment:
         status: "status"
         kind: "rodzaj"
@@ -118,6 +121,9 @@ pl:
         updated_at: "data edycji"
         day: "dzień"
         time: "godzina"
+        description: "opis"
+        veterinarian_id: "weterynarz"
+        user_id: "użytkownik"
       disease:
         name: "nazwa"
         created_at: "data utworzenia"
@@ -130,6 +136,8 @@ pl:
         total_cost: "koszt całkowity"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        user_id: "użytkownik"
+        veterinarian_id: "weterynarz"
       medicine:
         name: "nazwa"
         description: "opis"
@@ -140,12 +148,14 @@ pl:
         dosage: "dawkowanie"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        unit_id: "jednostka"
       picture:
         name: "nazwa"
         description: "opis"
         image: "zdjęcie"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        user_id: "użytkownik"
       species:
         name: "nazwa"
         created_at: "data utworzenia"
@@ -191,12 +201,14 @@ pl:
         end: "koniec"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        veterinarian_id: "weterynarz"
       veterinarian:
         title: "tytuł"
         specialization: "specjalizacja"
         pwz: "pwz"
         created_at: "data utworzenia"
         updated_at: "data edycji"
+        user_id: "użytkownik"
       working_day:
         created_at: "data utworzenia"
         updated_at: "data edycji"
@@ -207,3 +219,4 @@ pl:
         friday: "piątek"
         saturday: "sobota"
         sunday: "niedziela"
+        veterinarian_id: "weterynarz"

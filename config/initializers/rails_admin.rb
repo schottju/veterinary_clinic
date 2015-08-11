@@ -208,9 +208,15 @@ RailsAdmin.config do |config|
       field :last_name
       field :pesel
       field :phone_number
-      field :email
-      field :password
-      field :password_confirmation
+      field :email do
+        required true
+      end
+      field :password do
+        required true
+      end
+      field :password_confirmation do
+        required true
+      end
       field :role
       field :address
       field :veterinarian
@@ -226,7 +232,9 @@ RailsAdmin.config do |config|
       field :last_name
       field :pesel
       field :phone_number
-      field :email
+      field :email do
+        required true
+      end
       field :password
       field :password_confirmation
       field :role
@@ -402,6 +410,7 @@ RailsAdmin.config do |config|
       field :time
       field :status
       field :kind
+      field :description
       field :user do
         filterable false
       end
@@ -418,6 +427,7 @@ RailsAdmin.config do |config|
       field :time
       field :status
       field :kind
+      field :description
       field :user
       field :veterinarian
       field :created_at
@@ -437,12 +447,14 @@ RailsAdmin.config do |config|
         inline_add false
         inline_edit false
       end
+      field :description
     end
 
     export do
       field :id
       field :status
       field :kind
+      field :description
       field :day
       field :time
       field :created_at
@@ -619,7 +631,6 @@ RailsAdmin.config do |config|
       field :comment
       field :description
       field :additional_cost
-      field :total_cost
     end
 
     export do
