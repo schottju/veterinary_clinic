@@ -112,7 +112,7 @@ Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.i
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today - 6.days, time: :wieczorem, description: 'Strzyżenie psa')
 Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 10.days, time: :rano, description: 'Szczepienie  przeciwko wściekliźznie')
 Appointment.create!(status: :niezatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 20.days, time: :wieczorem, description: 'Kastrowanie knura')
-Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 60.days, time: :brak, description: 'Kastrowanie ogiera')
+Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 60.days, time: :rano, description: 'Kastrowanie ogiera')
 Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 5.days, time: :rano, description: 'Obcięcie pazurków u kota')
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 7.days, time: 'w południe', description: 'Strzyżenie psa')
 Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 1.days, time: :wieczorem, description: 'Kastrowanie knura')
