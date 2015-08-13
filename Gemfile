@@ -37,9 +37,12 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 gem 'devise-i18n'
 gem 'carrierwave'
+gem 'carrierwave-postgresql'
+gem 'postgresql_lo_streamer'
 gem 'rails_admin'
 gem "cocoon"
 gem 'countries'
+
 
 group :development do
   gem 'html2haml'

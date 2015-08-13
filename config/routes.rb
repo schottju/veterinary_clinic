@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
-  get 'appointments/index'
-
-  get 'appointments/show'
-
-  get 'appointments/new'
-
-  get 'appointments/create'
-
-  get 'appointments/edit'
-
-  get 'appointments/update'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount PostgresqlLoStreamer::Engine => "/picture_image"
   devise_for :users, controllers: { registrations: 'registrations' }
 
   devise_scope :user do

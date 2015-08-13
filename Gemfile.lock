@@ -69,6 +69,8 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-postgresql (0.1.4)
+      carrierwave
     choice (0.2.0)
     cocoon (1.2.6)
     coderay (1.1.0)
@@ -160,6 +162,8 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    postgresql_lo_streamer (0.1.2)
+      rails (>= 3.2.8)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -281,6 +285,7 @@ DEPENDENCIES
   awesome_print
   bootstrap-sass
   carrierwave
+  carrierwave-postgresql
   cocoon
   coffee-rails (~> 4.1.0)
   countries
@@ -303,6 +308,7 @@ DEPENDENCIES
   mini_magick
   momentjs-rails
   pg
+  postgresql_lo_streamer
   pry
   puma
   quiet_assets

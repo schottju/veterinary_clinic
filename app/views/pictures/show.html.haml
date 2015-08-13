@@ -4,7 +4,7 @@
     .row
       .col-md-1
       .col-md-5
-        = image_tag picture.image, width: "430"
+        = link_to image_tag(picture.image, width: 430), picture.image.url
       .col-md-5
         %table.table
           %thead
