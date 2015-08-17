@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Dane zwierzęcia
+  .panel-heading Szczegóły wizyty
   .panel-body
     .row
       .col-md-1
@@ -17,8 +17,6 @@
               %td= "Status: #{change_blank_to_dash(appointment.status)}"
             %tr
               %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
-            %tr
-              %td= "Właściciel: #{change_blank_to_dash(appointment.try(:user).try(:full_name))}"
       .col-md-5
         %table.table
           %thead
@@ -29,6 +27,45 @@
               %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
             %tr
               %td= "Opis: #{change_blank_to_dash(appointment.description)}"
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %th Dane właściciela:
+          %tbody
+            %tr
+              %td= "Imię: #{change_blank_to_dash(appointment.try(:user).try(:first_name))}"
+            %tr
+              %td= "Nazwisko: #{change_blank_to_dash(appointment.try(:user).try(:last_name))}"
+            %tr
+              %td= "Pesel: #{change_blank_to_dash(appointment.try(:user).try(:pesel))}"
+            %tr
+              %td= "Numer telefonu: #{change_blank_to_dash(appointment.try(:user).try(:phone_number))}"
+            %tr
+              %td= "Email: #{change_blank_to_dash(appointment.try(:user).try(:email))}"
+            %tr
+              %td= "Państwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:country_name))}"
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %th Dane adresowe właściciela:
+          %tbody
+            %tr
+              %td= "Ulica: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:street))} #{appointment.try(:user).try(:address).try(:house_number)}#{' / ' unless appointment.try(:user).try(:address).try(:flat_number).blank?}#{appointment.try(:user).try(:address).try(:flat_number)}"
+            %tr
+              %td= "Kod pocztowy: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:zip_code))}"
+            %tr
+              %td= "Miasto: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:city))}"
+            %tr
+              %td= "Gmina: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:borough))}"
+            %tr
+              %td= "Powiat: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:district))}"
+            %tr
+              %td= "Województwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:province))}"
       .col-md-1
     .row
       .col-md-1
