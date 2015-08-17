@@ -12,11 +12,11 @@ jan.skip_confirmation!
 jan.save!
 
 #Veterinarians
-veterinarian = User.new(first_name: 'Adam', last_name: 'Winiarczyk', email: 'weterynarz@example.com', pesel: '12345678901', phone_number: '123456789', role: :weterynarz, password: 'password', password_confirmation: 'password')
-veterinarian.skip_confirmation!
-veterinarian.save!
+veterinarian_user = User.new(first_name: 'Adam', last_name: 'Winiarczyk', email: 'weterynarz@example.com', pesel: '12345678901', phone_number: '123456789', role: :weterynarz, password: 'password', password_confirmation: 'password')
+veterinarian_user.skip_confirmation!
+veterinarian_user.save!
 
-veterinarian = Veterinarian.create!(title: 'lek. wet.', specialization: 'zwierzęta hodowlane', pwz: '01234', user_id: veterinarian.id)
+veterinarian = Veterinarian.create!(title: 'lek. wet.', specialization: 'zwierzęta hodowlane', pwz: '01234', user_id: veterinarian_user.id)
 
 #Working days
 WorkingDay.create!(monday: true, tuesday: true, wednesday: true, thursday: true, friday: true, veterinarian_id: veterinarian.id)
@@ -35,7 +35,7 @@ admin.save!
 Address.create!(street: 'Kilińskiego', house_number: '12', flat_number: '44', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: edward.id)
 Address.create!(street: 'Kościuszki', house_number: '4A', flat_number: '5', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: justyna.id)
 Address.create!(street: 'Bema', house_number: '123', flat_number: '', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: jan.id)
-Address.create!(street: 'Krótka', house_number: '22', flat_number: '', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: veterinarian.id)
+Address.create!(street: 'Krótka', house_number: '22', flat_number: '', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: veterinarian_user.id)
 Address.create!(street: 'Adminowa', house_number: '12', flat_number: '3', zip_code: '37-400', city: 'Nisko', borough: 'Nisko', district: 'Niżański', province: 'podkarpackie', country: 'PL', user_id: admin.id)
 
 #Species
