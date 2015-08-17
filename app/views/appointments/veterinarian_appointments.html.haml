@@ -13,7 +13,7 @@
             %th Rodzaj
             %th Status
             %th Właściciel
-            %th.col-md-2
+            %th.col-md-3
 
         %tbody
           - appointments.each do |appointment|
@@ -27,6 +27,7 @@
                 .pull-right
                   = link_to 'Szczegóły', user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
                   = link_to 'Edytuj', edit_user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
+                  = link_to 'Anuluj', veterinarian_cancel_path(appointment, user_id: appointment.user_id), method: :patch, class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate appointments

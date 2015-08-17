@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show_profile'
 
   get '/veterinarian_appointments', to: 'appointments#veterinarian_appointments'
+  patch '/veterinarian_appointment_cancel/:id', to: 'appointments#veterinarian_appointment_cancel', as: 'veterinarian_cancel'
 
   #Dictionaries
   get '/dictionaries', to: 'static_pages#dictionaries'
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
     resources :animals, only: [ :index, :show, :new, :create, :edit, :update ]
     resources :medical_records, only: [ :index, :show, :new, :create, :edit, :update ]
     resources :pictures, only: [ :index, :show, :new, :create, :edit, :update ]
-    resources :appointments, only: [ :index, :show, :new, :create, :edit, :update ]
+    resources :appointments, only: [ :index, :show, :new, :create, :edit, :update ] do
+      patch '/cancel', to: 'appointments#cancel'
+    end
   end
 end

@@ -1,6 +1,6 @@
 class Appointment < ActiveRecord::Base
   enum kind: [ 'w klinice', :domowa ]
-  enum status: [ :niezatwierdzona, :zatwierdzona ]
+  enum status: [ :niezatwierdzona, :zatwierdzona, :anulowana ]
   enum time: [  'jak najszybciej', :rano, 'w południe', :wieczorem, 'w nocy' ]
 
   belongs_to :user

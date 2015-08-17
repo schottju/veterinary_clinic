@@ -59,7 +59,7 @@
             %th Rodzaj
             %th Status
             %th Weterynarz
-            %th
+            %th.col-md-2
 
         %tbody
           - @appointments.each do |appointment|
@@ -72,6 +72,7 @@
               %td
                 .pull-right
                   = link_to 'Szczegóły', user_appointment_path(current_user, appointment), class: "btn btn-default"
+                  = link_to 'Anuluj', user_appointment_cancel_path(current_user, appointment), method: :patch, class: "btn btn-default"
       .pull-right
         = link_to "Dodaj", new_user_appointment_path(current_user), class: "btn btn-default"
         = link_to "Więcej", user_appointments_path(current_user), class: "btn btn-default"

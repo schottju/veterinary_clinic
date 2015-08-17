@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
-  before_action :authenticate_user!, only: [ :index, :show, :new, :create ]
-  before_action :authenticate_veterinarian!, only: [ :edit, :update, :veterinarian_appointments ]
+  before_action :authenticate_user!, only: [ :index, :show, :new, :create, :cancel ]
+  before_action :authenticate_veterinarian!, only: [ :edit, :update, :veterinarian_appointments, :veterinarian_appointment_cancel ]
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:appointment, attributes: :appointment_params)
@@ -42,6 +42,28 @@ class AppointmentsController < ApplicationController
       self.appointments = Appointment.veterinarian_search(params[:search], current_user.try(:veterinarian)).order(:day).paginate(page: params[:page], per_page: 8)
     else
       self.appointments = Appointment.where("veterinarian_id = ? AND day >= ?", current_user.try(:veterinarian), Date.today).order(:day).paginate(page: params[:page], per_page: 8)
+    end
+  end
+
+  def cancel
+    @appointment = Appointment.find(params[:appointment_id])
+    if current_user.weterynarz? || user.id == @appointment.user_id
+      if @appointment.status != "anulowana" && @appointment.update_attribute(:status, :anulowana)
+        redirect_to user_appointments_path(user), notice: 'Anulowano wizytę'
+      else
+        redirect_to user_appointments_path(user), notice: 'Wizyta już posiada status anulowana.'
+      end
+    else
+      render file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false
+    end
+  end
+
+  def veterinarian_appointment_cancel
+    @appointment = Appointment.find(params[:id])
+    if @appointment.status != "anulowana" && @appointment.update_attribute(:status, :anulowana)
+      redirect_to veterinarian_appointments_path, notice: 'Anulowano wizytę'
+    else
+      redirect_to veterinarian_appointments_path, notice: 'Wizyta już posiada status anulowana.'
     end
   end
 
