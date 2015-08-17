@@ -118,7 +118,7 @@ Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: jan.id, v
 Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 1.days, time: :wieczorem, description: 'Kastrowanie knura')
 
 #Pictures
-picture1 = Picture.create!(name: 'RTG brzucha krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id)
+picture1 = Picture.create!(name: 'RTG jamy brzusznej krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id)
 Picture.create!(name: 'RTG psa 01', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog1.jpg"), user_id: justyna.id)
 Picture.create!(name: 'RTG psa 02', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog2.jpg"), user_id: justyna.id)
 Picture.create!(name: 'RTG psa 03', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog3.jpg"), user_id: justyna.id)
