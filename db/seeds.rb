@@ -110,7 +110,7 @@ Animal.create!(id_number: 'PL123A233', name: 'Rafał', birth_date: Date.new(2009
 # #Appointments
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 2.days, time: :rano, description: 'Obcięcie pazurków')
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today - 6.days, time: :wieczorem, description: 'Strzyżenie psa')
-Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 10.days, time: :rano, description: 'Szczepienie  przeciwko wściekliźznie')
+Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 10.days, time: :rano, description: 'Szczepienie  przeciwko wściekliźnie')
 Appointment.create!(status: :niezatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 20.days, time: :wieczorem, description: 'Kastrowanie knura')
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 60.days, time: :rano, description: 'Kastrowanie ogiera')
 Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 5.days, time: :rano, description: 'Obcięcie pazurków u kota')
@@ -118,11 +118,11 @@ Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: jan.id, v
 Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 1.days, time: :wieczorem, description: 'Kastrowanie knura')
 
 #Pictures
-picture1 = Picture.create!(name: 'Prześwietlenie brzucha krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id)
-Picture.create!(name: 'Prześwietlenie psa 01', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog1.jpg"), user_id: justyna.id)
-Picture.create!(name: 'Prześwietlenie psa 02', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog2.jpg"), user_id: justyna.id)
-Picture.create!(name: 'Prześwietlenie psa 03', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog3.jpg"), user_id: justyna.id)
-Picture.create!(name: 'Prześwietlenie psa 04', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog4.jpg"), user_id: justyna.id)
+picture1 = Picture.create!(name: 'RTG brzucha krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id)
+Picture.create!(name: 'RTG psa 01', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog1.jpg"), user_id: justyna.id)
+Picture.create!(name: 'RTG psa 02', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog2.jpg"), user_id: justyna.id)
+Picture.create!(name: 'RTG psa 03', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog3.jpg"), user_id: justyna.id)
+Picture.create!(name: 'RTG psa 04', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog4.jpg"), user_id: justyna.id)
 
 
 #Medicines
