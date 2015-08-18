@@ -1,7 +1,14 @@
 class TreatmentsController < ApplicationController
-  before_action :authenticate_veterinarian!
+  before_action :authenticate_veterinarian!, except: [ :index ]
 
   expose(:treatment, attributes: :treatment_params)
+  expose(:treatments) { Treatment.all.order(:name).paginate(page: params[:page], per_page: 8) }
+
+  def index
+    if params[:search]
+      self.treatments = Treatment.price_page_search(params[:search]).order(:name).paginate(page: params[:treatments_page], per_page: 8)
+    end
+  end
 
   def new
   end

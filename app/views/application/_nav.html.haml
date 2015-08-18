@@ -11,6 +11,7 @@
             %li{:class => active_class(user_pictures_path(current_user))}= link_to icon('picture-o', 'Zdjęcia'), user_pictures_path(current_user)
             %li{:class => active_class(user_animals_path(current_user))}= link_to icon('bug','Zwierzęta'), user_animals_path(current_user)
           %ul.nav.navbar-nav.navbar-right
+            %li{:class => active_class(treatments_path)}= link_to icon('file-text-o', 'Cennik'), treatments_path
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = icon('user')
@@ -56,7 +57,8 @@
 
       - else
         %ul.nav.navbar-nav
-          %li= link_to icon('info-circle','Pomoc'), help_page_path
+          %li{:class => active_class(help_page_path)}= link_to icon('info-circle','Pomoc'), help_page_path
+          %li{:class => active_class(treatments_path)}= link_to icon('file-text-o', 'Cennik'), treatments_path
         %ul.nav.navbar-nav.navbar-right
           %li{:class => active_class(new_user_registration_path)}= link_to icon('sign-in', 'Rejestracja'), new_user_registration_path
           - if current_page?(unauthenticated_root_path)

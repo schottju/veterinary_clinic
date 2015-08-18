@@ -14,4 +14,8 @@ class Treatment < ActiveRecord::Base
   def self.search(query)
     where("lower(name) like ?", "%#{query.downcase}%")
   end
+
+  def self.price_page_search(query)
+    where("lower(name) like :q OR lower(description) like :q", q: "%#{query.downcase}%")
+  end
 end
