@@ -8,12 +8,12 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Data
+            %th.date-row Data
             %th Pora dnia
             %th Rodzaj
             %th Status
             %th Właściciel
-            %th.col-md-3
+            %th.btn-row-3
 
         %tbody
           - appointments.each do |appointment|
@@ -25,9 +25,9 @@
               %td= change_blank_to_dash(appointment.try(:user).try(:full_name))
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
-                  = link_to 'Anuluj', veterinarian_cancel_path(appointment, user_id: appointment.user_id), method: :patch, class: "btn btn-default"
+                  = link_to  icon('list-alt'), user_appointment_path(appointment.user_id, appointment), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_appointment_path(appointment.user_id, appointment), title: 'Edytuj', class: "btn btn-default"
+                  = link_to icon('trash-o'), veterinarian_cancel_path(appointment, user_id: appointment.user_id), title: 'Anuluj', method: :patch, class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate appointments

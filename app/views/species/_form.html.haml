@@ -1,12 +1,12 @@
 = simple_form_for @species do |f|
   = f.error_notification
   .row
-    .col-md-2
-    .col-md-8
+    .col-md-1
+    .col-md-10
       .form-inputs
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę gatunku', required: true
       .form-actions
         = link_to "Anuluj", dictionaries_path(tab: 'species'), class: "btn btn-default"
         .pull-right
           = f.button :submit, "Zapisz", class: "btn btn-default"
-    .col-md-2
+    .col-md-1

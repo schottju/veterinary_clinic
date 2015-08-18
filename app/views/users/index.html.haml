@@ -25,7 +25,7 @@
               %td= change_blank_to_dash(patient.phone_number)
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_path(patient), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_path(patient), title: 'Szczegóły', class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate patients

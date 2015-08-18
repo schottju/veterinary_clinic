@@ -20,7 +20,7 @@
           %td= change_blank_to_dash(unit.name)
           %td
             .pull-right
-              = link_to 'Edytuj', edit_unit_path(unit), class: "btn btn-default"
+              = link_to icon('edit'), edit_unit_path(unit), title: 'Edytuj', class: "btn btn-default"
 
   .flickr_pagination
     = will_paginate units, param_name: 'units_page'

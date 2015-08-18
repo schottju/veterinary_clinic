@@ -2,9 +2,9 @@
   .panel-heading Dane profilowe
   .panel-body
     .row
-      .col-md-2
-        = image_tag current_user.gravatar_url(size: 150)
-      .col-md-5
+      .col-md-3
+        = image_tag current_user.gravatar_url(size: 200)
+      .col-md-4
         %table.table
           %thead
             %tr
@@ -22,7 +22,7 @@
               %td= "Email: #{change_blank_to_dash(current_user.email)}"
             %tr
               %td= "Państwo: #{change_blank_to_dash(current_user.try(:address).try(:country_name))}"
-      .col-md-5
+      .col-md-4
         %table.table
           %thead
             %tr
@@ -40,5 +40,6 @@
               %td= "Powiat: #{change_blank_to_dash(current_user.try(:address).try(:district))}"
             %tr
               %td= "Województwo: #{change_blank_to_dash(current_user.try(:address).try(:province))}"
+      .col-md-4
     .pull-right
       = link_to "Edytuj", edit_registration_path(current_user), class: "btn btn-default"

@@ -24,7 +24,7 @@
           %td= change_blank_to_dash(treatment.description)
           %td
             .pull-right
-              = link_to 'Edytuj', edit_treatment_path(treatment), class: "btn btn-default"
+              = link_to icon('edit'), edit_treatment_path(treatment), title: 'Edytuj', class: "btn btn-default"
 
   .flickr_pagination
     = will_paginate treatments, param_name: 'treatments_page'

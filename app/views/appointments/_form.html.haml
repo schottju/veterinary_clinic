@@ -2,27 +2,27 @@
   = f.error_notification
   .form-inputs
     .row
-      .col-md-2
-      .col-md-2
+      .col-md-1
+      .col-md-3
         = f.input :day, label: 'Dzień', placeholder: 'dd/mm/rr', as: :date_picker
+      .col-md-3
+        = f.input :veterinarian_id, label: 'Weterynarz', required: true, collection: Veterinarian.all.map { |veterinarian| [ "#{veterinarian.try(:user).try(:full_name)}", veterinarian.id ] }
       .col-md-2
         = f.input :time, label: 'Godzina'
       .col-md-2
-        = f.input :veterinarian_id, label: 'Weterynarz', required: true, collection: Veterinarian.all.map { |veterinarian| [ "#{veterinarian.try(:user).try(:full_name)}", veterinarian.id ] }
-      .col-md-2
         = f.input :kind, label: 'Rodzaj'
-      .col-md-2
+      .col-md-1
     .row
-      .col-md-2
-      .col-md-8
+      .col-md-1
+      .col-md-10
         = f.input :description, label: 'Opis', placeholder: 'Wpisz objawy choroby, cel wizyty, informacje na temat zwierzęcia (gatunek, waga, wiek, ilość zwierząt)'
-      .col-md-2
+      .col-md-1
   .row
     .form-actions
-      .col-md-2
-      .col-md-4
+      .col-md-1
+      .col-md-5
         = link_to "Anuluj", user_appointments_path(user), class: "btn btn-default"
-      .col-md-4
+      .col-md-5
         .pull-right
           = f.button :submit, "Zapisz", class: "btn btn-default"
-      .col-md-2
+      .col-md-1

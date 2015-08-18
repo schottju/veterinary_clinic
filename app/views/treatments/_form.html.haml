@@ -2,18 +2,18 @@
   = f.error_notification
   .form-inputs
     .row
-      .col-md-2
-      .col-md-4
+      .col-md-1
+      .col-md-5
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę zabiegu', required: true, autofocus: true
-      .col-md-4
+      .col-md-5
         = f.input :cost, label: 'Koszt (PLN)', placeholder: 'Wpisz koszt zabiegu', required: true, as: :string, input_html: { value: change_period_to_comma(f.object.cost) }
-      .col-md-2
+      .col-md-1
     .row
-      .col-md-2
-      .col-md-8
+      .col-md-1
+      .col-md-10
         = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zabiegu'
         .form-actions
           = link_to "Anuluj", dictionaries_path(tab: 'treatments'), class: "btn btn-default"
           .pull-right
             = f.button :submit, "Zapisz", class: "btn btn-default"
-      .col-md-2
+      .col-md-1

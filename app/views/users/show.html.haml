@@ -2,9 +2,9 @@
   .panel-heading Dane właściciela
   .panel-body
     .row
-      .col-md-2
-        = image_tag user.gravatar_url(size: 150)
-      .col-md-5
+      .col-md-3
+        = image_tag user.gravatar_url(size: 200)
+      .col-md-4
         %table.table
           %thead
             %tr
@@ -22,7 +22,7 @@
               %td= "Email: #{change_blank_to_dash(user.email)}"
             %tr
               %td= "Państwo: #{change_blank_to_dash(user.try(:address).try(:country_name))}"
-      .col-md-5
+      .col-md-4
         %table.table
           %thead
             %tr
@@ -40,6 +40,7 @@
               %td= "Powiat: #{change_blank_to_dash(user.try(:address).try(:district))}"
             %tr
               %td= "Województwo: #{change_blank_to_dash(user.try(:address).try(:province))}"
+      .col-md-1
     .pull-right
       = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"
       = link_to "Nowa karta", new_user_medical_record_path(user), class: "btn btn-default"
@@ -55,12 +56,12 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Data
+            %th.date-row Data
             %th Pora dnia
             %th Rodzaj
             %th Status
             %th Weterynarz
-            %th.col-md-3
+            %th.btn-row-3
 
         %tbody
           - @appointments.each do |appointment|
@@ -72,9 +73,9 @@
               %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_appointment_path(user, appointment), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_appointment_path(user, appointment), class: "btn btn-default"
-                  = link_to 'Anuluj', user_appointment_cancel_path(appointment.user_id, appointment), method: :patch, class: "btn btn-default"
+                  = link_to icon('list-alt'), user_appointment_path(user, appointment), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_appointment_path(user, appointment), title: 'Edytuj', class: "btn btn-default"
+                  = link_to icon('trash-o'), user_appointment_cancel_path(appointment.user_id, appointment), title: 'Anuluj', method: :patch, class: "btn btn-default"
       .pull-right
         = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
         = link_to "Więcej", user_appointments_path(user), class: "btn btn-default"
@@ -96,7 +97,7 @@
             %th Wiek (lata)
             %th Płeć
             %th Gatunek
-            %th.col-md-2
+            %th.btn-row-2
 
         %tbody
           - @animals.each do |animal|
@@ -109,8 +110,8 @@
               %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_animal_path(user, animal), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_animal_path(user, animal), title: 'Edytuj', class: "btn btn-default"
       .pull-right
         = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
         = link_to "Więcej", user_animals_path(user), class: "btn btn-default"
@@ -130,8 +131,8 @@
             %th Wywiad
             %th Weterynarz
             %th Opis
-            %th Data
-            %th.col-md-2
+            %th.date-row Data
+            %th.btn-row-2
 
         %tbody
           - @medical_records.each do |medical_record|
@@ -143,8 +144,8 @@
               %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_medical_record_path(user, medical_record), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_medical_record_path(user, medical_record), title: 'Edytuj', class: "btn btn-default"
       .pull-right
         = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
         = link_to "Więcej", user_medical_records_path(user), class: "btn btn-default"
@@ -163,7 +164,7 @@
             %th Nazwa
             %th Zdjęcie
             %th Opis
-            %th.col-md-2
+            %th.btn-row-2
 
         %tbody
           - @pictures.each do |picture|
@@ -173,8 +174,8 @@
               %td= change_blank_to_dash(picture.description)
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_picture_path(user, picture), class: "btn btn-default"
-                  = link_to 'Edytuj', edit_user_picture_path(user, picture), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_picture_path(user, picture), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_picture_path(user, picture), title: 'Edytuj', class: "btn btn-default"
       .pull-right
         = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
         = link_to "Więcej", user_pictures_path(user), class: "btn btn-default"

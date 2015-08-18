@@ -2,10 +2,9 @@
   .panel-heading Zdjęcia
   .panel-body
     .row
-      .col-md-1
-      .col-md-5
-        = link_to image_tag(picture.image, width: 430), picture.image.url
-      .col-md-5
+      .col-md-6
+        = link_to image_tag(picture.image, width: 420), picture.image.url
+      .col-md-6
         %table.table
           %thead
             %tr
@@ -19,10 +18,7 @@
               %td= "Opis zdjęcia: #{change_blank_to_dash(picture.description)}"
             %tr
               %td
-      .col-md-1
     .row
-      .col-md-1
-      .col-md-10
+      .col-md-12
         .pull-right
           = link_to 'Powrót', user_pictures_path(user), class: 'btn btn-default'
-      .col-md-1

@@ -5,9 +5,9 @@
       .panel-heading Dane właściciela
       .panel-body
         .row
-          .col-md-2
-            = image_tag user.gravatar_url(size: 150)
-          .col-md-5
+          .col-md-3
+            = image_tag user.gravatar_url(size: 200)
+          .col-md-4
             %table.table
               %thead
                 %tr
@@ -25,7 +25,7 @@
                   %td= "Email: #{change_blank_to_dash(medical_record.try(:user).try(:email))}"
                 %tr
                   %td= "Państwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:country_name))}"
-          .col-md-5
+          .col-md-4
             %table.table
               %thead
                 %tr
@@ -43,6 +43,7 @@
                   %td= "Powiat: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:district))}"
                 %tr
                   %td= "Województwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:province))}"
+          .col-md-1
 
     .panel.panel-info
       .panel-heading Dane weterynarza
@@ -51,9 +52,9 @@
           Brak danych.
         - else
           .row
-            .col-md-2
-              = image_tag medical_record.veterinarian.user.gravatar_url(size: 150)
-            .col-md-5
+            .col-md-3
+              = image_tag medical_record.veterinarian.user.gravatar_url(size: 200)
+            .col-md-4
               %table.table
                 %thead
                   %tr
@@ -65,7 +66,7 @@
                     %td= "Tytuł: #{change_blank_to_dash(medical_record.veterinarian.title)}"
                   %tr
                     %td= "Prawo wykonywania zawodu (pwz): #{change_blank_to_dash(medical_record.veterinarian.pwz)}"
-            .col-md-5
+            .col-md-4
               %table.table
                 %thead
                   %tr
@@ -77,6 +78,7 @@
                     %td= "Specjalizacja: #{change_blank_to_dash(medical_record.veterinarian.specialization)}"
                   %tr
                     %td= "Numer telefonu: #{change_blank_to_dash(medical_record.veterinarian.user.phone_number)}"
+            .col-md-1
 
     .panel.panel-info
       .panel-heading Zwierzęta

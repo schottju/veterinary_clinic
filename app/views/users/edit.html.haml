@@ -5,8 +5,8 @@
       = f.error_notification
       .form-inputs
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-1
+          .col-md-10
             .panel.panel-info
               .panel-heading Dane podstawowe
               .panel-body
@@ -20,10 +20,10 @@
                     = f.input :last_name, label: 'Nazwisko', placeholder: 'Wpisz nazwisko', required: true
                     = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
                     = f.input :password_confirmation, label: 'Potwierdzenie nowego hasła', placeholder: 'Wpisz ponownie nowe hasło'
-          .col-md-2
+          .col-md-1
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-1
+          .col-md-10
             .panel.panel-info
               .panel-heading Dane adresowe
               .panel-body
@@ -32,9 +32,9 @@
                     .col-md-6
                       = ff.input :street, label: 'Ulica', placeholder: 'Wpisz nazwę ulicy', required: true
                     .col-md-3
-                      = ff.input :house_number, label: 'Numer domu', placeholder: 'Wpisz numer domu', required: true
+                      = ff.input :house_number, label: 'Numer domu', placeholder: 'Wpisz nr domu', required: true
                     .col-md-3
-                      = ff.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz numer mieszkania'
+                      = ff.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz nr mieszkania'
                   .row
                     .col-md-6
                       = ff.input :zip_code, label: 'Kod pocztowy', placeholder: 'Wpisz kod pocztowy', required: true
@@ -45,12 +45,12 @@
                       = ff.input :district, label: 'Powiat', placeholder: 'Wpisz nazwę powiatu'
                       = ff.input :country, label: 'Państwo'
 
-          .col-md-2
+          .col-md-1
         .row
-          .col-md-2
-          .col-md-8
+          .col-md-1
+          .col-md-10
             .form-actions
               = link_to 'Anuluj', :back, class: 'btn btn-default'
               .pull-right
                 = f.button :submit, "Zapisz", class: "btn btn-default"
-          .col-md-2
+          .col-md-1

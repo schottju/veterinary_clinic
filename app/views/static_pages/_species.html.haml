@@ -20,7 +20,7 @@
           %td= change_blank_to_dash(s.name)
           %td
             .pull-right
-              = link_to 'Edytuj', edit_species_path(s), class: "btn btn-default"
+              = link_to icon('edit'), edit_species_path(s), title: 'Edytuj', class: "btn btn-default"
 
   .flickr_pagination
     = will_paginate species, param_name: 'species_page'

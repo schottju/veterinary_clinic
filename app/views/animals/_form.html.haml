@@ -2,31 +2,31 @@
   = f.error_notification
   .form-inputs
     .row
-      .col-md-2
-      .col-md-2
+      .col-md-1
+      .col-md-3
         = f.input :id_number, label: 'Numer identyfikacyjny', placeholder: 'Wpisz nr id', autofocus: true
         = f.input :birth_date, label: 'Data urodzenia', placeholder: 'dd/mm/rr', as: :date_picker
-      .col-md-2
+      .col-md-3
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
-        = f.input :age, label: 'Wiek (lata)', placeholder: 'Wpisz wiek', as: :string, input_html: { value: change_period_to_comma(f.object.age) }
+        = f.input :species_id, label: 'Gatunek', collection: species
       .col-md-2
         = f.input :gender, label: 'Płeć', placeholder: 'Wpisz płeć'
         = f.input :weight, label: 'Waga (kg)', placeholder: 'Wpisz wagę',as: :string, input_html: { value: change_period_to_comma(f.object.weight) }
       .col-md-2
-        = f.input :species_id, label: 'Gatunek', collection: species
+        = f.input :age, label: 'Wiek (lata)', placeholder: 'Wpisz wiek', as: :string, input_html: { value: change_period_to_comma(f.object.age) }
         = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string
-      .col-md-2
+      .col-md-1
     .row
-      .col-md-2
-      .col-md-8
+      .col-md-1
+      .col-md-10
         = f.input :description, label: 'Opis', placeholder: 'Wpisz opis (kolor, znaki szczególne, rasa)'
-      .col-md-2
+      .col-md-1
   .row
     .form-actions
-      .col-md-2
-      .col-md-4
+      .col-md-1
+      .col-md-5
         = link_to "Anuluj", user_animals_path(user), class: "btn btn-default"
-      .col-md-4
+      .col-md-5
         .pull-right
           = f.button :submit, "Zapisz", class: "btn btn-default"
-      .col-md-2
+      .col-md-1

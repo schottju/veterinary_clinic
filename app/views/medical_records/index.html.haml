@@ -10,10 +10,10 @@
           %tr
             %th Numer karty
             %th Wywiad
-            %th Koszt wizyty
+            %th.price-row Koszt wizyty
             %th Weterynarz
-            %th Data
-            %th.col-md-2
+            %th.date-row Data
+            %th.btn-row-2
 
         %tbody
           - medical_records.each do |medical_record|
@@ -25,9 +25,9 @@
               %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_medical_record_path(user, medical_record), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
                   - unless current_user.pacjent?
-                    = link_to 'Edytuj', edit_user_medical_record_path(user, medical_record), class: "btn btn-default"
+                    = link_to icon('edit'), edit_user_medical_record_path(user, medical_record), title: 'Edytuj', class: "btn btn-default"
 
     .pull-right
       - if current_user.pacjent?

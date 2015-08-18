@@ -160,3 +160,26 @@ a:hover, a:focus {
 .centered {
   text-align: center;
 }
+
+
+th.date-row {
+  width: 100px;
+}
+
+th.price-row {
+  width: 80px;
+}
+
+th.btn-row-2 {
+  width: 100px;
+}
+
+th.btn-row-3 {
+  width: 150px;
+}
+
+.image_preview {
+  img {
+    width: 350px;
+  }
+}

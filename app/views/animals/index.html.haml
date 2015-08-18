@@ -15,7 +15,7 @@
             %th Płeć
             %th Ilość
             %th Gatunek
-            %th.col-md-2
+            %th.btn-row-2
 
         %tbody
           - animals.each do |animal|
@@ -29,9 +29,9 @@
               %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
-                  = link_to 'Szczegóły', user_animal_path(user, animal), class: "btn btn-default"
+                  = link_to icon('list-alt'), user_animal_path(user, animal), title: 'Szczegóły', class: "btn btn-default"
                   - unless current_user.pacjent?
-                    = link_to 'Edytuj', edit_user_animal_path(user, animal), class: "btn btn-default"
+                    = link_to icon('edit'), edit_user_animal_path(user, animal), title: 'Edytuj', class: "btn btn-default"
 
     .pull-right
       - if current_user.pacjent?

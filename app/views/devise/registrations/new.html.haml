@@ -4,8 +4,8 @@
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = f.error_notification
       .row
-        .col-md-2
-        .col-md-8
+        .col-md-1
+        .col-md-10
           .panel.panel-info
             .panel-heading Dane podstawowe
             .panel-body
@@ -21,10 +21,10 @@
                     = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
                     = f.input :password_confirmation, label: 'Potwierdzenie hasła', placeholder: 'Wpisz ponownie hasło', required: true
                     = recaptcha_tags
-        .col-md-2
+        .col-md-1
       .row
-        .col-md-2
-        .col-md-8
+        .col-md-1
+        .col-md-10
           .panel.panel-info
             .panel-heading Dane adresowe
             .panel-body
@@ -33,9 +33,9 @@
                   .col-md-6
                     = a.input :street, label: 'Ulica', placeholder: 'Wpisz nazwę ulicy', required: true
                   .col-md-3
-                    = a.input :house_number, label: 'Numer domu', placeholder: 'Wpisz numer domu', required: true
+                    = a.input :house_number, label: 'Numer domu', placeholder: 'Wpisz nr domu', required: true
                   .col-md-3
-                    = a.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz numer mieszkania'
+                    = a.input :flat_number, label: 'Numer mieszkania', placeholder: 'Wpisz nr mieszkania'
                 .row
                   .col-md-6
                     = a.input :zip_code, label: 'Kod pocztowy', placeholder: 'Wpisz kod pocztowy', required: true
@@ -46,10 +46,10 @@
                     = a.input :city, label: 'Miasto', placeholder: 'Wpisz nazwę miasta', required: true
                     = a.input :district, label: 'Powiat', placeholder: 'Wpisz nazwę powiatu'
                     = a.input :country, label: 'Państwo'
-        .col-md-2
+        .col-md-1
       .row
-        .col-md-2
-        .col-md-8
+        .col-md-1
+        .col-md-10
           .form-actions.pull-right
             = f.button :submit, "Zarejestruj"
-        .col-md-2
+        .col-md-1
