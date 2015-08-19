@@ -18,11 +18,11 @@
 @import "font-awesome";
 @import "bootstrap";
 
-$bgDefault      : #550055;
-$bgHighlight    : #620062;
-$colDefault     : #dbe1e3;
-$colHighlight   : #c379c3;
-$bgPanel        : #550055;
+$bgDefault      : #33841a;
+$bgHighlight    : #114d10;
+$colDefault     : #fdfdfd;
+$colHighlight   : #ffffff;
+$bgPanel        : $bgDefault;
 $dropDown       : false;
 .navbar-default {
   background-color: $bgDefault;
@@ -119,15 +119,15 @@ img {
   .current {
     font-style: normal;
     font-weight: bold;
-    color: #ff0084;
+    color: $bgDefault;
   }
   a {
     border: 1px solid #dddddd;
-    color: #550055;
+    color: $bgDefault;
     text-decoration: none;
     &:hover, &:focus {
-      border-color: #620062;
-      background: #550055;
+      border-color: $bgDefault;
+      background: $bgDefault;
       color: white;
     }
   }
