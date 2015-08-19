@@ -7,33 +7,6 @@
         %table.table
           %thead
             %tr
-              %td
-          %tbody
-            %tr
-              %td= "Data: #{change_blank_to_dash(appointment.day)}"
-            %tr
-              %td= "Pora dnia: #{change_blank_to_dash(appointment.time)}"
-            %tr
-              %td= "Status: #{change_blank_to_dash(appointment.status)}"
-            %tr
-              %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %td
-          %tbody
-            %tr
-              %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
-            %tr
-              %td= "Opis: #{change_blank_to_dash(appointment.description)}"
-      .col-md-1
-    .row
-      .col-md-1
-      .col-md-5
-        %table.table
-          %thead
-            %tr
               %th Dane właściciela:
           %tbody
             %tr
@@ -48,6 +21,8 @@
               %td= "Email: #{change_blank_to_dash(appointment.try(:user).try(:email))}"
             %tr
               %td= "Państwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:country_name))}"
+            %tr
+              %td
       .col-md-5
         %table.table
           %thead
@@ -66,6 +41,39 @@
               %td= "Powiat: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:district))}"
             %tr
               %td= "Województwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:province))}"
+            %tr
+              %td
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %th Szczegóły wizyty
+          %tbody
+            %tr
+              %td= "Data: #{change_blank_to_dash(appointment.day)}"
+            %tr
+              %td= "Pora dnia: #{change_blank_to_dash(appointment.time)}"
+            %tr
+              %td= "Status: #{change_blank_to_dash(appointment.status)}"
+            %tr
+              %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
+            %tr
+              %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
+            %tr
+              %td
+      .col-md-5
+        %table.table
+          %thead
+            %tr
+              %th Opis
+          %tbody
+            %tr
+              %td= "#{change_blank_to_dash(appointment.description)}"
+            %tr
+              %td
       .col-md-1
     .row
       .col-md-1
