@@ -84,7 +84,7 @@
               %td
                 .pull-right
                   = link_to icon('list-alt'), user_appointment_path(appointment.user_id, appointment), title: 'Szczegóły', class: "btn btn-default"
-                  = link_to icon('edit'), edit_user_appointment_path(appointment.user_id, appointment), class: "btn btn-default"
+                  = link_to icon('edit'), edit_user_appointment_path(appointment.user_id, appointment), title: 'Edytuj', class: "btn btn-default"
                   = link_to icon('trash-o'), veterinarian_cancel_path(appointment, user_id: appointment.user_id), title: 'Anuluj', method: :patch, class: "btn btn-default"
       .pull-right
         = link_to "Więcej", veterinarian_appointments_path, class: "btn btn-default"
