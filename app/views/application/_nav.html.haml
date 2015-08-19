@@ -2,14 +2,14 @@
   %nav.navbar.navbar-default.navbar-static-top
     .container-fluid
       .navbar-header
-        %span.navbar-brand= icon('medkit', 'Veterinary Clinic')
+        %span.navbar-brand= icon('heartbeat', 'Veterinary Clinic')
       - if user_signed_in?
         - if current_user.pacjent?
           %ul.nav.navbar-nav
             %li{:class => active_class(user_medical_records_path(current_user))}= link_to icon('files-o', 'Kartoteka'), user_medical_records_path(current_user)
-            %li{:class => active_class(user_appointments_path(current_user))}= link_to icon('hospital-o', 'Wizyty'), user_appointments_path(current_user)
+            %li{:class => active_class(user_appointments_path(current_user))}= link_to icon('ambulance', 'Wizyty'), user_appointments_path(current_user)
             %li{:class => active_class(user_pictures_path(current_user))}= link_to icon('picture-o', 'Zdjęcia'), user_pictures_path(current_user)
-            %li{:class => active_class(user_animals_path(current_user))}= link_to icon('bug','Zwierzęta'), user_animals_path(current_user)
+            %li{:class => active_class(user_animals_path(current_user))}= link_to icon('paw','Zwierzęta'), user_animals_path(current_user)
           %ul.nav.navbar-nav.navbar-right
             %li{:class => active_class(treatments_path)}= link_to icon('file-text-o', 'Cennik'), treatments_path
             %li{:class => active_class(veterinarians_path)}= link_to icon('user-md', 'Lekarze'), veterinarians_path
@@ -27,7 +27,7 @@
         - elsif current_user.weterynarz?
           %ul.nav.navbar-nav
             %li{:class => active_class(users_path)}= link_to icon('users', 'Pacjenci'), users_path
-            %li{:class => active_class(veterinarian_appointments_path)}= link_to icon('hospital-o', 'Wizyty'), veterinarian_appointments_path
+            %li{:class => active_class(veterinarian_appointments_path)}= link_to icon('ambulance', 'Wizyty'), veterinarian_appointments_path
           %ul.nav.navbar-nav.navbar-right
             %li{:class => active_class(dictionaries_path)}= link_to icon('book', 'Słowniki'), dictionaries_path(tab: 'species')
             %li.dropdown
