@@ -40,7 +40,11 @@ class User < ActiveRecord::Base
 
   private
 
-  def self.search(query)
-    where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 0", { q: "%#{query.downcase}%" })
-  end
+    def self.search(query)
+      where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 0", { q: "%#{query.downcase}%" })
+    end
+
+    def self.veterinarian_search(query)
+      where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 1", { q: "%#{query.downcase}%"})
+    end
 end

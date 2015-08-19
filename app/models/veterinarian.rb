@@ -12,4 +12,9 @@ class Veterinarian < ActiveRecord::Base
   def custom_label_method
     "##{id} #{title} #{user.try(:first_name)} #{user.try(:last_name)}, pwz: #{pwz}"
   end
+
+  def next_vacation
+    vacation = vacations.where("start >= :d OR \"end\" >= :d", { d: Date.today }).order(:start).first
+    "#{vacation.start} - #{vacation.end}"
+  end
 end

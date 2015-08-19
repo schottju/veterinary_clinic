@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   resources :treatments, only: [ :index, :new, :create, :edit, :update ]
   resources :species, only: [ :new, :create, :edit, :update ]
 
+  resources :veterinarians, only: [ :index ]
+
   resources :users, only: [ :index, :show, :new, :create, :edit, :update ] do
     resources :animals, only: [ :index, :show, :new, :create, :edit, :update ]
     resources :medical_records, only: [ :index, :show, :new, :create, :edit, :update ]

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_veterinarian!, only: [ :index, :show, :edit, :update ]
 
   expose(:user, attributes: :user_params)
-  expose(:patients) { User.where(role: 'patient').order(:last_name).paginate(page: params[:page], per_page: 8) }
+  expose(:patients) { User.where(role: 0).order(:last_name).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
