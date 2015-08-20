@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   resources :veterinarians, only: [ :index ]
 
   resources :users, only: [ :index, :show, :new, :create, :edit, :update ] do
+    get '/veterinarians', to: 'veterinarians#index_veterinarians'
+    get '/veterinarians/:id/calendar', to: 'veterinarians#show_calendar', as: 'veterinarian_calendar'
+
     resources :animals, only: [ :index, :show, :new, :create, :edit, :update ]
     resources :medical_records, only: [ :index, :show, :new, :create, :edit, :update ]
     resources :pictures, only: [ :index, :show, :new, :create, :edit, :update ]

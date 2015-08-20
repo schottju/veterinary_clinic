@@ -15,6 +15,43 @@ class Veterinarian < ActiveRecord::Base
 
   def next_vacation
     vacation = vacations.where("start >= :d OR \"end\" >= :d", { d: Date.today }).order(:start).first
-    "#{vacation.start} - #{vacation.end}"
+    vacation.nil? ? '' : "#{vacation.start} - #{vacation.end}"
+  end
+
+  def working_today?(date)
+    if working_day.nil?
+      false
+    else
+      case date.wday
+      when 0
+        working_day.sunday?
+      when 1
+        working_day.monday?
+      when 2
+        working_day.tuesday?
+      when 3
+        working_day.wednesday?
+      when 4
+        working_day.thursday?
+      when 5
+        working_day.friday?
+      when 6
+        working_day.saturday?
+      end
+    end
+  end
+
+  def on_vacation?(date)
+    if vacations.nil?
+      false
+    else
+      vacations.each do |vacation|
+        if vacation.start <= date && vacation.end >= date
+          return true
+        end
+      end
+
+      return false
+    end
   end
 end

@@ -51,7 +51,7 @@
     - if @appointments.empty?
       .alert.alert-warning.table-warning Brak wizyt.
       .pull-right
-        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+        = link_to "Dodaj", user_veterinarians_path(user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
@@ -77,7 +77,7 @@
                   = link_to icon('edit'), edit_user_appointment_path(user, appointment), title: 'Edytuj', class: "btn btn-default"
                   = link_to icon('trash-o'), user_appointment_cancel_path(appointment.user_id, appointment), title: 'Anuluj', method: :patch, class: "btn btn-default"
       .pull-right
-        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
+        = link_to "Dodaj", user_veterinarians_path(user), class: "btn btn-default"
         = link_to "Więcej", user_appointments_path(user), class: "btn btn-default"
 
 .panel.panel-default

@@ -6,4 +6,12 @@ class VeterinariansController < ApplicationController
       self.veterinarians = User.veterinarian_search(params[:search]).order(:last_name).paginate(page: params[:page], per_page: 8)
     end
   end
+
+  def show_calendar
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @veterinarian = Veterinarian.where(user_id: params[:id]).first
+  end
+
+  def index_veterinarians
+  end
 end

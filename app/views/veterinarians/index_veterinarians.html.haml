@@ -1,0 +1,36 @@
+.panel.panel-default
+  .panel-heading Weterynarze
+  .panel-body
+    = render 'search_form'
+    - if veterinarians.empty?
+      .alert.alert-warning.table-warning Brak weterynarzy.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Tytuł
+            %th Imię
+            %th Nazwisko
+            %th Numer telefonu
+            %th Specjalizacja
+            %th Dni robocze
+            %th Najbliższy urlop
+            %th
+
+
+        %tbody
+          - veterinarians.each do |veterinarian|
+            %tr
+              %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:title))
+              %td= change_blank_to_dash(veterinarian.first_name)
+              %td= change_blank_to_dash(veterinarian.last_name)
+              %td= change_blank_to_dash(veterinarian.phone_number)
+              %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:specialization))
+              %td= change_blank_to_dash("#{'Pon' if veterinarian.try(:veterinarian).try(:working_day).try(:monday)} #{'Wt' if veterinarian.try(:veterinarian).try(:working_day).try(:tuesday)} #{'Śr' if veterinarian.try(:veterinarian).try(:working_day).try(:wednesday)} #{'Czw' if veterinarian.try(:veterinarian).try(:working_day).try(:thursday)} #{'Pt' if veterinarian.try(:veterinarian).try(:working_day).try(:friday)} #{'Sob' if veterinarian.try(:veterinarian).try(:working_day).try(:saturday)} #{'Niedz' if veterinarian.try(:veterinarian).try(:working_day).try(:sunday)}")
+              %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:next_vacation))
+              %td
+                .pull-right
+                  = link_to icon('calendar'), user_veterinarian_calendar_path(params[:user_id], veterinarian), title: 'Pokaż terminarz', class: "btn btn-default"
+
+      .flickr_pagination
+        = will_paginate veterinarians

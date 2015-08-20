@@ -4,8 +4,6 @@
     = render 'search_form'
     - if appointments.empty?
       .alert.alert-warning.table-warning Brak wizyt.
-      .pull-right
-        = link_to "Dodaj", new_user_appointment_path(user), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead

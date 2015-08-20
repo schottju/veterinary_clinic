@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-     if appointment.save
+    if appointment.save
       redirect_to user_appointments_path(user), notice: 'Wizyta została pomyślnie utworzona.'
     else
       render :new
