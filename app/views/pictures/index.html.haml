@@ -29,9 +29,9 @@
 
     .pull-right
       - if current_user.pacjent?
-        = link_to 'Powrót', profile_path, class: 'btn btn-default'
+        = link_to 'Przejdź do profilu', profile_path, class: 'btn btn-default'
       - else
-        = link_to 'Powrót', user_path(user), class: 'btn btn-default'
+        = link_to 'Przejdź do profilu właściciela', user_path(user), class: 'btn btn-default'
 
     .flickr_pagination
       = will_paginate pictures

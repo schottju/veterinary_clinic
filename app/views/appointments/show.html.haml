@@ -84,4 +84,7 @@
           .col-md-1
 
     .pull-right
-      = link_to "Powrót", user_appointments_path(user), class: "btn btn-default"
+      - if current_user.weterynarz?
+        = link_to "Przejdź do wizyt właściciela", user_appointments_path(user), class: "btn btn-default"
+      - else
+        = link_to "Przejdź do wizyt", user_appointments_path(user), class: "btn btn-default"
