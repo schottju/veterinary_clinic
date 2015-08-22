@@ -1,83 +1,87 @@
 .panel.panel-default
-  .panel-heading Szczegóły wizyty
+  .panel-heading= "Wizyta #{appointment.day}"
   .panel-body
-    .row
-      .col-md-1
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th Dane właściciela:
-          %tbody
-            %tr
-              %td= "Imię: #{change_blank_to_dash(appointment.try(:user).try(:first_name))}"
-            %tr
-              %td= "Nazwisko: #{change_blank_to_dash(appointment.try(:user).try(:last_name))}"
-            %tr
-              %td= "Pesel: #{change_blank_to_dash(appointment.try(:user).try(:pesel))}"
-            %tr
-              %td= "Numer telefonu: #{change_blank_to_dash(appointment.try(:user).try(:phone_number))}"
-            %tr
-              %td= "Email: #{change_blank_to_dash(appointment.try(:user).try(:email))}"
-            %tr
-              %td= "Państwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:country_name))}"
-            %tr
-              %td
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th Dane adresowe właściciela:
-          %tbody
-            %tr
-              %td= "Ulica: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:street))} #{appointment.try(:user).try(:address).try(:house_number)}#{' / ' unless appointment.try(:user).try(:address).try(:flat_number).blank?}#{appointment.try(:user).try(:address).try(:flat_number)}"
-            %tr
-              %td= "Kod pocztowy: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:zip_code))}"
-            %tr
-              %td= "Miasto: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:city))}"
-            %tr
-              %td= "Gmina: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:borough))}"
-            %tr
-              %td= "Powiat: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:district))}"
-            %tr
-              %td= "Województwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:province))}"
-            %tr
-              %td
-      .col-md-1
-    .row
-      .col-md-1
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th Szczegóły wizyty
-          %tbody
-            %tr
-              %td= "Data: #{change_blank_to_dash(appointment.day)}"
-            %tr
-              %td= "Pora dnia: #{change_blank_to_dash(appointment.time)}"
-            %tr
-              %td= "Status: #{change_blank_to_dash(appointment.status)}"
-            %tr
-              %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
-            %tr
-              %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
-            %tr
-              %td
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th Opis
-          %tbody
-            %tr
-              %td= "#{change_blank_to_dash(appointment.description)}"
-            %tr
-              %td
-      .col-md-1
-    .row
-      .col-md-1
-      .col-md-10
-        .pull-right
-          = link_to "Powrót", user_appointments_path(user), class: "btn btn-default"
-      .col-md-1
+    .panel.panel-info
+      .panel-heading Dane właściciela:
+      .panel-body
+        .row
+          .col-md-3
+            = image_tag appointment.try(:user).gravatar_url(size: 200)
+          .col-md-4
+            %table.table
+              %thead
+                %tr
+                  %th
+              %tbody
+                %tr
+                  %td= "Imię: #{change_blank_to_dash(appointment.try(:user).try(:first_name))}"
+                %tr
+                  %td= "Nazwisko: #{change_blank_to_dash(appointment.try(:user).try(:last_name))}"
+                %tr
+                  %td= "Pesel: #{change_blank_to_dash(appointment.try(:user).try(:pesel))}"
+                %tr
+                  %td= "Numer telefonu: #{change_blank_to_dash(appointment.try(:user).try(:phone_number))}"
+                %tr
+                  %td= "Email: #{change_blank_to_dash(appointment.try(:user).try(:email))}"
+                %tr
+                  %td= "Państwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:country_name))}"
+                %tr
+                  %td
+          .col-md-4
+            %table.table
+              %thead
+                %tr
+                  %th
+              %tbody
+                %tr
+                  %td= "Ulica: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:street))} #{appointment.try(:user).try(:address).try(:house_number)}#{' / ' unless appointment.try(:user).try(:address).try(:flat_number).blank?}#{appointment.try(:user).try(:address).try(:flat_number)}"
+                %tr
+                  %td= "Kod pocztowy: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:zip_code))}"
+                %tr
+                  %td= "Miasto: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:city))}"
+                %tr
+                  %td= "Gmina: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:borough))}"
+                %tr
+                  %td= "Powiat: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:district))}"
+                %tr
+                  %td= "Województwo: #{change_blank_to_dash(appointment.try(:user).try(:address).try(:province))}"
+                %tr
+                  %td
+          .col-md-1
+    .panel.panel-info
+      .panel-heading Szczegóły wizyty:
+      .panel-body
+        .row
+          .col-md-1
+          .col-md-5
+            %table.table
+              %thead
+                %tr
+                  %th Szczegóły
+              %tbody
+                %tr
+                  %td= "Data: #{change_blank_to_dash(appointment.day)}"
+                %tr
+                  %td= "Pora dnia: #{change_blank_to_dash(appointment.time)}"
+                %tr
+                  %td= "Status: #{change_blank_to_dash(appointment.status)}"
+                %tr
+                  %td= "Rodzaj: #{change_blank_to_dash(appointment.kind)}"
+                %tr
+                  %td= "Weterynarz: #{change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))}"
+                %tr
+                  %td
+          .col-md-5
+            %table.table
+              %thead
+                %tr
+                  %th Opis
+              %tbody
+                %tr
+                  %td= "#{change_blank_to_dash(appointment.description)}"
+                %tr
+                  %td
+          .col-md-1
+
+    .pull-right
+      = link_to "Powrót", user_appointments_path(user), class: "btn btn-default"

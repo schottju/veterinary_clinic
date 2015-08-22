@@ -1,46 +1,89 @@
 .panel.panel-default
-  .panel-heading Dane zwierzęcia
+  .panel-heading= "Zwierzę nr #{change_blank_to_dash(animal.id_number)}"
   .panel-body
-    .row
-      .col-md-1
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th
-          %tbody
-            %tr
-              %td= "Numer identyfikacyjny: #{change_blank_to_dash(animal.id_number)}"
-            %tr
-              %td= "Nazwa: #{change_blank_to_dash(animal.name)}"
-            %tr
-              %td= "Data urodzenia: #{change_blank_to_dash(animal.birth_date)}"
-            %tr
-              %td= "Wiek (lata): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))}"
-            %tr
-              %td= "Ilość: #{change_blank_to_dash(animal.amount)}"
-            %tr
-              %td
-      .col-md-5
-        %table.table
-          %thead
-            %tr
-              %th
-          %tbody
-            %tr
-              %td= "Płeć: #{change_blank_to_dash(animal.gender)}"
-            %tr
-              %td= "Waga (kg): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))}"
-            %tr
-              %td= "Gatunek: #{change_blank_to_dash(animal.try(:species).try(:name))}"
-            %tr
-              %td= "Opis: #{change_blank_to_dash(animal.description)}"
-            %tr
-              %td
-      .col-md-1
-    .row
-      .col-md-1
-      .col-md-10
-        .pull-right
-          = link_to "Powrót", user_animals_path(user), class: "btn btn-default"
-      .col-md-1
+    .panel.panel-info
+      .panel-heading Dane zwierzęcia
+      .panel-body
+        .row
+          .col-md-1
+          .col-md-5
+            %table.table
+              %thead
+                %tr
+                  %th
+              %tbody
+                %tr
+                  %td= "Numer identyfikacyjny: #{change_blank_to_dash(animal.id_number)}"
+                %tr
+                  %td= "Nazwa: #{change_blank_to_dash(animal.name)}"
+                %tr
+                  %td= "Data urodzenia: #{change_blank_to_dash(animal.birth_date)}"
+                %tr
+                  %td= "Wiek (lata): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))}"
+                %tr
+                  %td= "Ilość: #{change_blank_to_dash(animal.amount)}"
+                %tr
+                  %td
+          .col-md-5
+            %table.table
+              %thead
+                %tr
+                  %th
+              %tbody
+                %tr
+                  %td= "Płeć: #{change_blank_to_dash(animal.gender)}"
+                %tr
+                  %td= "Waga (kg): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))}"
+                %tr
+                  %td= "Gatunek: #{change_blank_to_dash(animal.try(:species).try(:name))}"
+                %tr
+                  %td= "Opis: #{change_blank_to_dash(animal.description)}"
+                %tr
+                  %td
+          .col-md-1
+    .panel.panel-info
+      .panel-heading Dane właściciela
+      .panel-body
+        .row
+          .col-md-3
+            = image_tag user.gravatar_url(size: 200)
+          .col-md-4
+            %table.table
+              %thead
+                %tr
+                  %td
+              %tbody
+                %tr
+                  %td= "Imię: #{change_blank_to_dash(animal.try(:user).try(:first_name))}"
+                %tr
+                  %td= "Nazwisko: #{change_blank_to_dash(animal.try(:user).try(:last_name))}"
+                %tr
+                  %td= "Pesel: #{change_blank_to_dash(animal.try(:user).try(:pesel))}"
+                %tr
+                  %td= "Numer telefonu: #{change_blank_to_dash(animal.try(:user).try(:phone_number))}"
+                %tr
+                  %td= "Email: #{change_blank_to_dash(animal.try(:user).try(:email))}"
+                %tr
+                  %td= "Państwo: #{change_blank_to_dash(animal.try(:user).try(:address).try(:country_name))}"
+          .col-md-4
+            %table.table
+              %thead
+                %tr
+                  %td
+              %tbody
+                %tr
+                  %td= "Ulica: #{change_blank_to_dash(animal.try(:user).try(:address).try(:street))} #{animal.try(:user).try(:address).try(:house_number)}#{' / ' unless animal.try(:user).try(:address).try(:flat_number).blank?}#{animal.try(:user).try(:address).try(:flat_number)}"
+                %tr
+                  %td= "Kod pocztowy: #{change_blank_to_dash(animal.try(:user).try(:address).try(:zip_code))}"
+                %tr
+                  %td= "Miasto: #{change_blank_to_dash(animal.try(:user).try(:address).try(:city))}"
+                %tr
+                  %td= "Gmina: #{change_blank_to_dash(animal.try(:user).try(:address).try(:borough))}"
+                %tr
+                  %td= "Powiat: #{change_blank_to_dash(animal.try(:user).try(:address).try(:district))}"
+                %tr
+                  %td= "Województwo: #{change_blank_to_dash(animal.try(:user).try(:address).try(:province))}"
+          .col-md-1
+
+    .pull-right
+      = link_to "Powrót", user_animals_path(user), class: "btn btn-default"
