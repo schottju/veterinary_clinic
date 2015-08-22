@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813093301) do
+ActiveRecord::Schema.define(version: 20150822132005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,8 +149,10 @@ ActiveRecord::Schema.define(version: 20150813093301) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "image"
+    t.integer  "animal_id"
   end
 
+  add_index "pictures", ["animal_id"], name: "index_pictures_on_animal_id", using: :btree
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
   create_table "species", force: :cascade do |t|
@@ -249,6 +251,7 @@ ActiveRecord::Schema.define(version: 20150813093301) do
   add_foreign_key "medical_records", "users"
   add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "medicines", "units"
+  add_foreign_key "pictures", "animals"
   add_foreign_key "pictures", "users"
   add_foreign_key "vacations", "veterinarians"
   add_foreign_key "veterinarians", "users"

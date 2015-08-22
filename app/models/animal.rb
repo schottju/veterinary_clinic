@@ -3,6 +3,7 @@ class Animal < ActiveRecord::Base
 
   belongs_to :species
   belongs_to :user
+  has_many :pictures
   has_and_belongs_to_many :medical_records
 
   validates_presence_of :amount, :gender, :species_id

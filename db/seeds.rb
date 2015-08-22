@@ -96,11 +96,11 @@ Treatment.create!(name: 'Kosmetyka I', cost: 50, description: 'Obcięcie pazuró
 Treatment.create!(name: 'Kosmetyka II', cost: 100, description: 'Strzyżenie zwierząt domowych')
 
 #Animals
-krowa = Animal.create!(id_number: 'PL1234566', name: 'Miła', birth_date: Date.new(2011, 9, 15), age: Date.today.year - Date.new(2011, 9, 15).year, amount: 1, weight: '', gender: :samica, description: 'W czarne łaty', user_id: justyna.id, species_id: krowa.id)
-kury = Animal.create!(id_number: 'PL2134245', amount: 13, gender: :mieszana, description: 'Kury w różnym wieku', user_id: justyna.id, species_id: kura.id)
+krowa_zwierze = Animal.create!(id_number: 'PL1234566', name: 'Miła', birth_date: Date.new(2011, 9, 15), age: Date.today.year - Date.new(2011, 9, 15).year, amount: 1, weight: '', gender: :samica, description: 'W czarne łaty', user_id: justyna.id, species_id: krowa.id)
+kury_zwierze = Animal.create!(id_number: 'PL2134245', amount: 13, gender: :mieszana, description: 'Kury w różnym wieku', user_id: justyna.id, species_id: kura.id)
 Animal.create!(id_number: 'PL5234534', amount: 20, weight: 100, gender: :mieszana, age: 2, description: 'Mieszane stado w różnym wieku, waga od 100 do 150 kg', user_id: justyna.id, species_id: swinia.id)
 Animal.create!(id_number: 'PL13434NN', name: 'Burek', birth_date: Date.new(2010, 11, 15), amount: 1, weight: 2.5, gender: :samiec, age: Date.today.year - Date.new(2010, 11, 15).year, description: 'Bury kot', user_id: justyna.id, species_id: kot.id)
-Animal.create!(id_number: 'PL1234123', name: 'Amik', birth_date: Date.new(2011, 6, 20), amount: 1, weight: 5, gender: :samiec, age: Date.today.year - Date.new(2011, 6, 20).year, description: 'Czarny podpalany jamnik', user_id: justyna.id, species_id: pies.id)
+pies_zwierze = Animal.create!(id_number: 'PL1234123', name: 'Amik', birth_date: Date.new(2011, 6, 20), amount: 1, weight: 5, gender: :samiec, age: Date.today.year - Date.new(2011, 6, 20).year, description: 'Czarny podpalany jamnik', user_id: justyna.id, species_id: pies.id)
 Animal.create!(id_number: 'PLDSA2333', amount: 100, gender: :mieszana, description: 'Tegoroczne karpie', user_id: justyna.id, species_id: ryba.id)
 Animal.create!(id_number: 'PL2345SFD', amount: 500, gender: :mieszana, description: 'Cztery ule pszczół', user_id: justyna.id, species_id: pszczola.id)
 Animal.create!(id_number: 'PL34554DD', name: 'Mruczek', birth_date: Date.new(2012, 5, 23), amount: 1, weight: 4, gender: :samiec, age: Date.today.year - Date.new(2012, 5, 23).year, description: 'Rudy perski kot', user_id: jan.id, species_id: kot.id)
@@ -118,11 +118,11 @@ Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: jan.id, v
 Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 1.days, time: :wieczorem, description: 'Kastrowanie knura')
 
 #Pictures
-picture1 = Picture.create!(name: 'RTG jamy brzusznej krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id)
-Picture.create!(name: 'RTG psa 01', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog1.jpg"), user_id: justyna.id)
-Picture.create!(name: 'RTG psa 02', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog2.jpg"), user_id: justyna.id)
-Picture.create!(name: 'RTG psa 03', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog3.jpg"), user_id: justyna.id)
-Picture.create!(name: 'RTG psa 04', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog4.jpg"), user_id: justyna.id)
+picture1 = Picture.create!(name: 'RTG jamy brzusznej krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id, animal_id: krowa_zwierze.id)
+Picture.create!(name: 'RTG psa', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog1.jpg"), user_id: justyna.id, animal_id: pies_zwierze.id)
+Picture.create!(name: 'RTG psa', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog2.jpg"), user_id: justyna.id, animal_id: pies_zwierze.id)
+Picture.create!(name: 'RTG psa', description: 'Brak nieprawidłowości', image: File.open(Rails.root + "app/assets/images/dog3.jpg"), user_id: justyna.id, animal_id: pies_zwierze.id)
+Picture.create!(name: 'RTG psa', description: 'Widoczne ciało obce w żołądku', image: File.open(Rails.root + "app/assets/images/dog4.jpg"), user_id: justyna.id, animal_id: pies_zwierze.id)
 
 
 #Medicines
@@ -135,7 +135,7 @@ sulfatyf = Medicine.create!(name: 'Sulfatyf', description: 'Proszek do sporządz
 medical_record_01 = MedicalRecord.new(anamnesis: 'Krowa po zjedzeniu zielonki oraz ziemniaków kładzie się, postękuje, jest niespokojna, widocznie uwypuklone powłoki brzuszne', description: 'Wypompowano gazy oraz podano lek za pomocą sondy', comment: 'Po wykonaniu zabiegu objawy ustąpiły, zaobserwowano poprawę', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 50)
 medical_record_01.medicines << tympachol
 medical_record_01.treatments << Treatment.where(name: 'Sondowanie')
-medical_record_01.animals << krowa
+medical_record_01.animals << krowa_zwierze
 medical_record_01.pictures << picture1
 medical_record_01.diseases << Disease.where(name: 'Wzdęcie')
 medical_record_01.save!
@@ -143,13 +143,13 @@ medical_record_01.save!
 medical_record_02 = MedicalRecord.new(anamnesis: 'Wymię bardzo spuchnięte, mleko z domieszką skrzepów, zmieniony kolor mleka, brak apetytu', description: 'Podano lek do każdego gruczołu mlecznego', comment: 'Objawy powinny zacząć ustępować po 3 dniach od podania leku. Całkowite ustąpienie objawów nastąpi po 3-5 dniach od zaczęcia smarowania wymion maścią.', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 30)
 medical_record_02.medicines << Medicine.where(name: [ 'Mastisan', 'Maść Jodo-kamforowa' ])
 medical_record_02.treatments << Treatment.where(name: 'Diagnostyka')
-medical_record_02.animals << krowa
+medical_record_02.animals << krowa_zwierze
 medical_record_02.diseases << Disease.where(name: 'Zapalenie wymienia')
 medical_record_02.save!
 
 medical_record_03 = MedicalRecord.new(anamnesis: 'Biegunka z domieszką krwi, senność', description: 'Przepisano lek', comment: 'Po 4 dniach od podania leku nastąpi poprawa stanu zdrowia', user_id: justyna.id, veterinarian_id: veterinarian.id, additional_cost: 0)
 medical_record_03.medicines << sulfatyf
 medical_record_03.treatments << Treatment.where(name: 'Porada')
-medical_record_03.animals << kury
+medical_record_03.animals << kury_zwierze
 medical_record_03.diseases << Disease.where(name: 'Zapalenie jelit ślepych')
 medical_record_03.save!

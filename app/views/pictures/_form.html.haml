@@ -6,6 +6,7 @@
       .col-md-5
         = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę pliku', autofocus: true
         = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zdjęcia'
+        = f.input :animal_id, label: 'Zwierzę', collection: Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
       .col-md-5
         = f.input :image, label: 'Zdjęcie', as: :image_preview
       .col-md-1
