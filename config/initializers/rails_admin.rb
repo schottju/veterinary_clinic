@@ -1,4 +1,4 @@
-module ActiveRecord
+  module ActiveRecord
   module RailsAdminEnum
     def enum(definitions)
       super
@@ -280,6 +280,10 @@ RailsAdmin.config do |config|
       label "karty pacjentów"
     end
 
+    configure :pictures do
+      label "zdjęcia"
+    end
+
     object_label_method do
       :custom_label_method
     end
@@ -307,6 +311,9 @@ RailsAdmin.config do |config|
       field :medical_records do
         filterable false
       end
+      field :pictures do
+        filterable false
+      end
       field :created_at
       field :updated_at
     end
@@ -324,6 +331,7 @@ RailsAdmin.config do |config|
       field :description
       field :user
       field :medical_records
+      field :pictures
       field :created_at
       field :updated_at
     end
@@ -367,6 +375,10 @@ RailsAdmin.config do |config|
       field :medical_records do
         inline_add false
       end
+      field :pictures do
+        inline_add false
+        inline_edit false
+      end
     end
 
     export do
@@ -384,6 +396,7 @@ RailsAdmin.config do |config|
       field :species
       field :user
       field :medical_records
+      field :pictures
     end
   end
 
@@ -759,6 +772,10 @@ RailsAdmin.config do |config|
       label "karty pacjentów"
     end
 
+    configure :animal do
+      label "zwierzę"
+    end
+
     object_label_method do
       :custom_label_method
     end
@@ -778,6 +795,9 @@ RailsAdmin.config do |config|
       field :medical_records do
         filterable false
       end
+      field :animal do
+        filterable false
+      end
       field :created_at
       field :updated_at
     end
@@ -789,6 +809,7 @@ RailsAdmin.config do |config|
       field :image
       field :user
       field :medical_records
+      field :animal
       field :created_at
       field :updated_at
     end
@@ -798,6 +819,10 @@ RailsAdmin.config do |config|
       field :description
       field :image
       field :user do
+        inline_add false
+        inline_edit false
+      end
+      field :animal do
         inline_add false
         inline_edit false
       end
@@ -814,6 +839,10 @@ RailsAdmin.config do |config|
       field :medical_records do
         inline_add false
       end
+      field :animal do
+        inline_add false
+        inline_edit false
+      end
     end
 
     export do
@@ -825,6 +854,7 @@ RailsAdmin.config do |config|
       field :updated_at
       field :user
       field :medical_records
+      field :animal
     end
   end
 
