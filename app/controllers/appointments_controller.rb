@@ -16,6 +16,8 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    self.appointment.veterinarian_id = params[:veterinarian_id]
+    self.appointment.day = params[:day]
   end
 
   def create

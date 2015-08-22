@@ -13,7 +13,7 @@
           - if @veterinarian.on_vacation?(date)
             = link_to "Urlop", '#', class: "btn btn-warning disabled"
           - elsif @veterinarian.working_today?(date)
-            = link_to icon('plus'), new_user_appointment_path(params[:user_id], veterinarian_id: params[:id], day: date), title: 'Zapisz się na wizytę', class: "btn btn-success"
+            = link_to icon('plus'), new_user_appointment_path(params[:user_id], veterinarian_id: @veterinarian.id, day: date), title: 'Zapisz się na wizytę', class: "btn btn-success"
           - else
             = link_to "Dzień wolny", '#', class: "btn btn-warning disabled"
         - else

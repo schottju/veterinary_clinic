@@ -30,7 +30,7 @@
               %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:next_vacation))
               %td
                 .pull-right
-                  = link_to icon('calendar'), user_veterinarian_calendar_path(params[:user_id], veterinarian), title: 'Pokaż terminarz', class: "btn btn-default"
+                  = link_to icon('calendar'), user_veterinarian_calendar_path(params[:user_id], veterinarian.try(:veterinarian)), title: 'Pokaż terminarz', class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate veterinarians

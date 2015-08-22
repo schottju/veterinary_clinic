@@ -1,8 +1,8 @@
 = simple_form_for [ user, appointment ] do |f|
   = f.error_notification
   .form-inputs
-    = f.hidden_field :day, value: params[:day]
-    = f.hidden_field :veterinarian_id, value: Veterinarian.where(user_id: params[:veterinarian_id]).first.id
+    = f.hidden_field :day
+    = f.hidden_field :veterinarian_id
     .row
       .col-md-1
       .col-md-3

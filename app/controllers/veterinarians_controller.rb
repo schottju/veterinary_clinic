@@ -9,7 +9,7 @@ class VeterinariansController < ApplicationController
 
   def show_calendar
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @veterinarian = Veterinarian.where(user_id: params[:id]).first
+    @veterinarian = Veterinarian.find(params[:id])
   end
 
   def index_veterinarians
