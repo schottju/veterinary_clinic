@@ -157,6 +157,12 @@ a:hover, a:focus {
 }
 
 
+.navbar-brand {
+  a {
+  color: $colDefault;
+  text-decoration: none;}
+}
+
 .centered {
   text-align: center;
 }
