@@ -14,6 +14,8 @@ class AnimalsController < ApplicationController
   end
 
   def show
+    @pictures = animal.pictures.order(:created_at).paginate(page: params[:pictures_page], per_page: 10)
+    @medical_records = animal.medical_records.order(:created_at).paginate(page: params[:medical_records_page], per_page: 10)
   end
 
   def new

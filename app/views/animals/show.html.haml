@@ -85,5 +85,59 @@
                   %td= "Województwo: #{change_blank_to_dash(animal.try(:user).try(:address).try(:province))}"
           .col-md-1
 
+    .panel.panel-info
+      .panel-heading Karty zwierzęcia
+      .panel-body
+        - if @medical_records.empty?
+          .alert.alert-warning.table-warning Brak kart.
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Numer karty
+                %th Wywiad
+                %th.price-row Koszt wizyty
+                %th Weterynarz
+                %th.date-row Data
+                %th
+
+            %tbody
+              - @medical_records.each do |medical_record|
+                %tr
+                  %td= change_blank_to_dash(medical_record.id)
+                  %td= change_blank_to_dash(medical_record.anamnesis)
+                  %td= change_blank_to_dash(number_to_currency(medical_record.total_cost, separator: ',', unit: 'PLN', precision: 2))
+                  %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
+                  %td= change_blank_to_dash(medical_record.created_at.to_date)
+                  %td
+                    .pull-right
+                      = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
+
+        .flickr_pagination
+          = will_paginate @medical_records, param_name: 'medical_records_page'
+
+    .panel.panel-info
+      .panel-heading Zdjęcia zwierzęcia
+      .panel-body
+        - if @pictures.empty?
+          .alert.alert-warning.table-warning Brak zdjęć.
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Nazwa
+                %th Zdjęcie
+                %th Opis
+
+            %tbody
+              - @pictures.each do |picture|
+                %tr
+                  %td= change_blank_to_dash(picture.name)
+                  %td= link_to image_tag(picture.image, width: 100), picture.image.url
+                  %td= change_blank_to_dash(picture.description)
+
+        .flickr_pagination
+          = will_paginate @pictures, param_name: 'pictures_page'
+
     .pull-right
       = link_to "Przejdź do zwierząt", user_animals_path(user), class: "btn btn-default"
