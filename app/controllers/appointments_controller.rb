@@ -43,7 +43,7 @@ class AppointmentsController < ApplicationController
     if params[:search]
       self.appointments = Appointment.veterinarian_search(params[:search], current_user.try(:veterinarian)).order(:day).paginate(page: params[:page], per_page: 8)
     else
-      self.appointments = Appointment.where("veterinarian_id = ? AND day >= ?", current_user.try(:veterinarian), Date.today).order(:day).paginate(page: params[:page], per_page: 8)
+      self.appointments = Appointment.where("veterinarian_id = ? AND day >= ? AND user_id IS NOT NULL", current_user.try(:veterinarian), Date.today).order(:day).paginate(page: params[:page], per_page: 8)
     end
   end
 

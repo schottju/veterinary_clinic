@@ -12,10 +12,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @appointments = user.appointments.where('day >= ?', Date.today).order(:day).limit(5)
-    @animals = user.animals.order(created_at: :desc).limit(5)
-    @medical_records = user.medical_records.order(created_at: :desc).limit(5)
-    @pictures = user.pictures.order(created_at: :desc).limit(5)
+    @appointments = user.appointments.where('day >= ?', Date.today).order(:day).limit(3)
+    @animals = user.animals.order(created_at: :desc).limit(3)
+    @medical_records = user.medical_records.order(created_at: :desc).limit(3)
+    @pictures = user.pictures.order(created_at: :desc).limit(3)
   end
 
   def edit
@@ -37,12 +37,10 @@ class UsersController < ApplicationController
 
   def show_profile
     if current_user.pacjent?
-      @appointments = current_user.appointments.where('day >= ?', Date.today).order(:day).limit(5)
-      @animals = current_user.animals.order(created_at: :desc).limit(5)
-      @medical_records = current_user.medical_records.order(created_at: :desc).limit(5)
-      @pictures = current_user.pictures.order(created_at: :desc).limit(5)
-    elsif current_user.weterynarz?
-      @appointments = Appointment.where("veterinarian_id = ? AND day >= ? AND user_id IS NOT NULL", current_user.try(:veterinarian), Date.today).order(:day).limit(5)
+      @appointments = current_user.appointments.where('day >= ?', Date.today).order(:day).limit(3)
+      @animals = current_user.animals.order(created_at: :desc).limit(3)
+      @medical_records = current_user.medical_records.order(created_at: :desc).limit(3)
+      @pictures = current_user.pictures.order(created_at: :desc).limit(3)
     end
   end
 

@@ -19,6 +19,6 @@ class Appointment < ActiveRecord::Base
     end
 
     def self.veterinarian_search(query, veterinarian_id)
-      where("to_char(day, 'YYYY-MM-DD') like :q AND veterinarian_id = :v AND day >= :d", { q: "%#{query}%", v: veterinarian_id, d: Date.today })
+      where("to_char(day, 'YYYY-MM-DD') like :q AND veterinarian_id = :v AND day >= :d AND user_id IS NOT NULL", { q: "%#{query}%", v: veterinarian_id, d: Date.today })
     end
 end
