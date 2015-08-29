@@ -25,6 +25,11 @@ WorkingDay.create!(monday: true, tuesday: true, wednesday: true, thursday: true,
 Vacation.create!(start: Date.today + 5.days, end: Date.today + 5.days, veterinarian_id: veterinarian.id)
 Vacation.create!(start: Date.today + 25.days, end: Date.today + 37.days, veterinarian_id: veterinarian.id)
 Vacation.create!(start: Date.today + 11.days, end: Date.today + 15.days, veterinarian_id: veterinarian.id)
+Vacation.create!(start: Date.today + 21.days, end: Date.today + 23.days, veterinarian_id: veterinarian.id)
+Vacation.create!(start: Date.today + 26.days, end: Date.today + 33.days, veterinarian_id: veterinarian.id)
+Vacation.create!(start: Date.today + 41.days, end: Date.today + 45.days, veterinarian_id: veterinarian.id)
+Vacation.create!(start: Date.today + 61.days, end: Date.today + 72.days, veterinarian_id: veterinarian.id)
+Vacation.create!(start: Date.today + 81.days, end: Date.today + 83.days, veterinarian_id: veterinarian.id)
 
 #Admin
 admin = User.new(first_name: 'Admin', last_name: 'Administrator', email: 'administrator@example.com', pesel: '12345678900', phone_number: '123456780', role: :admin, password: 'password', password_confirmation: 'password')
@@ -113,9 +118,11 @@ Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.i
 Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 10.days, time: :rano, description: 'Szczepienie  przeciwko wściekliźnie')
 Appointment.create!(status: :niezatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 20.days, time: :wieczorem, description: 'Kastrowanie knura')
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 60.days, time: :rano, description: 'Kastrowanie ogiera')
-Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 5.days, time: :rano, description: 'Obcięcie pazurków u kota')
+Appointment.create!(status: :zatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 6.days, time: :rano, description: 'Obcięcie pazurków u kota')
 Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 7.days, time: 'w południe', description: 'Strzyżenie psa')
-Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 1.days, time: :wieczorem, description: 'Kastrowanie knura')
+Appointment.create!(status: :niezatwierdzona, kind: :domowa, user_id: jan.id, veterinarian_id: veterinarian.id, day: Date.today + 120.days, time: :wieczorem, description: 'Kastrowanie knura')
+Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today + 55.days, time: :rano, description: 'Obcięcie pazurków u kota')
+Appointment.create!(status: :zatwierdzona, kind: 'w klinice', user_id: justyna.id, veterinarian_id: veterinarian.id, day: Date.today - 100.days, time: :wieczorem, description: 'Strzyżenie kota')
 
 #Pictures
 picture1 = Picture.create!(name: 'RTG jamy brzusznej krowy', description: 'Widoczne wzdęcie', image: File.open(Rails.root + "app/assets/images/cow1.jpg"), user_id: justyna.id, animal_id: krowa_zwierze.id)
