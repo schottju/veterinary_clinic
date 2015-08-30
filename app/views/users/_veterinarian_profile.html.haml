@@ -46,6 +46,9 @@
       .col-md-8
         %br
         %table.table
+          %thead
+            %tr
+              %th Dodatkowe informacje:
           %tbody
             %tr
               %td= "Tytuł: #{change_blank_to_dash(current_user.try(:veterinarian).try(:title))}"
