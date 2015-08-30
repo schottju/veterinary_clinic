@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/veterinarian_appointments', to: 'appointments#veterinarian_appointments'
   patch '/veterinarian_appointment_cancel/:id', to: 'appointments#veterinarian_appointment_cancel', as: 'veterinarian_cancel'
+  patch '/veterinarian_appointment_accept/:id', to: 'appointments#veterinarian_appointment_accept', as: 'veterinarian_accept'
 
   #Dictionaries
   get '/dictionaries', to: 'static_pages#dictionaries'
