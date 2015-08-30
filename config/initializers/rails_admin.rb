@@ -1,4 +1,4 @@
-  module ActiveRecord
+module ActiveRecord
   module RailsAdminEnum
     def enum(definitions)
       super
@@ -78,6 +78,7 @@ RailsAdmin.config do |config|
       field :country
       field :user do
         filterable false
+        searchable false
       end
       field :created_at
       field :updated_at
@@ -169,7 +170,9 @@ RailsAdmin.config do |config|
       field :address do
         filterable false
       end
-      field :role
+      field :role do
+        searchable false
+      end
       field :veterinarian do
         filterable false
       end
@@ -302,7 +305,9 @@ RailsAdmin.config do |config|
       field :species do
         filterable false
       end
-      field :gender
+      field :gender do
+        searchable false
+      end
       field :age
       field :description
       field :user do
@@ -377,7 +382,6 @@ RailsAdmin.config do |config|
       end
       field :pictures do
         inline_add false
-        inline_edit false
       end
     end
 
@@ -420,9 +424,15 @@ RailsAdmin.config do |config|
         sort_reverse false
       end
       field :day
-      field :time
-      field :status
-      field :kind
+      field :time do
+        searchable false
+      end
+      field :status do
+        searchable false
+      end
+      field :kind do
+        searchable false
+      end
       field :description
       field :user do
         filterable false
