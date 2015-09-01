@@ -7,9 +7,9 @@
     = f.input :animal_ids, label: 'Zwierzęta', collection: Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }, input_html: { multiple: true }
     .row
       .col-md-4
-        = f.input :treatment_ids, label: 'Wykonane zabiegi', collection: Treatment.all, input_html: { multiple: true }
+        = f.input :treatment_ids, label: 'Wykonane zabiegi', collection: Treatment.all.order(:name), input_html: { multiple: true }
       .col-md-4
-        = f.input :disease_ids, label: 'Rozpoznane choroby', collection: Disease.all, input_html: { multiple: true }
+        = f.input :disease_ids, label: 'Rozpoznane choroby', collection: Disease.all.order(:name), input_html: { multiple: true }
       .col-md-4
         = f.input :picture_ids, label: 'Zdjęcia', collection: Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }, input_html: { multiple: true }
     .panel.panel-info
