@@ -13,15 +13,20 @@
                   %th
               %tbody
                 %tr
-                  %td= "Numer identyfikacyjny: #{change_blank_to_dash(animal.id_number)}"
+                  %th Numer identyfikacyjny:
+                  %td= change_blank_to_dash(animal.id_number)
                 %tr
-                  %td= "Nazwa: #{change_blank_to_dash(animal.name)}"
+                  %th Nazwa:
+                  %td= change_blank_to_dash(animal.name)
                 %tr
-                  %td= "Data urodzenia: #{change_blank_to_dash(animal.birth_date)}"
+                  %th Data urodzenia:
+                  %td= change_blank_to_dash(animal.birth_date)
                 %tr
-                  %td= "Wiek (lata): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))}"
+                  %th Wiek (lata):
+                  %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
                 %tr
-                  %td= "Ilość: #{change_blank_to_dash(animal.amount)}"
+                  %th Ilość:
+                  %td= change_blank_to_dash(animal.amount)
                 %tr
                   %td
           .col-md-5
@@ -31,13 +36,17 @@
                   %th
               %tbody
                 %tr
-                  %td= "Płeć: #{change_blank_to_dash(animal.gender)}"
+                  %th Płeć:
+                  %td= change_blank_to_dash(animal.gender)
                 %tr
-                  %td= "Waga (kg): #{change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))}"
+                  %th Waga (kg):
+                  %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))
                 %tr
-                  %td= "Gatunek: #{change_blank_to_dash(animal.try(:species).try(:name))}"
+                  %th Gatunek:
+                  %td= change_blank_to_dash(animal.try(:species).try(:name))
                 %tr
-                  %td= "Opis: #{change_blank_to_dash(animal.description)}"
+                  %th Opis:
+                  %td= change_blank_to_dash(animal.description)
                 %tr
                   %td
           .col-md-1
@@ -54,17 +63,23 @@
                   %td
               %tbody
                 %tr
-                  %td= "Imię: #{change_blank_to_dash(animal.try(:user).try(:first_name))}"
+                  %th Imię:
+                  %td= change_blank_to_dash(animal.try(:user).try(:first_name))
                 %tr
-                  %td= "Nazwisko: #{change_blank_to_dash(animal.try(:user).try(:last_name))}"
+                  %th Nazwisko:
+                  %td= change_blank_to_dash(animal.try(:user).try(:last_name))
                 %tr
-                  %td= "Pesel: #{change_blank_to_dash(animal.try(:user).try(:pesel))}"
+                  %th Pesel:
+                  %td= change_blank_to_dash(animal.try(:user).try(:pesel))
                 %tr
-                  %td= "Numer telefonu: #{change_blank_to_dash(animal.try(:user).try(:phone_number))}"
+                  %th Numer telefonu:
+                  %td= change_blank_to_dash(animal.try(:user).try(:phone_number))
                 %tr
-                  %td= "Email: #{change_blank_to_dash(animal.try(:user).try(:email))}"
+                  %th Email:
+                  %td= change_blank_to_dash(animal.try(:user).try(:email))
                 %tr
-                  %td= "Państwo: #{change_blank_to_dash(animal.try(:user).try(:address).try(:country_name))}"
+                  %th Państwo:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:country_name))
           .col-md-4
             %table.table
               %thead
@@ -72,26 +87,32 @@
                   %td
               %tbody
                 %tr
-                  %td= "Ulica: #{change_blank_to_dash(animal.try(:user).try(:address).try(:street))} #{animal.try(:user).try(:address).try(:house_number)}#{' / ' unless animal.try(:user).try(:address).try(:flat_number).blank?}#{animal.try(:user).try(:address).try(:flat_number)}"
+                  %th Ulica:
+                  %td= "#{change_blank_to_dash(animal.try(:user).try(:address).try(:street))} #{animal.try(:user).try(:address).try(:house_number)}#{' / ' unless animal.try(:user).try(:address).try(:flat_number).blank?}#{animal.try(:user).try(:address).try(:flat_number)}"
                 %tr
-                  %td= "Kod pocztowy: #{change_blank_to_dash(animal.try(:user).try(:address).try(:zip_code))}"
+                  %th Kod pocztowy:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:zip_code))
                 %tr
-                  %td= "Miasto: #{change_blank_to_dash(animal.try(:user).try(:address).try(:city))}"
+                  %th Miasto:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:city))
                 %tr
-                  %td= "Gmina: #{change_blank_to_dash(animal.try(:user).try(:address).try(:borough))}"
+                  %th Gmina:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:borough))
                 %tr
-                  %td= "Powiat: #{change_blank_to_dash(animal.try(:user).try(:address).try(:district))}"
+                  %th Powiat:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:district))
                 %tr
-                  %td= "Województwo: #{change_blank_to_dash(animal.try(:user).try(:address).try(:province))}"
+                  %th Województwo:
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:province))
           .col-md-1
 
     .panel.panel-info
       .panel-heading Karty zwierzęcia
       .panel-body
         - if @medical_records.empty?
-          .alert.alert-warning.table-warning Brak kart.
+          Brak kart.
         - else
-          %table.table
+          %table.table.table-striped
             %thead
               %tr
                 %th Numer karty
@@ -113,16 +134,16 @@
                     .pull-right
                       = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
 
-        .flickr_pagination
-          = will_paginate @medical_records, param_name: 'medical_records_page'
+          .flickr_pagination
+            = will_paginate @medical_records, param_name: 'medical_records_page'
 
     .panel.panel-info
       .panel-heading Zdjęcia zwierzęcia
       .panel-body
         - if @pictures.empty?
-          .alert.alert-warning.table-warning Brak zdjęć.
+          Brak zdjęć.
         - else
-          %table.table
+          %table.table.table-striped
             %thead
               %tr
                 %th Nazwa
@@ -136,8 +157,8 @@
                   %td= link_to image_tag(picture.image, width: 100), picture.image.url
                   %td= change_blank_to_dash(picture.description)
 
-        .flickr_pagination
-          = will_paginate @pictures, param_name: 'pictures_page'
+          .flickr_pagination
+            = will_paginate @pictures, param_name: 'pictures_page'
 
     .pull-right
       = link_to "Przejdź do zwierząt", user_animals_path(user), class: "btn btn-default"

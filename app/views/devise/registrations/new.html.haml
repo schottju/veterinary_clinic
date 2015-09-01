@@ -20,7 +20,8 @@
                     = f.input :last_name, label: 'Nazwisko', placeholder: 'Wpisz nazwisko', required: true
                     = f.input :pesel, label: 'Pesel', placeholder: 'Wpisz numer pesel', required: true
                     = f.input :password_confirmation, label: 'Potwierdzenie hasła', placeholder: 'Wpisz ponownie hasło', required: true
-                    = recaptcha_tags
+                    .pull-left
+                      = recaptcha_tags
         .col-md-1
       .row
         .col-md-1

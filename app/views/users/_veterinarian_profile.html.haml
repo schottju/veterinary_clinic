@@ -11,17 +11,23 @@
               %td
           %tbody
             %tr
-              %td= "Imię: #{change_blank_to_dash(current_user.first_name)}"
+              %th Imię:
+              %td= change_blank_to_dash(current_user.first_name)
             %tr
-              %td= "Nazwisko: #{change_blank_to_dash(current_user.last_name)}"
+              %th Nazwisko:
+              %td= change_blank_to_dash(current_user.last_name)
             %tr
-              %td= "Pesel: #{change_blank_to_dash(current_user.pesel)}"
+              %th Pesel:
+              %td= change_blank_to_dash(current_user.pesel)
             %tr
-              %td= "Numer telefonu: #{change_blank_to_dash(current_user.phone_number)}"
+              %th Numer telefonu:
+              %td= change_blank_to_dash(current_user.phone_number)
             %tr
-              %td= "Email: #{change_blank_to_dash(current_user.email)}"
+              %th Email:
+              %td= change_blank_to_dash(current_user.email)
             %tr
-              %td= "Państwo: #{change_blank_to_dash(current_user.try(:address).try(:country_name))}"
+              %th Państwo:
+              %td= change_blank_to_dash(current_user.try(:address).try(:country_name))
       .col-md-4
         %table.table
           %thead
@@ -29,17 +35,23 @@
               %td
           %tbody
             %tr
-              %td= "Ulica: #{change_blank_to_dash(current_user.try(:address).try(:street))} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
+              %th Ulica:
+              %td= "#{change_blank_to_dash(current_user.try(:address).try(:street))} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
             %tr
-              %td= "Kod pocztowy: #{change_blank_to_dash(current_user.try(:address).try(:zip_code))}"
+              %th Kod pocztowy:
+              %td= change_blank_to_dash(current_user.try(:address).try(:zip_code))
             %tr
-              %td= "Miasto: #{change_blank_to_dash(current_user.try(:address).try(:city))}"
+              %th Miasto:
+              %td= change_blank_to_dash(current_user.try(:address).try(:city))
             %tr
-              %td= "Gmina: #{change_blank_to_dash(current_user.try(:address).try(:borough))}"
+              %th Gmina:
+              %td= change_blank_to_dash(current_user.try(:address).try(:borough))
             %tr
-              %td= "Powiat: #{change_blank_to_dash(current_user.try(:address).try(:district))}"
+              %th Powiat:
+              %td= change_blank_to_dash(current_user.try(:address).try(:district))
             %tr
-              %td= "Województwo: #{change_blank_to_dash(current_user.try(:address).try(:province))}"
+              %th Województwo:
+              %td= change_blank_to_dash(current_user.try(:address).try(:province))
       .col-md-1
     .row
       .col-md-3
@@ -48,14 +60,18 @@
         %table.table
           %thead
             %tr
-              %th Dodatkowe informacje:
+              %th.col-md-3 Dodatkowe informacje
+        %table.table
           %tbody
             %tr
-              %td= "Tytuł: #{change_blank_to_dash(current_user.try(:veterinarian).try(:title))}"
+              %th.col-md-1 Tytuł:
+              %td= change_blank_to_dash(current_user.try(:veterinarian).try(:title))
             %tr
-              %td= "Specjalizacja: #{change_blank_to_dash(current_user.try(:veterinarian).try(:specialization))}"
+              %th.col-md-1 Specjalizacja:
+              %td= change_blank_to_dash(current_user.try(:veterinarian).try(:specialization))
             %tr
-              %td= "Prawo wykonywania zawodu (pwz): #{change_blank_to_dash(current_user.try(:veterinarian).try(:pwz))}"
+              %th.col-md-1 Pwz:
+              %td= change_blank_to_dash(current_user.try(:veterinarian).try(:pwz))
       .col-md-4
     .pull-right
       = link_to "Edytuj", edit_registration_path(current_user), class: "btn btn-default"

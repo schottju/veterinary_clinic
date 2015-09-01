@@ -14,17 +14,23 @@
                   %td
               %tbody
                 %tr
-                  %td= "Imię: #{change_blank_to_dash(medical_record.try(:user).try(:first_name))}"
+                  %th Imię:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:first_name))
                 %tr
-                  %td= "Nazwisko: #{change_blank_to_dash(medical_record.try(:user).try(:last_name))}"
+                  %th Nazwisko:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:last_name))
                 %tr
-                  %td= "Pesel: #{change_blank_to_dash(medical_record.try(:user).try(:pesel))}"
+                  %th Pesel:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:pesel))
                 %tr
-                  %td= "Numer telefonu: #{change_blank_to_dash(medical_record.try(:user).try(:phone_number))}"
+                  %th Numer telefonu:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:phone_number))
                 %tr
-                  %td= "Email: #{change_blank_to_dash(medical_record.try(:user).try(:email))}"
+                  %th Email:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:email))
                 %tr
-                  %td= "Państwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:country_name))}"
+                  %th Państwo:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:country_name))
           .col-md-4
             %table.table
               %thead
@@ -32,17 +38,23 @@
                   %td
               %tbody
                 %tr
-                  %td= "Ulica: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:street))} #{medical_record.try(:user).try(:address).try(:house_number)}#{' / ' unless medical_record.try(:user).try(:address).try(:flat_number).blank?}#{medical_record.try(:user).try(:address).try(:flat_number)}"
+                  %th Ulica:
+                  %td= "#{change_blank_to_dash(medical_record.try(:user).try(:address).try(:street))} #{medical_record.try(:user).try(:address).try(:house_number)}#{' / ' unless medical_record.try(:user).try(:address).try(:flat_number).blank?}#{medical_record.try(:user).try(:address).try(:flat_number)}"
                 %tr
-                  %td= "Kod pocztowy: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:zip_code))}"
+                  %th Kod pocztowy:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:zip_code))
                 %tr
-                  %td= "Miasto: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:city))}"
+                  %th Miasto:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:city))
                 %tr
-                  %td= "Gmina: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:borough))}"
+                  %th Gmina:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:borough))
                 %tr
-                  %td= "Powiat: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:district))}"
+                  %th Powiat:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:district))
                 %tr
-                  %td= "Województwo: #{change_blank_to_dash(medical_record.try(:user).try(:address).try(:province))}"
+                  %th Województwo:
+                  %td= change_blank_to_dash(medical_record.try(:user).try(:address).try(:province))
           .col-md-1
 
     .panel.panel-info
@@ -61,11 +73,14 @@
                     %td
                 %tbody
                   %tr
-                    %td= "Imię: #{change_blank_to_dash(medical_record.veterinarian.user.first_name)}"
+                    %th Imię:
+                    %td= change_blank_to_dash(medical_record.veterinarian.user.first_name)
                   %tr
-                    %td= "Tytuł: #{change_blank_to_dash(medical_record.veterinarian.title)}"
+                    %th Tytuł:
+                    %td= change_blank_to_dash(medical_record.veterinarian.title)
                   %tr
-                    %td= "Prawo wykonywania zawodu (pwz): #{change_blank_to_dash(medical_record.veterinarian.pwz)}"
+                    %th Pwz:
+                    %td= change_blank_to_dash(medical_record.veterinarian.pwz)
             .col-md-4
               %table.table
                 %thead
@@ -73,11 +88,14 @@
                     %td
                 %tbody
                   %tr
-                    %td= "Nazwisko: #{change_blank_to_dash(medical_record.veterinarian.user.last_name)}"
+                    %th Nazwisko:
+                    %td= change_blank_to_dash(medical_record.veterinarian.user.last_name)
                   %tr
-                    %td= "Specjalizacja: #{change_blank_to_dash(medical_record.veterinarian.specialization)}"
+                    %th Specjalizacja:
+                    %td= change_blank_to_dash(medical_record.veterinarian.specialization)
                   %tr
-                    %td= "Numer telefonu: #{change_blank_to_dash(medical_record.veterinarian.user.phone_number)}"
+                    %th Numer telefonu:
+                    %td= change_blank_to_dash(medical_record.veterinarian.user.phone_number)
             .col-md-1
 
     .panel.panel-info
@@ -87,7 +105,7 @@
           Brak zwierząt.
         - else
           - medical_record.animals.each do |animal|
-            %table.table.table-bordered
+            %table.table
               %tbody
                 %tr
                   %th.col-md-2 Numer id:
@@ -116,6 +134,9 @@
                 %tr
                   %th.col-md-2 Dodatkowe informacje:
                   %td= change_blank_to_dash(animal.description)
+                %tr
+                  %th
+                  %td
 
     .panel.panel-info
       .panel-heading Choroby
@@ -160,7 +181,7 @@
           Brak lekarstw.
         - else
           - medical_record.medicines.each do |medicine|
-            %table.table.table-bordered
+            %table.table
               %tbody
                 %tr
                   %th.col-md-2 Numer serii:
@@ -183,6 +204,9 @@
                 %tr
                   %th.col-md-2 Cena:
                   %td= change_blank_to_dash(number_to_currency(medicine.price, separator: ',', unit: 'PLN', precision: 2))
+                %tr
+                  %th
+                  %td
 
     .panel.panel-info
       .panel-heading Zdjęcia

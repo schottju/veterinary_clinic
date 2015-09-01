@@ -4,18 +4,18 @@ pl:
       short: "%B %Y"
     month_names:
     -
-    - styczeń
-    - luty
-    - marzec
-    - kwiecień
-    - maj
-    - czerwiec
-    - lipiec
-    - sierpień
-    - wrzesień
-    - październik
-    - listopad
-    - grudzień
+    - Styczeń
+    - Luty
+    - Marzec
+    - Kwiecień
+    - Maj
+    - Czerwiec
+    - Lipiec
+    - Sierpień
+    - Wrzesień
+    - Październik
+    - Listopad
+    - Grudzień
   will_paginate:
     previous_label: "&#8592; Poprzednia"
     next_label: "Następna &#8594;"

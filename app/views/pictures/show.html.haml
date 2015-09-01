@@ -1,23 +1,24 @@
 .panel.panel-default
-  .panel-heading Zdjęcia
+  .panel-heading Szczegóły zdjęcia
   .panel-body
     .row
       .col-md-6
         = link_to image_tag(picture.image, width: 420), picture.image.url
       .col-md-6
         %table.table
-          %thead
-            %tr
-              %th Szczegółowe informacje
           %tbody
             %tr
-              %td= "Nazwa: #{change_blank_to_dash(picture.name)}"
+              %th.col-md-1 Nazwa:
+              %td= change_blank_to_dash(picture.name)
             %tr
-              %td= "Użytkownik: #{change_blank_to_dash(picture.try(:user).try(:full_name))}"
+              %th.col-md-1 Użytkownik:
+              %td= change_blank_to_dash(picture.try(:user).try(:full_name))
             %tr
-              %td= "Zwierzę: #{picture.animal_id.nil? ? '-' : (picture.try(:animal).try(:id_number).blank? ? 'Brak numeru id zwierzęcia': picture.try(:animal).try(:id_number))}"
+              %th.col-md-1 Zwierzę:
+              %td= picture.animal_id.nil? ? '-' : (picture.try(:animal).try(:id_number).blank? ? 'Brak numeru id zwierzęcia': picture.try(:animal).try(:id_number))
             %tr
-              %td= "Opis zdjęcia: #{change_blank_to_dash(picture.description)}"
+              %th.col-md-1 Opis zdjęcia:
+              %td= change_blank_to_dash(picture.description)
             %tr
               %td
     .row

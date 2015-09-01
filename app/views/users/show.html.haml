@@ -11,17 +11,23 @@
               %td
           %tbody
             %tr
-              %td= "Imię: #{change_blank_to_dash(user.first_name)}"
+              %th Imię:
+              %td= change_blank_to_dash(user.first_name)
             %tr
-              %td= "Nazwisko: #{change_blank_to_dash(user.last_name)}"
+              %th Nazwisko:
+              %td= change_blank_to_dash(user.last_name)
             %tr
-              %td= "Pesel: #{change_blank_to_dash(user.pesel)}"
+              %th Pesel:
+              %td= change_blank_to_dash(user.pesel)
             %tr
-              %td= "Numer telefonu: #{change_blank_to_dash(user.phone_number)}"
+              %th Numer telefonu:
+              %td= change_blank_to_dash(user.phone_number)
             %tr
-              %td= "Email: #{change_blank_to_dash(user.email)}"
+              %th Email:
+              %td= change_blank_to_dash(user.email)
             %tr
-              %td= "Państwo: #{change_blank_to_dash(user.try(:address).try(:country_name))}"
+              %th Państwo:
+              %td= change_blank_to_dash(user.try(:address).try(:country_name))
       .col-md-4
         %table.table
           %thead
@@ -29,17 +35,23 @@
               %td
           %tbody
             %tr
-              %td= "Ulica: #{change_blank_to_dash(user.try(:address).try(:street))} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
+              %th Ulica:
+              %td= "#{change_blank_to_dash(user.try(:address).try(:street))} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
             %tr
-              %td= "Kod pocztowy: #{change_blank_to_dash(user.try(:address).try(:zip_code))}"
+              %th Kod pocztowy:
+              %td= change_blank_to_dash(user.try(:address).try(:zip_code))
             %tr
-              %td= "Miasto: #{change_blank_to_dash(user.try(:address).try(:city))}"
+              %th Miasto:
+              %td= change_blank_to_dash(user.try(:address).try(:city))
             %tr
-              %td= "Gmina: #{change_blank_to_dash(user.try(:address).try(:borough))}"
+              %th Gmina:
+              %td= change_blank_to_dash(user.try(:address).try(:borough))
             %tr
-              %td= "Powiat: #{change_blank_to_dash(user.try(:address).try(:district))}"
+              %th Powiat:
+              %td= change_blank_to_dash(user.try(:address).try(:district))
             %tr
-              %td= "Województwo: #{change_blank_to_dash(user.try(:address).try(:province))}"
+              %th Województwo:
+              %td= change_blank_to_dash(user.try(:address).try(:province))
       .col-md-1
     .pull-right
       = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"

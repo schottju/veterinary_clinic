@@ -16,10 +16,12 @@
  */
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "bootswatch/flatly/variables";
 @import "bootstrap";
+@import "bootswatch/flatly/bootswatch";
 
-$bgDefault      : #33841a;
-$bgHighlight    : #114d10;
+$bgDefault      : #00BC8C;
+$bgHighlight    : #15A589;
 $colDefault     : #fdfdfd;
 $colHighlight   : #ffffff;
 $bgPanel        : $bgDefault;
@@ -89,9 +91,14 @@ img {
    margin: 10px;
 }
 
+.panel-default {
+  border-color: $bgPanel;
+}
+
 .panel-default > .panel-heading {
   color: white;
   background-color: $bgPanel;
+  border-color: $bgPanel;
 }
 
 .panel-info {
@@ -151,6 +158,13 @@ a {
   text-decoration: none;
 }
 
+td {
+  a {
+  color: black;
+  text-decoration: none !important;
+  }
+}
+
 a:hover, a:focus {
   color: black;
   text-decoration: underline;
@@ -173,15 +187,15 @@ th.date-row {
 }
 
 th.price-row {
-  width: 80px;
-}
-
-th.btn-row-2 {
   width: 100px;
 }
 
+th.btn-row-2 {
+  width: 120px;
+}
+
 th.btn-row-3 {
-  width: 150px;
+  width: 170px;
 }
 
 .image_preview {
@@ -191,11 +205,19 @@ th.btn-row-3 {
 }
 
 body {
-  background-color: #e9fce3;
+  background-color: #e8fcf6;
 }
 
 
 .table-striped>tbody>tr:hover>td, .table-striped>tbody>tr:hover>th {
-  background-color: #e9fce3;
+  background-color: #e8fcf6;
   color: black;
+}
+
+button.close {
+  vertical-align:middle
+}
+
+.g-recaptcha {
+  margin-top: 50px;
 }

@@ -3,9 +3,9 @@
   .panel-body
     #veterinarians
       %h2#month
-        = link_to "<", date: @date.prev_month
+        = link_to icon('chevron-left'), date: @date.prev_month
         = l(@date, format: :short)
-        = link_to ">", date: @date.next_month
+        = link_to icon('chevron-right'), date: @date.next_month
       = calendar @date do |date|
         = date.day
         %br
