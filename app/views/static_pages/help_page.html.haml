@@ -4,9 +4,8 @@
     .panel.panel-default
       .panel-heading Pomoc
       .panel-body
-        = link_to "Przypomnienie hasła.", new_password_path(User)
-        %br
-        = link_to "Ponowne wysłanie potwierdzenia adresu email.", new_confirmation_path(User)
-        %br
-        = link_to "Ponowne wysłanie instrukcji odblokowania konta.", new_unlock_path(User)
+        - if current_user.nil?
+          .alert.alert-success= link_to "Przypomnienie hasła.", new_password_path(User)
+          .alert.alert-success= link_to "Ponowne wysłanie instrukcji odblokowania konta.", new_unlock_path(User)
+        .alert.alert-success= link_to "Ponowne wysłanie potwierdzenia adresu email.", new_confirmation_path(User)
   .col-md-2
