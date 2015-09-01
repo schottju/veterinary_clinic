@@ -6,7 +6,7 @@ class TreatmentsController < ApplicationController
 
   def index
     if params[:search]
-      self.treatments = Treatment.price_page_search(params[:search]).order(:name).paginate(page: params[:treatments_page], per_page: 8)
+      self.treatments = Treatment.price_page_search(params[:search]).order(:name).paginate(page: params[:page], per_page: 8)
     end
   end
 
