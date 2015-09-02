@@ -1,0 +1,19 @@
+= simple_form_for treatment do |f|
+  = f.error_notification
+  .form-inputs
+    .row
+      .col-md-1
+      .col-md-5
+        = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę zabiegu', required: true, autofocus: true
+      .col-md-5
+        = f.input :cost, label: 'Koszt (PLN)', placeholder: 'Wpisz koszt zabiegu', readonly: true, as: :string, input_html: { value: change_period_to_comma(f.object.cost) }, hint: 'Nie można edytować kosztu zabiegu. Utwórz nowy.'
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-10
+        = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zabiegu'
+        .form-actions
+          = link_to "Anuluj", dictionaries_path(tab: 'treatments'), class: "btn btn-default"
+          .pull-right
+            = f.button :submit, "Zapisz", class: "btn btn-default"
+      .col-md-1
