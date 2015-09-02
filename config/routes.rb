@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get '/veterinarian_appointments', to: 'appointments#veterinarian_appointments'
   get '/veterinarian_appointment/:id', to: 'appointments#veterinarian_appointment', as: 'veterinarian_appointment'
+  get '/veterinarian_appointment/:id/edit', to: 'appointments#veterinarian_edit_appointment', as: 'edit_veterinarian_appointment'
+  patch '/veterinarian_appointment/:id/update', to: 'appointments#veterinarian_update_appointment', as: 'update_veterinarian_appointment'
   patch '/veterinarian_appointment_cancel/:id', to: 'appointments#veterinarian_appointment_cancel', as: 'veterinarian_cancel'
   patch '/veterinarian_appointment_accept/:id', to: 'appointments#veterinarian_appointment_accept', as: 'veterinarian_accept'
 

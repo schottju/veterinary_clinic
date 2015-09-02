@@ -6,7 +6,7 @@
       .col-md-3
         = f.input :day, label: 'Dzień', placeholder: 'dd/mm/rr', as: :date_picker
       .col-md-3
-        = f.input :veterinarian_id, label: 'Weterynarz', required: true, collection: Veterinarian.all.map { |veterinarian| [ "#{veterinarian.try(:user).try(:full_name)}", veterinarian.id ] }
+        = f.input :veterinarian_id, label: 'Weterynarz', required: true, collection: Veterinarian.all.map { |veterinarian| [ "#{veterinarian.try(:user).try(:decorate).try(:full_name)}", veterinarian.id ] }
       .col-md-2
         = f.input :time, label: 'Godzina'
       .col-md-2

@@ -13,7 +13,7 @@
             %th Rodzaj
             %th Status
             %th Właściciel
-            %th.btn-row-3
+            %th.btn-row-4
 
         %tbody
           - appointments.each do |appointment|
@@ -26,6 +26,7 @@
               %td
                 .pull-right
                   = link_to  icon('list-alt'), veterinarian_appointment_path(appointment, user_id: appointment.user_id), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to  icon('pencil-square-o'), edit_veterinarian_appointment_path(appointment, user_id: appointment.user_id), title: 'Edycja', class: "btn btn-default"
                   = link_to icon('check-square-o'), veterinarian_accept_path(appointment, user_id: appointment.user_id), title: 'Zaakceptuj', method: :patch, class: "btn btn-default"
                   = link_to icon('trash-o'), veterinarian_cancel_path(appointment, user_id: appointment.user_id), title: 'Anuluj', method: :patch, class: "btn btn-default"
 

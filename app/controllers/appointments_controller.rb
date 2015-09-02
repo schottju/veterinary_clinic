@@ -32,8 +32,8 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-     if appointment.save
-      redirect_to user_appointments_path(user), notice: 'Wizyta została pomyślnie utworzona.'
+    if appointment.save
+      redirect_to user_appointments_path(user), notice: 'Wizyta została pomyślnie edytowana.'
     else
       render :edit
     end
@@ -48,6 +48,19 @@ class AppointmentsController < ApplicationController
   end
 
   def veterinarian_appointment
+  end
+
+  def veterinarian_edit_appointment
+    @appointment = Appointment.find(params[:id])
+  end
+
+  def veterinarian_update_appointment
+    @appointment = Appointment.find(params[:id])
+    if @appointment.update_attributes(appointment_params)
+      redirect_to veterinarian_appointments_path, notice: 'Wizyta została pomyślnie edytowana.'
+    else
+      render :veterinarian_edit_appointment
+    end
   end
 
   def cancel
