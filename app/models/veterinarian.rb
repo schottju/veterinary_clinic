@@ -10,7 +10,7 @@ class Veterinarian < ActiveRecord::Base
   validates_presence_of :title, :pwz
 
   def custom_label_method
-    "##{id} #{title} #{user.try(:first_name)} #{user.try(:last_name)}, pwz: #{pwz}"
+    "##{id} #{title} #{user.try(:decorate).try(:full_name)}, pwz: #{pwz}"
   end
 
   def next_vacation

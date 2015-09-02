@@ -8,7 +8,7 @@ class Treatment < ActiveRecord::Base
   validates_format_of :cost, with: /\A\d+(?:\.\d{0,2})?\z/
 
   def custom_label_method
-    "##{id} #{name}"
+    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
   end
 
   private

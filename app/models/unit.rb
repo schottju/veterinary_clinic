@@ -6,7 +6,7 @@ class Unit < ActiveRecord::Base
   validates_presence_of :name, :status
 
   def custom_label_method
-    "##{id} #{name}"
+    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
   end
 
   private

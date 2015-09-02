@@ -18,7 +18,7 @@ class MedicalRecord < ActiveRecord::Base
   end
 
   def custom_label_method
-    "##{id} właściciel: #{user.try(:full_name)}, weterynarz: #{veterinarian.try(:user).try(:full_name)}"
+    "##{id} właściciel: #{user.try(:decorate).try(:full_name)}, weterynarz: #{veterinarian.try(:user).try(:decorate).try(:full_name)}"
   end
 
   private

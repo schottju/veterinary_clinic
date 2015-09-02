@@ -503,6 +503,9 @@ RailsAdmin.config do |config|
         sort_reverse false
       end
       field :name
+      field :status do
+        searchable false
+      end
       field :medical_records do
         filterable false
       end
@@ -513,6 +516,7 @@ RailsAdmin.config do |config|
     show do
       field :id
       field :name
+      field :status
       field :medical_records
       field :created_at
       field :updated_at
@@ -524,6 +528,7 @@ RailsAdmin.config do |config|
 
     update do
       field :name
+      field :status
       field :medical_records do
         inline_add false
       end
@@ -532,6 +537,7 @@ RailsAdmin.config do |config|
     export do
       field :id
       field :name
+      field :status
       field :created_at
       field :updated_at
       field :medical_records
@@ -884,6 +890,9 @@ RailsAdmin.config do |config|
         sort_reverse false
       end
       field :name
+      field :status do
+        searchable false
+      end
       field :animal do
         filterable false
       end
@@ -894,6 +903,7 @@ RailsAdmin.config do |config|
     show do
       field :id
       field :name
+      field :status
       field :animal
       field :created_at
       field :updated_at
@@ -905,6 +915,7 @@ RailsAdmin.config do |config|
 
     update do
       field :name
+      field :status
       field :animal do
         inline_add false
       end
@@ -913,6 +924,7 @@ RailsAdmin.config do |config|
     export do
       field :id
       field :name
+      field :status
       field :created_at
       field :updated_at
       field :animal
@@ -935,6 +947,9 @@ RailsAdmin.config do |config|
         sort_reverse false
       end
       field :name
+      field :status do
+        searchable false
+      end
       field :cost
       field :description
       field :medical_records do
@@ -948,6 +963,7 @@ RailsAdmin.config do |config|
       field :id
       field :name
       field :cost
+      field :status
       field :description
       field :medical_records
       field :created_at
@@ -963,6 +979,7 @@ RailsAdmin.config do |config|
     update do
       field :name
       field :cost
+      field :status
       field :description
       field :medical_records do
         inline_add false
@@ -973,6 +990,7 @@ RailsAdmin.config do |config|
       field :id
       field :name
       field :cost
+      field :status
       field :description
       field :created_at
       field :updated_at
@@ -996,6 +1014,9 @@ RailsAdmin.config do |config|
         sort_reverse false
       end
       field :name
+      field :status do
+        searchable false
+      end
       field :medicines do
         filterable false
       end
@@ -1006,6 +1027,7 @@ RailsAdmin.config do |config|
     show do
       field :id
       field :name
+      field :status
       field :medicines
       field :created_at
       field :updated_at
@@ -1017,6 +1039,7 @@ RailsAdmin.config do |config|
 
     update do
       field :name
+      field :status
       field :medicines do
         inline_add false
       end
@@ -1025,6 +1048,7 @@ RailsAdmin.config do |config|
     export do
       field :id
       field :name
+      field :status
       field :created_at
       field :updated_at
       field :medicines
