@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!, only: [ :index, :show, :new, :create, :cancel ]
-  before_action :authenticate_veterinarian!, only: [ :edit, :update, :veterinarian_appointments, :veterinarian_appointment_cancel, :veterinarian_appointment_accept ]
+  before_action :authenticate_veterinarian!, only: [ :edit, :update, :veterinarian_appointments, :veterinarian_appointment_show, :veterinarian_appointment_cancel, :veterinarian_appointment_accept ]
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:appointment, attributes: :appointment_params)
@@ -45,6 +45,9 @@ class AppointmentsController < ApplicationController
     else
       self.appointments = Appointment.where("veterinarian_id = ? AND day >= ? AND user_id IS NOT NULL", current_user.try(:veterinarian), Date.today).order(:day).paginate(page: params[:page], per_page: 8)
     end
+  end
+
+  def veterinarian_appointment
   end
 
   def cancel

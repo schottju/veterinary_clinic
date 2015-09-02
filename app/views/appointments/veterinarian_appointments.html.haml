@@ -25,7 +25,7 @@
               %td= change_blank_to_dash(appointment.try(:user).try(:full_name))
               %td
                 .pull-right
-                  = link_to  icon('list-alt'), user_appointment_path(appointment.user_id, appointment), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to  icon('list-alt'), veterinarian_appointment_path(appointment, user_id: appointment.user_id), title: 'Szczegóły', class: "btn btn-default"
                   = link_to icon('check-square-o'), veterinarian_accept_path(appointment, user_id: appointment.user_id), title: 'Zaakceptuj', method: :patch, class: "btn btn-default"
                   = link_to icon('trash-o'), veterinarian_cancel_path(appointment, user_id: appointment.user_id), title: 'Anuluj', method: :patch, class: "btn btn-default"
 

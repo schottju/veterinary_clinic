@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show_profile'
 
   get '/veterinarian_appointments', to: 'appointments#veterinarian_appointments'
+  get '/veterinarian_appointment/:id', to: 'appointments#veterinarian_appointment', as: 'veterinarian_appointment'
   patch '/veterinarian_appointment_cancel/:id', to: 'appointments#veterinarian_appointment_cancel', as: 'veterinarian_cancel'
   patch '/veterinarian_appointment_accept/:id', to: 'appointments#veterinarian_appointment_accept', as: 'veterinarian_accept'
 
