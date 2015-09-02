@@ -10,8 +10,14 @@
       .col-md-1
     .row
       .col-md-1
-      .col-md-10
+      .col-md-7
         = f.input :description, label: 'Opis', placeholder: 'Wpisz opis zabiegu'
+      .col-md-3
+        = f.input :status, label: 'Status', required: true
+      .col-md-1
+    .row
+      .col-md-1
+      .col-md-10
         .form-actions
           = link_to "Anuluj", dictionaries_path(tab: 'treatments'), class: "btn btn-default"
           .pull-right

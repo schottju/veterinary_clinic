@@ -13,11 +13,13 @@
     %thead
       %tr
         %th Nazwa
+        %th Status
         %th
     %tbody
       - species.each do |s|
         %tr
           %td= change_blank_to_dash(s.name)
+          %td= change_blank_to_dash(s.status)
           %td
             .pull-right
               = link_to icon('edit'), edit_species_path(s), title: 'Edytuj', class: "btn btn-default"

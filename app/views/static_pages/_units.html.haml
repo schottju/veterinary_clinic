@@ -13,11 +13,13 @@
     %thead
       %tr
         %th Nazwa
+        %th Status
         %th
     %tbody
       - units.each do |unit|
         %tr
           %td= change_blank_to_dash(unit.name)
+          %td= change_blank_to_dash(unit.status)
           %td
             .pull-right
               = link_to icon('edit'), edit_unit_path(unit), title: 'Edytuj', class: "btn btn-default"

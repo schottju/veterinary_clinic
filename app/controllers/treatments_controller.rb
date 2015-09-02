@@ -2,11 +2,11 @@ class TreatmentsController < ApplicationController
   before_action :authenticate_veterinarian!, except: [ :index ]
 
   expose(:treatment, attributes: :treatment_params)
-  expose(:treatments) { Treatment.all.order(:name).paginate(page: params[:page], per_page: 8) }
 
   def index
+    @treatments = Treatment.order(:name).where(status: "odblokowany").paginate(page: params[:page], per_page: 8)
     if params[:search]
-      self.treatments = Treatment.price_page_search(params[:search]).order(:name).paginate(page: params[:page], per_page: 8)
+      @treatments = Treatment.price_page_search(params[:search]).order(:name).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -37,6 +37,6 @@ class TreatmentsController < ApplicationController
   private
 
   def treatment_params
-    params.require(:treatment).permit(:name, :cost, :description)
+    params.require(:treatment).permit(:name, :cost, :description, :status)
   end
 end

@@ -1,4 +1,19 @@
 .panel.panel-default
   .panel-heading Edycja gatunku
   .panel-body
-    = render 'form'
+    = simple_form_for @species do |f|
+      = f.error_notification
+      .row
+        .col-md-1
+        .col-md-10
+          .form-inputs
+            .row
+              .col-md-8
+                = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę gatunku', required: true
+              .col-md-4
+                = f.input :status, label: 'Status', required: true
+          .form-actions
+            = link_to "Anuluj", dictionaries_path(tab: 'species'), class: "btn btn-default"
+            .pull-right
+              = f.button :submit, "Zapisz", class: "btn btn-default"
+        .col-md-1

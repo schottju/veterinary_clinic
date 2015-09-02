@@ -28,6 +28,6 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name)
+    params.require(:unit).permit(:name, :status)
   end
 end

@@ -5,7 +5,7 @@ class AnimalsController < ApplicationController
   expose(:user) { User.find(params[:user_id]) }
   expose(:animal, attributes: :animal_params)
   expose(:animals) { user.animals.paginate(page: params[:page], per_page: 8) }
-  expose(:species) { Species.all.order(:name) }
+  expose(:species) { Species.where(status: "odblokowany").order(:name) }
 
   def index
     if params[:search]

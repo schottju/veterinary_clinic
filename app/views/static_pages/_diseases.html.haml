@@ -13,11 +13,13 @@
     %thead
       %tr
         %th Nazwa
+        %th Status
         %th
     %tbody
       - diseases.each do |disease|
         %tr
           %td= change_blank_to_dash(disease.name)
+          %td= change_blank_to_dash(disease.status)
           %td
             .pull-right
               = link_to icon('edit'), edit_disease_path(disease), title: 'Edytuj', class: "btn btn-default"

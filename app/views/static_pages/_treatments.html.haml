@@ -14,6 +14,7 @@
       %tr
         %th Nazwa
         %th Koszt
+        %th Status
         %th Opis
         %th
     %tbody
@@ -21,6 +22,7 @@
         %tr
           %td= change_blank_to_dash(treatment.name)
           %td= change_blank_to_dash(number_to_currency(treatment.cost, separator: ',', unit: 'PLN', precision: 2))
+          %td= change_blank_to_dash(treatment.status)
           %td= change_blank_to_dash(treatment.description)
           %td
             .pull-right

@@ -12,7 +12,7 @@
           .col-md-3
             = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string, input_html: { value: change_period_to_comma(f.object.amount) }
           .col-md-3
-            = f.input :unit_id, label: 'Jednostka', collection: Unit.all
+            = f.input :unit_id, label: 'Jednostka', collection: Unit.order(:name).where(status: "odblokowany")
           .col-md-4
             = f.input :grace_period, label: 'Okres karencji (dni)', placeholder: 'Wpisz okres karencji', as: :string
           .col-md-2

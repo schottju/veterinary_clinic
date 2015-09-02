@@ -28,6 +28,6 @@ class DiseasesController < ApplicationController
   private
 
   def disease_params
-    params.require(:disease).permit(:name)
+    params.require(:disease).permit(:name, :status)
   end
 end
