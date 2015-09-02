@@ -16,21 +16,21 @@ class MedicalRecordsController < ApplicationController
   end
 
   def new
+    @units = Unit.order(:name).where(status: "odblokowany")
+    @diseases = Disease.order(:name).where(status: "odblokowany")
+    @treatments = Treatment.order(:name).where(status: "odblokowany")
+    @pictures = Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }
+    @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
   end
 
   def create
     medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
 
-    i = 0
-    params[:medical_record][:medicines_attributes].values.each do |medicine|
+    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
       medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
       medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
-      i = i + 1
     end if params[:medical_record] and params[:medical_record][:medicines_attributes]
 
-    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
-    # medical_record.medicine.amount = change_comma_to_period(params[:medical_record][:age])
-    # medical_record.weight = change_comma_to_period(params[:medical_record][:weight])
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Nowy wpis w kartotece został utworzony.'
     else
@@ -39,16 +39,19 @@ class MedicalRecordsController < ApplicationController
   end
 
   def edit
+    @units = Unit.order(:name).map { |unit| [ "#{unit.name} #{"(zablokowane)" if unit.zablokowany?}", unit.id ] }
+    @diseases = Disease.order(:name).map { |disease| [ "#{disease.name} #{"(zablokowane)" if disease.zablokowany?}", disease.id ] }
+    @treatments = Treatment.order(:name).map { |treatment| [ "#{treatment.name} #{"(zablokowane)" if treatment.zablokowany?}", treatment.id ] }
+    @pictures = Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }
+    @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
   end
 
   def update
     medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
 
-    i = 0
-    params[:medical_record][:medicines_attributes].values.each do |medicine|
+    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
       medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
       medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
-      i = i + 1
     end if params[:medical_record] and params[:medical_record][:medicines_attributes]
 
     if medical_record.save

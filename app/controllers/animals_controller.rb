@@ -5,7 +5,6 @@ class AnimalsController < ApplicationController
   expose(:user) { User.find(params[:user_id]) }
   expose(:animal, attributes: :animal_params)
   expose(:animals) { user.animals.paginate(page: params[:page], per_page: 8) }
-  expose(:species) { Species.where(status: "odblokowany").order(:name) }
 
   def index
     if params[:search]
@@ -19,6 +18,7 @@ class AnimalsController < ApplicationController
   end
 
   def new
+    @species = Species.order(:name).where(status: "odblokowany")
   end
 
   def create
@@ -32,6 +32,7 @@ class AnimalsController < ApplicationController
   end
 
   def edit
+    @species = Species.order(:name).map { |s| [ "#{s.name} #{"(zablokowane)" if s.zablokowany?}", s.id ] }
   end
 
   def update
