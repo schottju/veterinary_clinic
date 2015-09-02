@@ -30,7 +30,7 @@
                   %td= change_blank_to_dash(appointment.try(:user).try(:email))
                 %tr
                   %th Państwo:
-                  %td= change_blank_to_dash(appointment.try(:user).try(:address).try(:country_name))
+                  %td= change_blank_to_dash(appointment.try(:user).try(:address).try(:decorate).try(:full_country_name))
                 %tr
                   %td
           .col-md-4
@@ -41,7 +41,7 @@
               %tbody
                 %tr
                   %th Ulica:
-                  %td= "#{change_blank_to_dash(appointment.try(:user).try(:address).try(:street))} #{appointment.try(:user).try(:address).try(:house_number)}#{' / ' unless appointment.try(:user).try(:address).try(:flat_number).blank?}#{appointment.try(:user).try(:address).try(:flat_number)}"
+                  %td= change_blank_to_dash(appointment.try(:user).try(:address).try(:decorate).try(:full_street))
                 %tr
                   %th Kod pocztowy:
                   %td= change_blank_to_dash(appointment.try(:user).try(:address).try(:zip_code))
@@ -86,7 +86,7 @@
                   %td= change_blank_to_dash(appointment.kind)
                 %tr
                   %th.col-md-1 Weterynarz:
-                  %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
+                  %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
                 %tr
                   %td
           .col-md-5

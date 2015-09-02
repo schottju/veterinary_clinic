@@ -25,7 +25,7 @@
               %td= change_blank_to_dash(veterinarian.last_name)
               %td= change_blank_to_dash(veterinarian.phone_number)
               %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:specialization))
-              %td= change_blank_to_dash("#{'Pon' if veterinarian.try(:veterinarian).try(:working_day).try(:monday)} #{'Wt' if veterinarian.try(:veterinarian).try(:working_day).try(:tuesday)} #{'Śr' if veterinarian.try(:veterinarian).try(:working_day).try(:wednesday)} #{'Czw' if veterinarian.try(:veterinarian).try(:working_day).try(:thursday)} #{'Pt' if veterinarian.try(:veterinarian).try(:working_day).try(:friday)} #{'Sob' if veterinarian.try(:veterinarian).try(:working_day).try(:saturday)} #{'Niedz' if veterinarian.try(:veterinarian).try(:working_day).try(:sunday)}")
+              %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:working_day).try(:decorate).try(:print_working_days))
               %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:next_vacation))
               %td
                 .pull-right

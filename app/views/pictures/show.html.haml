@@ -12,10 +12,10 @@
               %td= change_blank_to_dash(picture.name)
             %tr
               %th.col-md-1 Użytkownik:
-              %td= change_blank_to_dash(picture.try(:user).try(:full_name))
+              %td= change_blank_to_dash(picture.try(:user).try(:decorate).try(:full_name))
             %tr
               %th.col-md-1 Zwierzę:
-              %td= picture.animal_id.nil? ? '-' : (picture.try(:animal).try(:id_number).blank? ? 'Brak numeru id zwierzęcia': picture.try(:animal).try(:id_number))
+              %td= picture.decorate.print_animal_id
             %tr
               %th.col-md-1 Opis zdjęcia:
               %td= change_blank_to_dash(picture.description)

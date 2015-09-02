@@ -27,7 +27,7 @@
               %td= change_blank_to_dash(current_user.email)
             %tr
               %th Państwo:
-              %td= change_blank_to_dash(current_user.try(:address).try(:country_name))
+              %td= change_blank_to_dash(current_user.try(:address).try(:decorate).try(:full_country_name))
       .col-md-4
         %table.table
           %thead
@@ -36,7 +36,7 @@
           %tbody
             %tr
               %th Ulica:
-              %td= "#{change_blank_to_dash(current_user.try(:address).try(:street))} #{current_user.try(:address).try(:house_number)}#{' / ' unless current_user.try(:address).try(:flat_number).blank?}#{current_user.try(:address).try(:flat_number)}"
+              %td= change_blank_to_dash(current_user.try(:address).try(:decorate).try(:full_street))
             %tr
               %th Kod pocztowy:
               %td= change_blank_to_dash(current_user.try(:address).try(:zip_code))

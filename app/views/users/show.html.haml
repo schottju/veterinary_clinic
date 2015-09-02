@@ -27,7 +27,7 @@
               %td= change_blank_to_dash(user.email)
             %tr
               %th Państwo:
-              %td= change_blank_to_dash(user.try(:address).try(:country_name))
+              %td= change_blank_to_dash(user.try(:address).try(:decorate).try(:full_country_name))
       .col-md-4
         %table.table
           %thead
@@ -36,7 +36,7 @@
           %tbody
             %tr
               %th Ulica:
-              %td= "#{change_blank_to_dash(user.try(:address).try(:street))} #{user.try(:address).try(:house_number)}#{' / ' unless user.try(:address).try(:flat_number).blank?}#{user.try(:address).try(:flat_number)}"
+              %td= change_blank_to_dash(user.try(:address).try(:decorate).try(:full_street))
             %tr
               %th Kod pocztowy:
               %td= change_blank_to_dash(user.try(:address).try(:zip_code))
@@ -82,7 +82,7 @@
               %td= change_blank_to_dash(appointment.time)
               %td= change_blank_to_dash(appointment.kind)
               %td= change_blank_to_dash(appointment.status)
-              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:full_name))
+              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
               %td
                 .pull-right
                   = link_to icon('list-alt'), user_appointment_path(user, appointment), title: 'Szczegóły', class: "btn btn-default"
@@ -151,7 +151,7 @@
             %tr
               %td= change_blank_to_dash(medical_record.id)
               %td= change_blank_to_dash(medical_record.anamnesis)
-              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
+              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
               %td= change_blank_to_dash(medical_record.description)
               %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
@@ -183,7 +183,7 @@
           - @pictures.each do |picture|
             %tr
               %td= change_blank_to_dash(picture.name)
-              %td= picture.animal_id.nil? ? '-' : (link_to (picture.try(:animal).try(:id_number).blank? ? 'Brak numeru id zwierzęcia': picture.try(:animal).try(:id_number)), user_animal_path(user, picture.try(:animal).try(:id)))
+              %td= picture.decorate.print_animal_id
               %td= link_to image_tag(picture.image, width: 100), picture.image.url
               %td= change_blank_to_dash(picture.description)
               %td
