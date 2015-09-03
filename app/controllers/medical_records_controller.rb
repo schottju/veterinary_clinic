@@ -34,6 +34,11 @@ class MedicalRecordsController < ApplicationController
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Nowy wpis w kartotece został utworzony.'
     else
+      @units = Unit.order(:name).where(status: "odblokowany")
+      @diseases = Disease.order(:name).where(status: "odblokowany")
+      @treatments = Treatment.order(:name).where(status: "odblokowany")
+      @pictures = Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }
+      @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
       render :new
     end
   end
@@ -57,6 +62,11 @@ class MedicalRecordsController < ApplicationController
     if medical_record.save
       redirect_to user_medical_record_path(user, medical_record), notice: 'Wpis w kartotece został edytowany.'
     else
+      @units = Unit.order(:name).map { |unit| [ "#{unit.name} #{"(zablokowane)" if unit.zablokowany?}", unit.id ] }
+      @diseases = Disease.order(:name).map { |disease| [ "#{disease.name} #{"(zablokowane)" if disease.zablokowany?}", disease.id ] }
+      @treatments = Treatment.order(:name).map { |treatment| [ "#{treatment.name} #{"(zablokowane)" if treatment.zablokowany?}", treatment.id ] }
+      @pictures = Picture.where(user_id: user.id).map { |picture| [ "Nazwa: #{picture.name}, opis: #{picture.description}", picture.id  ] }
+      @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
       render :edit
     end
   end

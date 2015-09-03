@@ -23,6 +23,7 @@ class PicturesController < ApplicationController
     if picture.save
       redirect_to user_pictures_path(user), notice: 'Zdjęcie zostało pomyślnie utworzone.'
     else
+      @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
       render :new
     end
   end
@@ -35,6 +36,7 @@ class PicturesController < ApplicationController
     if picture.save
       redirect_to user_pictures_path(user), notice: 'Zdjęcie zostało pomyślnie edytowane.'
     else
+      @animals = Animal.where(user_id: user.id).map { |animal| [ "ID: #{animal.id_number}, nazwa: #{animal.name}, ilość: #{animal.amount}, wiek: #{animal.age}, waga: #{animal.weight}, data urodzenia: #{animal.birth_date}, gatunek: #{animal.try(:species).try(:name)}, opis: #{animal.description}", animal.id ] }
       render :edit
     end
   end

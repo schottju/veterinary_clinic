@@ -27,6 +27,7 @@ class AnimalsController < ApplicationController
     if animal.save
       redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie utworzone.'
     else
+      @species = Species.order(:name).where(status: "odblokowany")
       render :new
     end
   end
@@ -41,6 +42,7 @@ class AnimalsController < ApplicationController
     if animal.save
       redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie edytowane.'
     else
+      @species = Species.order(:name).map { |s| [ "#{s.name} #{"(zablokowane)" if s.zablokowany?}", s.id ] }
       render :edit
     end
   end
