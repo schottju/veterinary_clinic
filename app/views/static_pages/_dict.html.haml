@@ -13,10 +13,14 @@
 
     .tab-content
       #species.tab-pane{:class => ('active' if params[:tab] == 'species')}
-        = render 'species'
+        - if params[:tab] == 'species'
+          = render 'species'
       #treatments.tab-pane{:class => ('active' if params[:tab] == 'treatments')}
-        = render 'treatments'
+        - if params[:tab] == 'treatments'
+          = render 'treatments'
       #diseases.tab-pane{:class => ('active' if params[:tab] == 'diseases')}
-        = render 'diseases'
+        - if params[:tab] == 'diseases'
+          = render 'diseases'
       #units.tab-pane{:class => ('active' if params[:tab] == 'units')}
-        = render 'units'
+        - if params[:tab] == 'units'
+          = render 'units'

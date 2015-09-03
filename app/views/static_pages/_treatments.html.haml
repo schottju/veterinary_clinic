@@ -1,4 +1,7 @@
 = form_tag treatments_search_path, method: :get do
+  = hidden_field_tag :direction, params[:direction]
+  = hidden_field_tag :sort, params[:sort]
+  = hidden_field_tag :tab, 'treatments'
   .form-inline
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę zabiegu', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
@@ -6,19 +9,19 @@
     .pull-right
       = link_to 'Dodaj zabieg', new_treatment_path, class: "btn btn-default"
 
-- if treatments.empty?
+- if @treatments.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
   %table.table.table-striped
     %thead
       %tr
-        %th Nazwa
-        %th Koszt
-        %th Status
-        %th Opis
+        %th= sortable 'name', "Nazwa"
+        %th= sortable 'cost', "Koszt"
+        %th= sortable 'status', "Status"
+        %th= sortable 'description', "Opis"
         %th
     %tbody
-      - treatments.each do |treatment|
+      - @treatments.each do |treatment|
         %tr
           %td= change_blank_to_dash(treatment.name)
           %td= change_blank_to_dash(number_to_currency(treatment.cost, separator: ',', unit: 'PLN', precision: 2))
@@ -29,4 +32,4 @@
               = link_to icon('edit'), edit_treatment_path(treatment), title: 'Edytuj', class: "btn btn-default"
 
   .flickr_pagination
-    = will_paginate treatments, param_name: 'treatments_page'
+    = will_paginate @treatments, param_name: 'treatments_page'

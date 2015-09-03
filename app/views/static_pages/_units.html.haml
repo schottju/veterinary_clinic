@@ -1,4 +1,7 @@
 = form_tag units_search_path, method: :get do
+  = hidden_field_tag :direction, params[:direction]
+  = hidden_field_tag :sort, params[:sort]
+  = hidden_field_tag :tab, 'units'
   .form-inline
     = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę jednostki', class: 'form-control'
     = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
@@ -6,17 +9,17 @@
     .pull-right
       = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-default"
 
-- if units.empty?
+- if @units.empty?
   .alert.alert-warning.table-warning Brak rekordów.
 - else
   %table.table.table-striped
     %thead
       %tr
-        %th Nazwa
-        %th Status
+        %th= sortable 'name', "Nazwa"
+        %th= sortable 'status', "Status"
         %th
     %tbody
-      - units.each do |unit|
+      - @units.each do |unit|
         %tr
           %td= change_blank_to_dash(unit.name)
           %td= change_blank_to_dash(unit.status)
@@ -25,4 +28,4 @@
               = link_to icon('edit'), edit_unit_path(unit), title: 'Edytuj', class: "btn btn-default"
 
   .flickr_pagination
-    = will_paginate units, param_name: 'units_page'
+    = will_paginate @units, param_name: 'units_page'

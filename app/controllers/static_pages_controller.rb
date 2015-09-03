@@ -1,43 +1,53 @@
 class StaticPagesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   before_action :authenticate_veterinarian!, except: [ :help_page ]
 
-  expose(:units) { Unit.order(:name).paginate(page: params[:units_page], per_page: 8) }
-  expose(:species) { Species.order(:name).paginate(page: params[:species_page], per_page: 8) }
-  expose(:diseases) { Disease.order(:name).paginate(page: params[:diseases_page], per_page: 8) }
-  expose(:treatments) { Treatment.order(:name).paginate(page: params[:treatments_page], per_page: 8) }
-
   def dictionaries
+    case params[:tab]
+      when 'units' then @units = Unit.order(sort_column + " " + sort_direction).paginate(page: params[:units_page], per_page: 8)
+      when 'species' then @species = Species.order(sort_column + " " + sort_direction).paginate(page: params[:species_page], per_page: 8)
+      when 'diseases' then @diseases = Disease.order(sort_column + " " + sort_direction).paginate(page: params[:diseases_page], per_page: 8)
+      when 'treatments' then @treatments = Treatment.order(sort_column + " " + sort_direction).paginate(page: params[:treatments_page], per_page: 8)
+    end
   end
 
   def units_search
-    if params[:search]
-      self.units = Unit.search(params[:search]).order(:name).paginate(page: params[:units_page], per_page: 8)
-      params[:tab] = 'units'
-    end
+    @units = Unit.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:units_page], per_page: 8)
+    params[:tab] = 'units'
   end
 
   def species_search
-    if params[:search]
-      params[:tab] = 'species'
-      self.species = Species.search(params[:search]).order(:name).paginate(page: params[:species_page], per_page: 8)
-    end
+    @species = Species.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:species_page], per_page: 8)
+    params[:tab] = 'species'
   end
 
   def diseases_search
-    if params[:search]
-      self.diseases = Disease.search(params[:search]).order(:name).paginate(page: params[:diseases_page], per_page: 8)
-      params[:tab] = 'diseases'
-    end
+    @diseases = Disease.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:diseases_page], per_page: 8)
+    params[:tab] = 'diseases'
   end
 
   def treatments_search
-    if params[:search]
-      self.treatments = Treatment.search(params[:search]).order(:name).paginate(page: params[:treatments_page], per_page: 8)
-      params[:tab] = 'treatments'
-    end
+    @treatments = Treatment.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:treatments_page], per_page: 8)
+    params[:tab] = 'treatments'
   end
 
   def help_page
-
   end
+
+  private
+
+    def sort_column
+      case params[:tab]
+        when 'units' then Unit.column_names.include?(params[:sort]) ? params[:sort] : "name"
+        when 'species' then Species.column_names.include?(params[:sort]) ? params[:sort] : "name"
+        when 'diseases' then Disease.column_names.include?(params[:sort]) ? params[:sort] : "name"
+        when 'treatments' then Treatment.column_names.include?(params[:sort]) ? params[:sort] : "name"
+        else 'name'
+      end
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 end
