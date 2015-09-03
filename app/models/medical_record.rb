@@ -9,7 +9,7 @@ class MedicalRecord < ActiveRecord::Base
 
   before_save :total_price
 
-  accepts_nested_attributes_for :medicines, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :medicines, allow_destroy: true
 
   def total_price
     sum = medicines.inject(0.0) { |sum, medicine| sum + medicine.price }
