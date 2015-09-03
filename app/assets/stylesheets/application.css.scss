@@ -218,10 +218,21 @@ body {
   color: black;
 }
 
-button.close {
-  vertical-align:middle
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+th .asc {
+  background-image: url(up_arrow.gif);
 }
 
-.g-recaptcha {
-  margin-top: 50px;
+th .desc {
+  background-image: url(down_arrow.gif);
+}
+
+th {
+  a {
+  text-decoration: none !important;
+  }
 }

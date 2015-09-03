@@ -8,12 +8,12 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Numer identyfikacyjny
-            %th Nazwa
-            %th Waga (kg)
-            %th Wiek (lata)
-            %th Płeć
-            %th Ilość
+            %th= sortable 'id_number', "Numer identyfikacyjny"
+            %th= sortable 'name', "Nazwa"
+            %th= sortable 'weight', "Waga (kg)"
+            %th= sortable 'age', "Wiek (lata)"
+            %th= sortable 'gender', "Płeć"
+            %th= sortable 'amount', "Ilość"
             %th Gatunek
             %th.btn-row-2
 

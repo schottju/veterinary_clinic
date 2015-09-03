@@ -1,14 +1,16 @@
 class AppointmentsController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   before_action :authenticate_user!, only: [ :index, :show, :new, :create, :cancel ]
   before_action :authenticate_veterinarian!, only: [ :edit, :update, :veterinarian_appointments, :veterinarian_appointment_show, :veterinarian_appointment_cancel, :veterinarian_appointment_accept ]
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:appointment, attributes: :appointment_params)
-  expose(:appointments) { user.appointments.where("day >= ?", Date.today).order(:day).paginate(page: params[:page], per_page: 8) }
+  expose(:appointments) { user.appointments.where("day >= ?", Date.today).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
-      self.appointments = Appointment.search(params[:search], params[:user_id]).order(:day).paginate(page: params[:page], per_page: 8)
+      self.appointments = Appointment.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -41,9 +43,9 @@ class AppointmentsController < ApplicationController
 
   def veterinarian_appointments
     if params[:search]
-      self.appointments = Appointment.veterinarian_search(params[:search], current_user.try(:veterinarian)).order(:day).paginate(page: params[:page], per_page: 8)
+      self.appointments = Appointment.veterinarian_search(params[:search], current_user.try(:veterinarian)).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     else
-      self.appointments = Appointment.where("veterinarian_id = ? AND day >= ? AND user_id IS NOT NULL", current_user.try(:veterinarian), Date.today).order(:day).paginate(page: params[:page], per_page: 8)
+      self.appointments = Appointment.where("veterinarian_id = ? AND day >= ? AND user_id IS NOT NULL", current_user.try(:veterinarian), Date.today).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -99,5 +101,13 @@ class AppointmentsController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:status, :kind, :user_id, :veterinarian_id,
                                          :day, :time, :description)
+    end
+
+    def sort_column
+      Appointment.column_names.include?(params[:sort]) ? params[:sort] : "day"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

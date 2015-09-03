@@ -1,14 +1,16 @@
 class PicturesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   before_action :authenticate_user!, only: [ :index, :show ]
   before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
 
   expose(:user) { User.find(params[:user_id]) }
   expose(:picture, attributes: :picture_params)
-  expose(:pictures) { user.pictures.order(:name).paginate(page: params[:page], per_page: 8) }
+  expose(:pictures) { user.pictures.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
-      self.pictures = Picture.search(params[:search], params[:user_id]).order(:created_at).paginate(page: params[:page], per_page: 8)
+      self.pictures = Picture.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -43,7 +45,15 @@ class PicturesController < ApplicationController
 
   private
 
-  def picture_params
-    params.require(:picture).permit(:name, :description, :user_id, :image, :animal_id)
-  end
+    def picture_params
+      params.require(:picture).permit(:name, :description, :user_id, :image, :animal_id)
+    end
+
+    def sort_column
+      Picture.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 end

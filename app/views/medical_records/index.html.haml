@@ -8,11 +8,11 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Numer karty
-            %th Wywiad
-            %th.price-row Koszt wizyty
+            %th= sortable 'id', "Numer karty"
+            %th= sortable 'anamnesis', "Wywiad"
+            %th.price-row= sortable 'total_cost', "Koszt wizyty"
             %th Weterynarz
-            %th.date-row Data
+            %th.date-row= sortable 'created_at', "Data"
             %th.btn-row-2
 
         %tbody

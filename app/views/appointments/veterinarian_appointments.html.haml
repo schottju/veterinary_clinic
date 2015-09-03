@@ -8,10 +8,10 @@
       %table.table.table-striped
         %thead
           %tr
-            %th.date-row Data
-            %th Pora dnia
-            %th Rodzaj
-            %th Status
+            %th.date-row= sortable 'day', "Data"
+            %th= sortable 'time', "Pora dnia"
+            %th= sortable 'kind', "Rodzaj"
+            %th= sortable 'status', "Status"
             %th Właściciel
             %th.btn-row-4
 

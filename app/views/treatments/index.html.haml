@@ -8,9 +8,9 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Nazwa
-            %th Koszt
-            %th Opis
+            %th= sortable 'name', "Nazwa"
+            %th= sortable 'cost', "Koszt"
+            %th= sortable 'description', "Opis"
         %tbody
           - @treatments.each do |treatment|
             %tr

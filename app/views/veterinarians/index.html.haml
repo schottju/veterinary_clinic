@@ -9,9 +9,9 @@
         %thead
           %tr
             %th Tytuł
-            %th Imię
-            %th Nazwisko
-            %th Numer telefonu
+            %th= sortable 'first_name', "Imię"
+            %th= sortable 'last_name', "Nazwisko"
+            %th= sortable 'phone_number', "Numer telefonu"
             %th Specjalizacja
             %th Dni przyjęć
             %th Najbliższy urlop

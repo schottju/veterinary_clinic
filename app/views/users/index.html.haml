@@ -8,11 +8,11 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Imię
-            %th Nazwisko
-            %th Pesel
-            %th Email
-            %th Numer telefonu
+            %th= sortable 'first_name', "Imię"
+            %th= sortable 'last_name', "Nazwisko"
+            %th= sortable 'pesel', "Pesel"
+            %th= sortable 'email', "Email"
+            %th= sortable 'phone_number', "Numer telefonu"
             %th
 
         %tbody

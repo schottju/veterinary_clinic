@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   before_action :authenticate_user!, only: [ :show_profile ]
   before_action :authenticate_veterinarian!, only: [ :index, :show, :edit, :update ]
 
   expose(:user, attributes: :user_params)
-  expose(:patients) { User.where(role: 0).order(:last_name).paginate(page: params[:page], per_page: 8) }
+  expose(:patients) { User.where(role: 0).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
-      self.patients = User.search(params[:search]).order(:last_name).paginate(page: params[:page], per_page: 8)
+      self.patients = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -46,10 +48,18 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation,
-      :first_name, :last_name, :pesel, :phone_number, address_attributes:
-        [ :id, :street, :house_number, :flat_number, :city, :borough, :district,
-          :province, :country, :zip_code, :user_id ])
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation,
+        :first_name, :last_name, :pesel, :phone_number, address_attributes:
+          [ :id, :street, :house_number, :flat_number, :city, :borough, :district,
+            :province, :country, :zip_code, :user_id ])
+    end
+
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 end

@@ -8,13 +8,13 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Tytuł
-            %th Imię
-            %th Nazwisko
-            %th Numer telefonu
-            %th Specjalizacja
-            %th Dni przyjęć
-            %th Najbliższy urlop
+            %th= sortable 'title', "Tytuł"
+            %th= sortable 'first_name', "Imię"
+            %th= sortable 'last_name', "Nazwisko"
+            %th= sortable 'phone_number', "Numer telefonu"
+            %th= sortable 'specialization', "Specjalizacja"
+            %th= sortable 'working_day', "Dni przyjęć"
+            %th= sortable 'next_vacation', "Najbliższy urlop"
             %th
 
         %tbody
