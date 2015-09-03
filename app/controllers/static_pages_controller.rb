@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
-  before_action :authenticate_veterinarian!, except: [ :help_page ]
+  before_action :authenticate_veterinarian!, except: [ :help_page, :about ]
 
   def dictionaries
     case params[:tab]
@@ -33,6 +33,9 @@ class StaticPagesController < ApplicationController
   end
 
   def help_page
+  end
+
+  def about
   end
 
   private

@@ -11,6 +11,7 @@
             %li{:class => active_class(user_pictures_path(current_user))}= link_to icon('picture-o', 'Zdjęcia'), user_pictures_path(current_user)
             %li{:class => active_class(user_animals_path(current_user))}= link_to icon('paw','Zwierzęta'), user_animals_path(current_user)
           %ul.nav.navbar-nav.navbar-right
+            %li{:class => active_class(about_path)}= link_to icon('envelope-o','Kontakt'), about_path
             %li{:class => active_class(treatments_path)}= link_to icon('file-text-o', 'Cennik'), treatments_path
             %li{:class => active_class(veterinarians_path)}= link_to icon('user-md', 'Lekarze'), veterinarians_path
             %li.dropdown
@@ -62,6 +63,7 @@
           %li{:class => active_class(treatments_path)}= link_to icon('file-text-o', 'Cennik'), treatments_path
           %li{:class => active_class(veterinarians_path)}= link_to icon('user-md', 'Lekarze'), veterinarians_path
         %ul.nav.navbar-nav.navbar-right
+          %li{:class => active_class(about_path)}= link_to icon('envelope-o','Kontakt'), about_path
           %li{:class => active_class(new_user_registration_path)}= link_to icon('sign-in', 'Rejestracja'), new_user_registration_path
           - if current_page?(unauthenticated_root_path)
             %li{:class => active_class(unauthenticated_root_path)}= link_to icon('lock', 'Logowanie'), new_user_session_path

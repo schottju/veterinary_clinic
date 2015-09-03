@@ -22,9 +22,12 @@ Rails.application.routes.draw do
   patch '/veterinarian_appointment_cancel/:id', to: 'appointments#veterinarian_appointment_cancel', as: 'veterinarian_cancel'
   patch '/veterinarian_appointment_accept/:id', to: 'appointments#veterinarian_appointment_accept', as: 'veterinarian_accept'
 
+  #Static pages
+  get '/help_page', to: 'static_pages#help_page'
+  get '/about', to: 'static_pages#about'
+
   #Dictionaries
   get '/dictionaries', to: 'static_pages#dictionaries'
-  get '/help_page', to: 'static_pages#help_page'
   get '/units_search', to: 'static_pages#units_search'
   get '/species_search', to: 'static_pages#species_search'
   get '/diseases_search', to: 'static_pages#diseases_search'
