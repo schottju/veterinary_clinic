@@ -43,7 +43,7 @@ gem 'postgresql_lo_streamer'
 gem 'rails_admin'
 gem "cocoon"
 gem 'countries'
-
+gem 'cookies_eu'
 
 group :development do
   gem 'html2haml'
