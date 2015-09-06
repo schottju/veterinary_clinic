@@ -79,7 +79,7 @@
                   %td= change_blank_to_dash(animal.try(:user).try(:email))
                 %tr
                   %th Państwo:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:country_name))
+                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:decorate).try(:full_country_name))
           .col-md-4
             %table.table
               %thead
