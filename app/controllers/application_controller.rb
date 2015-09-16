@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -6,6 +7,9 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 
   protected
 
@@ -37,4 +41,10 @@ class ApplicationController < ActionController::Base
   def change_comma_to_period(number_string)
     number_string.gsub(',', '.').to_f unless number_string.nil?
   end
+
+  private
+
+    def user_not_authorized
+      render file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false
+    end
 end
