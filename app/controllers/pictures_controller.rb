@@ -12,9 +12,12 @@ class PicturesController < ApplicationController
     if params[:search]
       self.pictures = Picture.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
+
+    authorize pictures.first unless pictures.first.nil?
   end
 
   def show
+    authorize picture unless picture.nil?
   end
 
   def new

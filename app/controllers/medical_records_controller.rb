@@ -12,9 +12,12 @@ class MedicalRecordsController < ApplicationController
     if params[:search]
       self.medical_records = MedicalRecord.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
+
+    authorize medical_records.first unless medical_records.first.nil?
   end
 
   def show
+    authorize medical_record unless medical_record.nil?
   end
 
   def new

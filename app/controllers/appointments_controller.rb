@@ -12,9 +12,12 @@ class AppointmentsController < ApplicationController
     if params[:search]
       self.appointments = Appointment.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
+
+    authorize appointments.first unless appointments.first.nil?
   end
 
   def show
+    authorize appointment unless appointment.nil?
   end
 
   def new
@@ -67,14 +70,12 @@ class AppointmentsController < ApplicationController
 
   def cancel
     @appointment = Appointment.find(params[:appointment_id])
-    if current_user.weterynarz? || user.id == @appointment.user_id
-      if @appointment.status != "anulowana" && @appointment.update_attribute(:status, :anulowana)
-        redirect_to user_appointments_path(user), notice: 'Anulowano wizytę.'
-      else
-        redirect_to user_appointments_path(user), notice: 'Wizyta już posiada status anulowana.'
-      end
+    authorize @appointment unless @appointment.nil?
+
+    if @appointment.status != "anulowana" && @appointment.update_attribute(:status, :anulowana)
+      redirect_to user_appointments_path(user), notice: 'Anulowano wizytę.'
     else
-      render file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false
+      redirect_to user_appointments_path(user), notice: 'Wizyta już posiada status anulowana.'
     end
   end
 

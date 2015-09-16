@@ -12,11 +12,15 @@ class AnimalsController < ApplicationController
     if params[:search]
       self.animals = Animal.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
+
+    authorize animals.first unless animals.first.nil?
   end
 
   def show
     @pictures = animal.pictures.order(:created_at).paginate(page: params[:pictures_page], per_page: 10)
     @medical_records = animal.medical_records.order(:created_at).paginate(page: params[:medical_records_page], per_page: 10)
+
+    authorize animal unless animal.nil?
   end
 
   def new
