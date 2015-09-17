@@ -30,7 +30,6 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'quiet_assets'
 gem 'therubyracer', platforms: :ruby
-gem 'ffaker'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'momentjs-rails'
@@ -55,6 +54,13 @@ end
 
 group :development, :test do
   gem 'pry'
+  gem 'rspec-rails', '~> 3.3.3'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
+  gem 'database_cleaner', '~> 1.5.0'
 end
 
 group :production do
