@@ -1,0 +1,127 @@
+.panel.panel-default
+  .panel-heading= "Hospit nr #{hospit.id}/#{hospit.created_at.to_date}"
+  .panel-body
+    .panel.panel-info
+      .panel-heading
+        .row
+          .col-md-4
+            %th Propriétaire
+          .col-md-4
+            %th Vétérinaire
+          .col-md-4
+            %th Animal
+          .col-md-1
+  .panel-body
+    .row
+      .col-md-4
+        %table.table
+          %thead
+            %tr
+              %td
+          %tbody
+            %tr
+              %th Prénom:
+              %td= change_blank_to_dash(proprio.first_name)
+            %tr
+              %th Nom:
+              %td= change_blank_to_dash(proprio.last_name)
+            %tr
+              %th Téléphone:
+              %td= change_blank_to_dash(proprio.phone_number)
+
+      .col-md-4
+        %table.table
+          %thead
+            %tr
+              %td
+          %tbody
+            %tr
+              %th Prénom:
+              %td= change_blank_to_dash(hospit.veterinarian.user.first_name)
+              %tr
+                %th Nom:
+                %td= change_blank_to_dash(hospit.veterinarian.user.last_name)
+              %tr
+                %th N° d'ordre:
+                %td= change_blank_to_dash(hospit.veterinarian.pwz)
+      .col-md-4
+        - hospit.animals.each do |animal|
+          %table.table
+            %tbody
+              %tr
+                %th.col-md-2 N° identification:
+                %td= change_blank_to_dash(animal.id_number)
+              %tr
+                %th.col-md-2 Nom:
+                %td= change_blank_to_dash(animal.name)
+              %tr
+                %th.col-md-2 Sexe:
+                %td= change_blank_to_dash(animal.gender)
+              %tr
+                %th.col-md-2 Date de naissance:
+                %td= change_blank_to_dash(animal.birth_date)
+              %tr
+                %th.col-md-2 Espèce:
+                %td= change_blank_to_dash(animal.try(:species).try(:name))
+              %tr
+                %th.col-md-2 Informations complémentaires:
+                %td= change_blank_to_dash(animal.description)
+              %tr
+                %th
+                %td
+      .col-md-1
+
+    .panel.panel-info
+      .panel-heading Diagnostic ou suspicion
+      .panel-body
+        %table.table
+          %tbody
+          %tr
+            %th.col-md-2 Diagnostic ou suspicion
+            %td= change_blank_to_dash(hospit.decorate.name_of_disease)
+
+    .panel.panel-info
+      .panel-heading Informations complémentaires
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th Poids (kg):
+              %th Cause hospitalisation:
+              %th Observations:
+          %tbody
+            %tr
+              %td= change_blank_to_dash(hospit.poids)
+
+              %td= change_blank_to_dash(hospit.anamnesis)
+
+              %td= change_blank_to_dash(hospit.description)
+
+    .panel.panel-info
+      .panel-heading Actes
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th Observations
+              %th Actes
+              %th Intervenant
+              %th Date
+          %tbody
+            - hospit.hospitactes.each do |hospitacte|
+              %tr
+                %td= change_blank_to_dash(hospitacte.comment)
+
+                %td= change_blank_to_dash(hospitacte.soin)
+
+                %td= change_blank_to_dash(hospitacte.veterinarian.user.last_name)
+
+                %td= change_blank_to_dash(hospitacte.created_at)
+
+
+    .pull-left
+      = link_to "Edition fiche", proprio_hospit_path(proprio, hospit.id, :format => 'pdf'), class: "btn btn-default"
+
+    .pull-right
+      = link_to icon('edit'), edit_proprio_hospit_path(proprio, hospit.id), title: 'Modifier', class: "btn btn-default"
+      = link_to "Retour", proprio_path(proprio), class: "btn btn-default"

@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
 
-ruby '2.2.2'
+ruby '2.2.3'
 gem 'rails', '4.2.3'
 
+gem 'prawn'
+gem 'prawnto'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -13,9 +15,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'puma'
+gem 'puma', '= 2.14.0'
 gem 'devise'
-gem "pundit"
 gem 'gravtastic'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
@@ -29,10 +30,9 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'quiet_assets'
-gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', '= 0.12.2', platforms: :ruby
+gem 'ffaker'
 gem "recaptcha", :require => "recaptcha/rails"
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-gem 'momentjs-rails'
 gem 'enum_help'
 gem 'will_paginate', '~> 3.0.6'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
@@ -44,6 +44,8 @@ gem 'rails_admin'
 gem "cocoon"
 gem 'countries'
 gem 'cookies_eu'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails'
 
 group :development do
   gem 'html2haml'
@@ -54,14 +56,6 @@ end
 
 group :development, :test do
   gem 'pry'
-  gem 'rspec-rails', '~> 3.3.3'
-  gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
-end
-
-group :test do
-  gem 'faker'
-  gem 'database_cleaner', '~> 1.5.0'
 end
 
 group :production do
