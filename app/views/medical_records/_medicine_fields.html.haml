@@ -4,24 +4,23 @@
     .col-md-10
       .jumbotron
         .row
-          .col-md-6
-            = f.input :serial_number, label: 'Numer serii', placeholder: 'Wpisz numer serii'
-          .col-md-6
-            = f.input :name, label: 'Nazwa', placeholder: 'Wpisz nazwę'
-        .row
-          .col-md-3
-            = f.input :amount, label: 'Ilość', placeholder: 'Wpisz ilość', as: :string, input_html: { value: change_period_to_comma(f.object.amount) }
-          .col-md-3
-            = f.input :unit_id, label: 'Jednostka', collection: @units
-          .col-md-4
-            = f.input :grace_period, label: 'Okres karencji (dni)', placeholder: 'Wpisz okres karencji', as: :string
           .col-md-2
-            = f.input :price, label: 'Cena', as: :string, input_html: { value: change_period_to_comma(f.object.price) }
+            = f.input :serial_number, label: 'N° de lot', placeholder: 'Entrez le N°'
+          .col-md-5
+            = f.input :medoc_id, label: 'Médicament', collection: @medocs
+          .col-md-5
+            = f.input :name, label: 'Médicament hors dico', placeholder: 'Entrez le nom du nouveau médicament'
+        .row
+          .col-md-3
+            = f.input :amount, label: 'Quantité', placeholder: 'Entrez la quantité', as: :string, input_html: { value: change_period_to_comma(f.object.amount) }
+          .col-md-3
+            = f.input :unit_id, label: 'Unité', collection: @units
+
         .row
           .col-md-6
-            = f.input :dosage, label: 'Dawkowanie', placeholder: 'Wpisz sposób dawkowania'
+            = f.input :dosage, label: 'Posologie', placeholder: 'Entrez la posologie'
           .col-md-6
-            = f.input :description, label: 'Dodatkowe informacje', placeholder: 'Wpisz dodatkowe informacje'
+            = f.input :description, label: 'Infos complémentaires', placeholder: 'Entrez les infos complémentaires (par ex : au moment du repas)'
     .col-md-1
       .pull-right
         = link_to_remove_association icon('trash-o'), f, class: 'btn btn-default'

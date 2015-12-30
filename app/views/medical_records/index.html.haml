@@ -1,39 +1,31 @@
 .panel.panel-default
-  .panel-heading Kartoteka
+  .panel-heading Fichier
   .panel-body
     = render 'search_form'
-    - if medical_records.empty?
-      .alert.alert-warning.table-warning Brak rekordów.
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th= sortable 'id', "Numer karty"
-            %th= sortable 'anamnesis', "Wywiad"
-            %th.price-row= sortable 'total_cost', "Koszt wizyty"
-            %th Weterynarz
-            %th.date-row= sortable 'created_at', "Data"
-            %th.btn-row-2
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= sortable 'anamnesis', "Cause consultation"
+          %th Maladie ou acte prophylo
+          %th Vétérinaire
+          %th.date-row= sortable 'created_at', "Date"
+          %th.btn-row-2
 
-        %tbody
-          - medical_records.each do |medical_record|
-            %tr
-              %td= change_blank_to_dash(medical_record.id)
-              %td= change_blank_to_dash(medical_record.anamnesis)
-              %td= change_blank_to_dash(number_to_currency(medical_record.total_cost, separator: ',', unit: 'PLN', precision: 2))
-              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
-              %td= change_blank_to_dash(medical_record.created_at.to_date)
-              %td
-                .pull-right
-                  = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
-                  - unless current_user.pacjent?
-                    = link_to icon('edit'), edit_user_medical_record_path(user, medical_record), title: 'Edytuj', class: "btn btn-default"
+      %tbody
+        - medical_records.each do |medical_record|
+          %tr
+            %td= change_blank_to_dash(medical_record.anamnesis)
+            %td= change_blank_to_dash(medical_record.decorate.name_of_disease)
+            %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user). try(:decorate).try(:last_name))
+            %td= change_blank_to_dash(medical_record.created_at.to_date)
+            %td
+              .pull-right
+                = link_to icon('list-alt'), proprio_medical_record_path(proprio, medical_record), title: 'Détails', class: "btn btn-default"
+                = link_to icon('edit'), edit_proprio_medical_record_path(proprio, medical_record), title: 'Modifier', class: "btn btn-default"
 
     .pull-right
-      - if current_user.pacjent?
-        = link_to 'Przejdź do profilu', profile_path, class: 'btn btn-default'
-      - else
-        = link_to 'Przejdź do profilu właściciela', user_path(user), class: 'btn btn-default'
+      = link_to 'Vers le profil du propriétaire', proprio_path(proprio), class: 'btn btn-default'
+      = link_to "Ajouter hospit", new_proprio_hospit_path(proprio), class: "btn btn-default"
 
     .flickr_pagination
       = will_paginate medical_records

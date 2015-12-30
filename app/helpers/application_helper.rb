@@ -11,6 +11,10 @@ module ApplicationHelper
     UserDecorator.decorate(super) unless super.nil?
   end
 
+#  def current_proprio
+#    ProprioDecorator.decorate(super) unless super.nil?
+#  end
+
   def active_class(link_path)
     current_page?(link_path) ? "active" : ""
   end

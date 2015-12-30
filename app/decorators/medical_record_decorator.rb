@@ -10,4 +10,8 @@ class MedicalRecordDecorator < Draper::Decorator
   #     end
   #   end
 
+  def name_of_disease
+    "#{self.try(:disease).try(:name)}"
+  end
+
 end

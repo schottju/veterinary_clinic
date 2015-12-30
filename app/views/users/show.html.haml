@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Dane właściciela
+  .panel-heading Données utilisateur
   .panel-body
     .row
       .col-md-3
@@ -11,22 +11,16 @@
               %td
           %tbody
             %tr
-              %th Imię:
+              %th Prénom:
               %td= change_blank_to_dash(user.first_name)
             %tr
-              %th Nazwisko:
+              %th Nom:
               %td= change_blank_to_dash(user.last_name)
             %tr
-              %th Pesel:
-              %td= change_blank_to_dash(user.pesel)
-            %tr
-              %th Numer telefonu:
+              %th Téléphone:
               %td= change_blank_to_dash(user.phone_number)
             %tr
-              %th Email:
-              %td= change_blank_to_dash(user.email)
-            %tr
-              %th Państwo:
+              %th Nationalité:
               %td= change_blank_to_dash(user.try(:address).try(:decorate).try(:full_country_name))
       .col-md-4
         %table.table
@@ -35,161 +29,14 @@
               %td
           %tbody
             %tr
-              %th Ulica:
+              %th Rue:
               %td= change_blank_to_dash(user.try(:address).try(:decorate).try(:full_street))
             %tr
-              %th Kod pocztowy:
+              %th Code postal:
               %td= change_blank_to_dash(user.try(:address).try(:zip_code))
             %tr
-              %th Miasto:
+              %th Ville:
               %td= change_blank_to_dash(user.try(:address).try(:city))
-            %tr
-              %th Gmina:
-              %td= change_blank_to_dash(user.try(:address).try(:borough))
-            %tr
-              %th Powiat:
-              %td= change_blank_to_dash(user.try(:address).try(:district))
-            %tr
-              %th Województwo:
-              %td= change_blank_to_dash(user.try(:address).try(:province))
       .col-md-1
     .pull-right
-      = link_to "Edytuj", edit_user_path(user), class: "btn btn-default"
-      = link_to "Nowa karta", new_user_medical_record_path(user), class: "btn btn-default"
-
-.panel.panel-default
-  .panel-heading Najbliższe wizyty
-  .panel-body
-    - if @appointments.empty?
-      .alert.alert-warning.table-warning Brak wizyt.
-      .pull-right
-        = link_to "Dodaj", user_veterinarians_path(user), class: "btn btn-default"
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th.date-row Data
-            %th Pora dnia
-            %th Rodzaj
-            %th Status
-            %th Weterynarz
-            %th.btn-row-3
-
-        %tbody
-          - @appointments.each do |appointment|
-            %tr
-              %td= change_blank_to_dash(appointment.day)
-              %td= change_blank_to_dash(appointment.time)
-              %td= change_blank_to_dash(appointment.kind)
-              %td= change_blank_to_dash(appointment.status)
-              %td= change_blank_to_dash(appointment.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
-              %td
-                .pull-right
-                  = link_to icon('list-alt'), user_appointment_path(user, appointment), title: 'Szczegóły', class: "btn btn-default"
-                  = link_to icon('edit'), edit_user_appointment_path(user, appointment), title: 'Edytuj', class: "btn btn-default"
-                  = link_to icon('trash-o'), user_appointment_cancel_path(appointment.user_id, appointment), title: 'Anuluj', method: :patch, class: "btn btn-default"
-      .pull-right
-        = link_to "Dodaj", user_veterinarians_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_appointments_path(user), class: "btn btn-default"
-
-.panel.panel-default
-  .panel-heading Zwierzęta
-  .panel-body
-    - if @animals.empty?
-      .alert.alert-warning.table-warning Brak zwierząt.
-      .pull-right
-        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Numer identyfikacyjny
-            %th Nazwa
-            %th Ilość
-            %th Wiek (lata)
-            %th Płeć
-            %th Gatunek
-            %th.btn-row-2
-
-        %tbody
-          - @animals.each do |animal|
-            %tr
-              %td= change_blank_to_dash(animal.id_number)
-              %td= change_blank_to_dash(animal.name)
-              %td= change_blank_to_dash(animal.amount)
-              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
-              %td= change_blank_to_dash(animal.gender)
-              %td= change_blank_to_dash(animal.try(:species).try(:name))
-              %td
-                .pull-right
-                  = link_to icon('list-alt'), user_animal_path(user, animal), title: 'Szczegóły', class: "btn btn-default"
-                  = link_to icon('edit'), edit_user_animal_path(user, animal), title: 'Edytuj', class: "btn btn-default"
-      .pull-right
-        = link_to "Dodaj", new_user_animal_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_animals_path(user), class: "btn btn-default"
-
-.panel.panel-default
-  .panel-heading Kartoteka
-  .panel-body
-    - if @medical_records.empty?
-      .alert.alert-warning.table-warning Brak kart.
-      .pull-right
-        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Numer karty
-            %th Wywiad
-            %th Weterynarz
-            %th Opis
-            %th.date-row Data
-            %th.btn-row-2
-
-        %tbody
-          - @medical_records.each do |medical_record|
-            %tr
-              %td= change_blank_to_dash(medical_record.id)
-              %td= change_blank_to_dash(medical_record.anamnesis)
-              %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:decorate).try(:full_name))
-              %td= change_blank_to_dash(medical_record.description)
-              %td= change_blank_to_dash(medical_record.created_at.to_date)
-              %td
-                .pull-right
-                  = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
-                  = link_to icon('edit'), edit_user_medical_record_path(user, medical_record), title: 'Edytuj', class: "btn btn-default"
-      .pull-right
-        = link_to "Dodaj", new_user_medical_record_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_medical_records_path(user), class: "btn btn-default"
-
-.panel.panel-default
-  .panel-heading Zdjęcia
-  .panel-body
-    - if @pictures.empty?
-      .alert.alert-warning.table-warning Brak zdjęć.
-      .pull-right
-        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
-    - else
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Nazwa
-            %th Zwierzę
-            %th Zdjęcie
-            %th Opis
-            %th.btn-row-2
-
-        %tbody
-          - @pictures.each do |picture|
-            %tr
-              %td= change_blank_to_dash(picture.name)
-              %td= picture.decorate.print_animal_id
-              %td= link_to image_tag(picture.image, width: 100), picture.image.url
-              %td= change_blank_to_dash(picture.description)
-              %td
-                .pull-right
-                  = link_to icon('list-alt'), user_picture_path(user, picture), title: 'Szczegóły', class: "btn btn-default"
-                  = link_to icon('edit'), edit_user_picture_path(user, picture), title: 'Edytuj', class: "btn btn-default"
-      .pull-right
-        = link_to "Dodaj", new_user_picture_path(user), class: "btn btn-default"
-        = link_to "Więcej", user_pictures_path(user), class: "btn btn-default"
+      = link_to "Modifier", edit_user_path(user), class: "btn btn-default"

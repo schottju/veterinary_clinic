@@ -10,4 +10,5 @@ class AnimalDecorator < Draper::Decorator
   #     end
   #   end
 
+
 end

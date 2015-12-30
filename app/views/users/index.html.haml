@@ -1,31 +1,27 @@
 .panel.panel-default
-  .panel-heading Właściciele
+  .panel-heading Utilisateurs
   .panel-body
     = render 'search_form'
-    - if patients.empty?
-      .alert.alert-warning.table-warning Brak rekordów.
+    - if users.empty?
+      .alert.alert-warning.table-warning Aucun enregistrement.
     - else
       %table.table.table-striped
         %thead
           %tr
-            %th= sortable 'first_name', "Imię"
-            %th= sortable 'last_name', "Nazwisko"
-            %th= sortable 'pesel', "Pesel"
-            %th= sortable 'email', "Email"
-            %th= sortable 'phone_number', "Numer telefonu"
+            %th= sortable 'first_name', "Prénom"
+            %th= sortable 'last_name', "Nom"
+            %th= sortable 'phone_number', "Téléphone"
             %th
 
         %tbody
-          - patients.each do |patient|
+          - users.each do |user|
             %tr
-              %td= change_blank_to_dash(patient.first_name)
-              %td= change_blank_to_dash(patient.last_name)
-              %td= change_blank_to_dash(patient.pesel)
-              %td= change_blank_to_dash(patient.email)
-              %td= change_blank_to_dash(patient.phone_number)
+              %td= change_blank_to_dash(user.first_name)
+              %td= change_blank_to_dash(user.last_name)
+              %td= change_blank_to_dash(user.phone_number)
               %td
                 .pull-right
-                  = link_to icon('list-alt'), user_path(patient), title: 'Szczegóły', class: "btn btn-default"
+                  = link_to icon('list-alt'), user_path(user), title: 'Détails', class: "btn btn-default"
 
       .flickr_pagination
-        = will_paginate patients
+        = will_paginate veterinarians

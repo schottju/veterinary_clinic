@@ -1,43 +1,35 @@
 .panel.panel-default
-  .panel-heading Zwierzęta
+  .panel-heading Listing animaux
   .panel-body
     = render 'search_form'
     - if animals.empty?
-      .alert.alert-warning.table-warning Brak zwierząt.
+      .alert.alert-warning.table-warning Pas d'animaux.
     - else
       %table.table.table-striped
         %thead
           %tr
-            %th= sortable 'id_number', "Numer identyfikacyjny"
-            %th= sortable 'name', "Nazwa"
-            %th= sortable 'weight', "Waga (kg)"
-            %th= sortable 'age', "Wiek (lata)"
-            %th= sortable 'gender', "Płeć"
-            %th= sortable 'amount', "Ilość"
-            %th Gatunek
+            %th= sortable 'id_number', "N° indentification"
+            %th= sortable 'name', "Nom"
+            %th= sortable 'gender', "Sexe"
+            %th= sortable 'amount', "Quantité"
+            %th Espèce
             %th.btn-row-2
-
         %tbody
           - animals.each do |animal|
             %tr
               %td= change_blank_to_dash(animal.id_number)
               %td= change_blank_to_dash(animal.name)
-              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))
-              %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
               %td= change_blank_to_dash(animal.gender)
               %td= change_blank_to_dash(animal.amount)
               %td= change_blank_to_dash(animal.try(:species).try(:name))
               %td
                 .pull-right
-                  = link_to icon('list-alt'), user_animal_path(user, animal), title: 'Szczegóły', class: "btn btn-default"
-                  - unless current_user.pacjent?
-                    = link_to icon('edit'), edit_user_animal_path(user, animal), title: 'Edytuj', class: "btn btn-default"
+                  = link_to icon('list-alt'), proprio_animal_path(proprio, animal), title: 'Animal', class: "btn btn-default"
+                  = link_to icon('edit'), edit_proprio_animal_path(proprio, animal), title: 'Modifier', class: "btn btn-default"
 
     .pull-right
-      - if current_user.pacjent?
-        = link_to 'Przejdź do profilu', profile_path, class: 'btn btn-default'
-      - else
-        = link_to "Przejdź do profilu właściciela", user_path(user), class: "btn btn-default"
+      = link_to "Nouvel animal", new_proprio_animal_path(proprio), class: "btn btn-default"
+      = link_to "Vers le profil du propriétaire", proprio_path(proprio), class: "btn btn-default"
 
     .flickr_pagination
       = will_paginate animals

@@ -1,12 +1,12 @@
 class Species < ActiveRecord::Base
-  enum status: [ :odblokowany, :zablokowany ]
+  enum status: [ :actif, :inactif ]
 
   has_many :animal
 
   validates_presence_of :name, :status
 
   def custom_label_method
-    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
+    "##{id} #{name} #{"(inactif)" if status == "inactif"}"
   end
 
   private

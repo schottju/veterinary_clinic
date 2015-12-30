@@ -1,12 +1,12 @@
 class Unit < ActiveRecord::Base
-  enum status: [ :odblokowany, :zablokowany ]
+  enum status: [ :valide, :inactif ]
 
   has_many :medicines
 
   validates_presence_of :name, :status
 
   def custom_label_method
-    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
+    "##{id} #{name} #{"(inactif)" if status == "inactif"}"
   end
 
   private

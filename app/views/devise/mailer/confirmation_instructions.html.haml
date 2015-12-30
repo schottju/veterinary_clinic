@@ -1,4 +1,4 @@
 %p
-  Witaj #{@email}!
-%p Możesz potwierdzić konto email klikając w poniższy link:
-%p= link_to 'Potwierdź moje konto email', confirmation_url(@resource, confirmation_token: @token)
+  Bienvenue #{@email}!
+%p Vous pouvez confirmer le compte de courriel en cliquant sur le lien suivant link:
+%p= link_to 'Confirmez mon compte de courriel', confirmation_url(@resource, confirmation_token: @token)

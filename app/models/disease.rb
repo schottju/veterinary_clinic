@@ -1,12 +1,13 @@
 class Disease < ActiveRecord::Base
-  enum status: [ :odblokowany, :zablokowany ]
+  enum status: [ :actif, :inactif ]
 
   has_and_belongs_to_many :medical_records
+  has_and_belongs_to_many :hospits
 
   validates_presence_of :name, :status
 
   def custom_label_method
-    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
+    "##{id} #{name} #{"(inactif)" if status == "inactif"}"
   end
 
   private

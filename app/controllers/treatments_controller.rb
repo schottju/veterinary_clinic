@@ -6,7 +6,7 @@ class TreatmentsController < ApplicationController
   expose(:treatment, attributes: :treatment_params)
 
   def index
-    @treatments = Treatment.order(sort_column + " " + sort_direction).where(status: "odblokowany").paginate(page: params[:page], per_page: 8)
+    @treatments = Treatment.order(sort_column + " " + sort_direction).where(status: "actif").paginate(page: params[:page], per_page: 8)
     if params[:search]
       @treatments = Treatment.price_page_search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
@@ -18,7 +18,7 @@ class TreatmentsController < ApplicationController
   def create
     treatment.cost = change_comma_to_period(params[:treatment][:cost])
     if treatment.save
-      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie dodany.'
+      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Le traitement a été ajouté avec succés.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class TreatmentsController < ApplicationController
   def update
     treatment.cost = change_comma_to_period(params[:treatment][:cost])
     if treatment.save
-      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Zabieg został pomyślnie edytowany.'
+      redirect_to dictionaries_path(tab: 'treatments'), notice: 'Le traitement a été modifié avec succés.'
     else
       render :edit
     end

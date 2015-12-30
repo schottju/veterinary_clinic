@@ -1,20 +1,20 @@
 .panel.panel-default
-  .panel-heading Weterynarze
+  .panel-heading Vétérinaires
   .panel-body
     = render 'search_veterinarians_form'
     - if veterinarians.empty?
-      .alert.alert-warning.table-warning Brak weterynarzy.
+      .alert.alert-warning.table-warning Aucun vétérinaire.
     - else
       %table.table.table-striped
         %thead
           %tr
-            %th= sortable 'title', "Tytuł"
-            %th= sortable 'first_name', "Imię"
-            %th= sortable 'last_name', "Nazwisko"
-            %th= sortable 'phone_number', "Numer telefonu"
-            %th= sortable 'specialization', "Specjalizacja"
-            %th= sortable 'working_day', "Dni przyjęć"
-            %th= sortable 'next_vacation', "Najbliższy urlop"
+            %th= sortable 'title', "Titre"
+            %th= sortable 'first_name', "Prénom"
+            %th= sortable 'last_name', "Nom"
+            %th= sortable 'phone_number', "Téléphone"
+            %th= sortable 'specialization', "Spécialité"
+            %th= sortable 'working_day', "Jours de travail"
+            %th= sortable 'next_vacation', "Prochaine vacances"
             %th
 
         %tbody
@@ -29,7 +29,7 @@
               %td= change_blank_to_dash(veterinarian.try(:veterinarian).try(:next_vacation))
               %td
                 .pull-right
-                  = link_to icon('calendar'), user_veterinarian_calendar_path(params[:user_id], veterinarian.try(:veterinarian)), title: 'Pokaż terminarz', class: "btn btn-default"
+                  = link_to icon('calendar'), user_veterinarian_calendar_path(params[:user_id], veterinarian.try(:veterinarian)), title: 'Afficher le calendrier', class: "btn btn-default"
 
       .flickr_pagination
         = will_paginate veterinarians

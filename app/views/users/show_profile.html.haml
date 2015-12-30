@@ -1,6 +1,4 @@
-- if current_user.pacjent?
-  = render 'patient_profile'
-- elsif current_user.weterynarz?
+- if current_user.veterinaire?
   = render 'veterinarian_profile'
 - elsif current_user.admin?
   = render 'admin_profile'

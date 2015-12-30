@@ -459,11 +459,11 @@
             },
 
             isInDisabledDates = function (testDate) {
-                return options.disabledDates[testDate.format('YYYY-MM-DD')] === true;
+                return options.disabledDates[testDate.format('DD-MM-YYYY')] === true;
             },
 
             isInEnabledDates = function (testDate) {
-                return options.enabledDates[testDate.format('YYYY-MM-DD')] === true;
+                return options.enabledDates[testDate.format('DD-MM-YYYY')] === true;
             },
 
             isValid = function (targetMoment, granularity) {
@@ -1162,7 +1162,7 @@
                 $.each(givenDatesArray, function () {
                     var dDate = parseInputDate(this);
                     if (dDate.isValid()) {
-                        givenDatesIndexed[dDate.format('YYYY-MM-DD')] = true;
+                        givenDatesIndexed[dDate.format('DD-MM-YYYY')] = true;
                     }
                 });
                 return (Object.keys(givenDatesIndexed).length) ? givenDatesIndexed : false;

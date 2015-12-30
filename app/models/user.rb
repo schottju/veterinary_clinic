@@ -2,21 +2,20 @@ class User < ActiveRecord::Base
   include Gravtastic
   gravtastic default: 'mm', secure: true, rating: 'PG'
 
-  enum role: [ :pacjent, :weterynarz, :admin ]
+  enum role: [:veterinaire, :admin ]
 
   has_one :address
   has_one :veterinarian
-  has_many :medical_records
-  has_many :animals
-  has_many :appointments
-  has_many :pictures
+#  has_many :proprios
+#  has_many :medical_records
+#  has_many :animals
+#  has_many :pictures
   accepts_nested_attributes_for :address
 
   #Rails_admin
   accepts_nested_attributes_for :veterinarian
 
-  validates_presence_of :first_name, :last_name, :pesel, :phone_number
-  validates :pesel, length: { is: 11 }
+  validates_presence_of :first_name, :last_name, :phone_number
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -31,16 +30,12 @@ class User < ActiveRecord::Base
   end
 
   def custom_label_method
-    "##{id} #{first_name} #{last_name}, pesel: #{pesel}"
+    "##{id} #{first_name} #{last_name}"
   end
 
   private
 
-    def self.search(query)
-      where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 0", { q: "%#{query.downcase}%" })
-    end
-
     def self.veterinarian_search(query)
-      where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 1", { q: "%#{query.downcase}%"})
+      where("(lower(last_name) like :q OR lower(first_name) like :q) AND role = 0", { q: "%#{query.downcase}%"})
     end
 end

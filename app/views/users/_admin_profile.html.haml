@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Dane profilowe
+  .panel-heading Données du profil
   .panel-body
     .row
       .col-md-3
@@ -11,22 +11,19 @@
               %td
           %tbody
             %tr
-              %th Imię:
+              %th Prénom:
               %td= change_blank_to_dash(current_user.first_name)
             %tr
-              %th Nazwisko:
+              %th Nom:
               %td= change_blank_to_dash(current_user.last_name)
             %tr
-              %th Pesel:
-              %td= change_blank_to_dash(current_user.pesel)
-            %tr
-              %th Numer telefonu:
+              %th Téléphone:
               %td= change_blank_to_dash(current_user.phone_number)
             %tr
               %th Email:
               %td= change_blank_to_dash(current_user.email)
             %tr
-              %th Państwo:
+              %th Nationalité:
               %td= change_blank_to_dash(current_user.try(:address).try(:decorate).try(:full_country_name))
       .col-md-4
         %table.table
@@ -35,23 +32,14 @@
               %td
           %tbody
             %tr
-              %th Ulica:
+              %th Rue:
               %td= change_blank_to_dash(current_user.try(:address).try(:decorate).try(:full_street))
             %tr
-              %th Kod pocztowy:
+              %th Code postal:
               %td= change_blank_to_dash(current_user.try(:address).try(:zip_code))
             %tr
-              %th Miasto:
+              %th Ville:
               %td= change_blank_to_dash(current_user.try(:address).try(:city))
-            %tr
-              %th Gmina:
-              %td= change_blank_to_dash(current_user.try(:address).try(:borough))
-            %tr
-              %th Powiat:
-              %td= change_blank_to_dash(current_user.try(:address).try(:district))
-            %tr
-              %th Województwo:
-              %td= change_blank_to_dash(current_user.try(:address).try(:province))
       .col-md-4
     .pull-right
-      = link_to "Edytuj", edit_registration_path(current_user), class: "btn btn-default"
+      = link_to "Modifier", edit_registration_path(current_user), class: "btn btn-default"

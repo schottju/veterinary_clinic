@@ -9,5 +9,7 @@ class DiseaseDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
+#  def disease_name
+#     medical_record.diseases.each do |disease|  "#{disease.name}"
+#  end
 end

@@ -1,54 +1,55 @@
+# coding: utf-8
 class AnimalsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
-  before_action :authenticate_user!, only: [ :index, :show ]
-  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
-
-  expose(:user) { User.find(params[:user_id]) }
+#  before_action :authenticate_proprio!, only: [ :index, :show ]
+#  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
+#  expose(:user) { User.find(params[:user_id]) }
+  expose(:proprio) { Proprio.find(params[:proprio_id]) }
+#  expose(:proprios) { proprio.find(params[:proprio_id]) }
   expose(:animal, attributes: :animal_params)
-  expose(:animals) { user.animals.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
+  expose(:animals) { proprio.animals.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
 
   def index
     if params[:search]
-      self.animals = Animal.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
+      self.animals = Animal.search(params[:search], params[:proprio_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
-
-    authorize animals.first unless animals.first.nil?
   end
 
   def show
+    @hospits = proprio.hospits.order(created_at: :desc).limit(8)
     @pictures = animal.pictures.order(:created_at).paginate(page: params[:pictures_page], per_page: 10)
     @medical_records = animal.medical_records.order(:created_at).paginate(page: params[:medical_records_page], per_page: 10)
-
-    authorize animal unless animal.nil?
   end
 
   def new
-    @species = Species.order(:name).where(status: "odblokowany")
+    @species = Species.order(:name).where(:status => 'actif')
   end
 
   def create
     animal.weight = change_comma_to_period(params[:animal][:weight])
     animal.age = change_comma_to_period(params[:animal][:age])
     if animal.save
-      redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie utworzone.'
+      redirect_to proprio_animals_path, notice: 'Animal crée avec succès.'
     else
-      @species = Species.order(:name).where(status: "odblokowany")
+      @species = Species.order(:name).where(status: "actif")
       render :new
     end
   end
 
   def edit
-    @species = Species.order(:name).map { |s| [ "#{s.name} #{"(zablokowane)" if s.zablokowany?}", s.id ] }
+    @species = Species.order(:name).map do |s|
+      ["#{s.name} #{"(Inactif)" if s.inactif?}", s.id]
+    end
   end
 
   def update
     animal.weight = change_comma_to_period(params[:animal][:weight])
     animal.age = change_comma_to_period(params[:animal][:age])
     if animal.save
-      redirect_to user_animals_path(user), notice: 'Zwierzę zostało pomyślnie edytowane.'
+      redirect_to proprio_animals_path, notice: 'Animal modifié avec succès.'
     else
-      @species = Species.order(:name).map { |s| [ "#{s.name} #{"(zablokowane)" if s.zablokowany?}", s.id ] }
+      @species = Species.order(:name).map { |s| [ "#{s.name} #{"(Inactif)" if s.inactif?}", s.id ] }
       render :edit
     end
   end
@@ -58,7 +59,7 @@ class AnimalsController < ApplicationController
     def animal_params
       params.require(:animal).permit(:id_number, :name, :birth_date, :amount,
                                      :weight, :gender, :age, :description,
-                                     :user_id, :species_id)
+                                     :proprio_id, :species_id)
     end
 
     def sort_column

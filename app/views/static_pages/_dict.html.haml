@@ -1,15 +1,17 @@
 .panel.panel-default
-  .panel-heading Słowniki
+  .panel-heading Dictionnaires
   .panel-body#static_pages
     %ul.nav.nav-tabs
       %li{:class => ('active' if params[:tab] == 'species')}
-        = link_to 'Gatunki', dictionaries_path(tab: 'species')
+        = link_to 'Espèces', dictionaries_path(tab: 'species')
       %li{:class => ('active' if params[:tab] == 'treatments')}
-        = link_to 'Zabiegi', dictionaries_path(tab: 'treatments')
+        = link_to 'Traitements', dictionaries_path(tab: 'treatments')
       %li{:class => ('active' if params[:tab] == 'diseases')}
-        = link_to 'Choroby', dictionaries_path(tab: 'diseases')
+        = link_to 'Maladies/Acte prophylo', dictionaries_path(tab: 'diseases')
       %li{:class => ('active' if params[:tab] == 'units')}
-        = link_to 'Jednostki', dictionaries_path(tab: 'units')
+        = link_to 'Unités', dictionaries_path(tab: 'units')
+      %li{:class => ('active' if params[:tab] == 'medocs')}
+        = link_to 'Médicaments listés', dictionaries_path(tab: 'medocs')
 
     .tab-content
       #species.tab-pane{:class => ('active' if params[:tab] == 'species')}
@@ -24,3 +26,6 @@
       #units.tab-pane{:class => ('active' if params[:tab] == 'units')}
         - if params[:tab] == 'units'
           = render 'units'
+      #medocs.tab-pane{:class => ('active' if params[:tab] == 'medocs')}
+        - if params[:tab] == 'medocs'
+          = render 'medocs'

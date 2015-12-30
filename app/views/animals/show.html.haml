@@ -1,8 +1,8 @@
 .panel.panel-default
-  .panel-heading= "Zwierzę nr #{change_blank_to_dash(animal.id_number)}"
+  .panel-heading= "Animal nr #{change_blank_to_dash(animal.id_number)}"
   .panel-body
     .panel.panel-info
-      .panel-heading Dane zwierzęcia
+      .panel-heading Données de l'animal
       .panel-body
         .row
           .col-md-1
@@ -13,19 +13,16 @@
                   %th
               %tbody
                 %tr
-                  %th Numer identyfikacyjny:
+                  %th N° identification:
                   %td= change_blank_to_dash(animal.id_number)
                 %tr
-                  %th Nazwa:
+                  %th Nom:
                   %td= change_blank_to_dash(animal.name)
                 %tr
-                  %th Data urodzenia:
+                  %th Date de naissance:
                   %td= change_blank_to_dash(animal.birth_date)
                 %tr
-                  %th Wiek (lata):
-                  %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.age), delimiter: " ", separator: ","))
-                %tr
-                  %th Ilość:
+                  %th Quantité:
                   %td= change_blank_to_dash(animal.amount)
                 %tr
                   %td
@@ -36,26 +33,21 @@
                   %th
               %tbody
                 %tr
-                  %th Płeć:
+                  %th Sexe:
                   %td= change_blank_to_dash(animal.gender)
                 %tr
-                  %th Waga (kg):
-                  %td= change_blank_to_dash(number_with_delimiter(trim_float(animal.weight), delimiter: " ", separator: ","))
-                %tr
-                  %th Gatunek:
+                  %th Espèce:
                   %td= change_blank_to_dash(animal.try(:species).try(:name))
                 %tr
-                  %th Opis:
+                  %th Description:
                   %td= change_blank_to_dash(animal.description)
                 %tr
                   %td
           .col-md-1
     .panel.panel-info
-      .panel-heading Dane właściciela
+      .panel-heading Données du propriétaire
       .panel-body
         .row
-          .col-md-3
-            = image_tag user.gravatar_url(size: 200)
           .col-md-4
             %table.table
               %thead
@@ -63,23 +55,17 @@
                   %td
               %tbody
                 %tr
-                  %th Imię:
-                  %td= change_blank_to_dash(animal.try(:user).try(:first_name))
+                  %th Prénom:
+                  %td= change_blank_to_dash(proprio.first_name)
                 %tr
-                  %th Nazwisko:
-                  %td= change_blank_to_dash(animal.try(:user).try(:last_name))
+                  %th Nom:
+                  %td= change_blank_to_dash(proprio.last_name)
                 %tr
-                  %th Pesel:
-                  %td= change_blank_to_dash(animal.try(:user).try(:pesel))
+                  %th Téléphone:
+                  %td= change_blank_to_dash(proprio.phone_number)
                 %tr
-                  %th Numer telefonu:
-                  %td= change_blank_to_dash(animal.try(:user).try(:phone_number))
-                %tr
-                  %th Email:
-                  %td= change_blank_to_dash(animal.try(:user).try(:email))
-                %tr
-                  %th Państwo:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:decorate).try(:full_country_name))
+                  %th Adresse:
+                  %td= change_blank_to_dash(animal.try(:proprio).try(:addressp).try(:decorate).try(:full_country_name))
           .col-md-4
             %table.table
               %thead
@@ -87,68 +73,90 @@
                   %td
               %tbody
                 %tr
-                  %th Ulica:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:decorate).try(:full_street))
+                  %th Rue:
+                  %td= change_blank_to_dash(animal.try(:proprio).try(:addressp).try(:decorate).try(:full_street))
                 %tr
-                  %th Kod pocztowy:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:zip_code))
+                  %th Code postal:
+                  %td= change_blank_to_dash(animal.try(:proprio).try(:addressp).try(:zip_code))
                 %tr
-                  %th Miasto:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:city))
-                %tr
-                  %th Gmina:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:borough))
-                %tr
-                  %th Powiat:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:district))
-                %tr
-                  %th Województwo:
-                  %td= change_blank_to_dash(animal.try(:user).try(:address).try(:province))
+                  %th Ville:
+                  %td= change_blank_to_dash(animal.try(:proprio).try(:addressp).try(:city))
           .col-md-1
 
-    .panel.panel-info
-      .panel-heading Karty zwierzęcia
-      .panel-body
-        - if @medical_records.empty?
-          Brak kart.
-        - else
-          %table.table.table-striped
-            %thead
-              %tr
-                %th Numer karty
-                %th Wywiad
-                %th.price-row Koszt wizyty
-                %th Weterynarz
-                %th.date-row Data
-                %th
+.panel.panel-default
+  .panel-heading Fichiers consultation
+  .panel-body
+    - if @medical_records.empty?
+      .alert.alert-warning.table-warning Pas de fiche.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Cause consultation
+            %th Maladie ou vaccin
+            %th Vétérinaire
+            %th Description
+            %th Date
+            %th
 
-            %tbody
-              - @medical_records.each do |medical_record|
-                %tr
-                  %td= change_blank_to_dash(medical_record.id)
-                  %td= change_blank_to_dash(medical_record.anamnesis)
-                  %td= change_blank_to_dash(number_to_currency(medical_record.total_cost, separator: ',', unit: 'PLN', precision: 2))
-                  %td= change_blank_to_dash(medical_record.try(:veterinarian).try(:user).try(:full_name))
-                  %td= change_blank_to_dash(medical_record.created_at.to_date)
-                  %td
-                    .pull-right
-                      = link_to icon('list-alt'), user_medical_record_path(user, medical_record), title: 'Szczegóły', class: "btn btn-default"
+        %tbody
+          - @medical_records.each do |medical_record|
+            %tr
+              %td= change_blank_to_dash(medical_record.anamnesis)
+              %td= change_blank_to_dash(medical_record.decorate.name_of_disease)
+              %td= change_blank_to_dash(medical_record.veterinarian.user.last_name)
+              %td= change_blank_to_dash(medical_record.description)
+              %td= change_blank_to_dash(medical_record.created_at.to_date)
+              %td
 
+                .pull-right
+                  = link_to icon('list-alt'), proprio_medical_record_path(proprio, medical_record), title: 'Détails', class: "btn btn-default"
           .flickr_pagination
             = will_paginate @medical_records, param_name: 'medical_records_page'
 
-    .panel.panel-info
-      .panel-heading Zdjęcia zwierzęcia
+    .panel.panel-default
+      .panel-heading Hospitalisation
       .panel-body
-        - if @pictures.empty?
-          Brak zdjęć.
+        - if @hospits.empty?
+          .alert.alert-warning.table-warning Pas de fichier.
+          .pull-right
+            = link_to "Ajouter", new_proprio_hospit_path(proprio), class: "btn btn-default"
         - else
           %table.table.table-striped
             %thead
               %tr
-                %th Nazwa
-                %th Zdjęcie
-                %th Opis
+                %th Cause hospitalisation
+                %th Diagnostic ou suspicion
+                %th Vétérinaire
+                %th Observations
+                %th.date-row Date d'entrée
+                %th.btn-row-2
+
+            %tbody
+              - @hospits.each do |hospit|
+                %tr
+                  %td= change_blank_to_dash(hospit.anamnesis)
+                  %td= change_blank_to_dash(hospit.decorate.name_of_disease)
+                  %td= change_blank_to_dash(hospit.veterinarian.user.last_name)
+                  %td= change_blank_to_dash(hospit.description)
+                  %td= change_blank_to_dash(hospit.created_at.to_date)
+                  %td
+                    .pull-right
+                      = link_to icon('list-alt'), proprio_hospit_path(proprio, hospit), title: 'Détails', class: "btn btn-default"
+                      = link_to icon('edit'), edit_proprio_hospit_path(proprio, hospit), title: 'Modifier', class: "btn btn-default"
+
+    .panel.panel-info
+      .panel-heading Images de l'animal
+      .panel-body
+        - if @pictures.empty?
+          Pas d'images.
+        - else
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Nom
+                %th Image
+                %th Description
 
             %tbody
               - @pictures.each do |picture|
@@ -161,4 +169,6 @@
             = will_paginate @pictures, param_name: 'pictures_page'
 
     .pull-right
-      = link_to "Przejdź do zwierząt", user_animals_path(user), class: "btn btn-default"
+      = link_to "Ajouter fiche", new_proprio_medical_record_path(proprio), class: "btn btn-default"
+      = link_to "Ajouter hospit", new_proprio_hospit_path(proprio), class: "btn btn-default"
+      = link_to "Retour", proprio_animals_path(proprio), class: "btn btn-default"

@@ -4,13 +4,13 @@ connection: &connection
   encoding: unicode
   pool:     5
   username: postgres
-  password:
+  password: password
 development:
   <<: *connection
-  database: veterinary_clinic_development
+  database: gestion_clinic_development
 test:
   <<: *connection
-  database: veterinary_clinic_test
+  database: gestion_clinic_test
 production:
   <<: *connection
-  database: veterinary_clinic_production
+  database: gestion_clinic_production

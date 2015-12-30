@@ -1,21 +1,21 @@
 .panel.panel-default
-  .panel-heading Cennik zabiegów
+  .panel-heading Liste des traitements et des prix
   .panel-body
     = render 'search_form'
     - if @treatments.empty?
-      .alert.alert-warning.table-warning Brak zabiegów.
+      .alert.alert-warning.table-warning Aucun traitement.
     - else
       %table.table.table-striped
         %thead
           %tr
-            %th= sortable 'name', "Nazwa"
-            %th= sortable 'cost', "Koszt"
-            %th= sortable 'description', "Opis"
+            %th= sortable 'name', "Nom"
+
+            %th= sortable 'description', "Description"
         %tbody
           - @treatments.each do |treatment|
             %tr
               %td= change_blank_to_dash(treatment.name)
-              %td= change_blank_to_dash(number_to_currency(treatment.cost, separator: ',', unit: 'PLN', precision: 2))
+
               %td= change_blank_to_dash(treatment.description)
 
       .flickr_pagination

@@ -8,7 +8,7 @@ class DiseasesController < ApplicationController
 
   def create
     if disease.save
-      redirect_to dictionaries_path(tab: 'diseases'), notice: 'Choroba została pomyślnie dodana.'
+      redirect_to dictionaries_path(tab: 'diseases'), notice: 'La maladie a été ajoutée avec succès.'
     else
       render :new
     end
@@ -19,7 +19,7 @@ class DiseasesController < ApplicationController
 
   def update
     if disease.save
-      redirect_to dictionaries_path(tab: 'diseases'), notice: 'Choroba została pomyślnie edytowana.'
+      redirect_to dictionaries_path(tab: 'diseases'), notice: 'La maladie a été modifiée avec succès.'
     else
       render :edit
     end

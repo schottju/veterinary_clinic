@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
       when 'species' then @species = Species.order(sort_column + " " + sort_direction).paginate(page: params[:species_page], per_page: 8)
       when 'diseases' then @diseases = Disease.order(sort_column + " " + sort_direction).paginate(page: params[:diseases_page], per_page: 8)
       when 'treatments' then @treatments = Treatment.order(sort_column + " " + sort_direction).paginate(page: params[:treatments_page], per_page: 8)
+      when 'medocs' then @medocs = Medoc.order(sort_column + " " + sort_direction).paginate(page: params[:medocs_page], per_page: 8)
     end
   end
 
@@ -32,6 +33,11 @@ class StaticPagesController < ApplicationController
     params[:tab] = 'treatments'
   end
 
+  def medocs_search
+    @medocs = Medoc.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:medocs_page], per_page: 8)
+    params[:tab] = 'medocs'
+  end
+
   def help_page
   end
 
@@ -46,6 +52,7 @@ class StaticPagesController < ApplicationController
         when 'species' then Species.column_names.include?(params[:sort]) ? params[:sort] : "name"
         when 'diseases' then Disease.column_names.include?(params[:sort]) ? params[:sort] : "name"
         when 'treatments' then Treatment.column_names.include?(params[:sort]) ? params[:sort] : "name"
+        when 'medocs' then Medoc.column_names.include?(params[:sort]) ? params[:sort] : "name"
         else 'name'
       end
     end

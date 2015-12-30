@@ -1,12 +1,12 @@
 class VeterinariansController < ApplicationController
   helper_method :sort_column, :sort_direction
 
-  expose(:veterinarians) { User.where(role: 1).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
-  expose(:user) { User.find(params[:user_id]) }
+  expose(:veterinarians) { User.where(role: 0).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
+#  expose(:user) { User.find(params[:user_id]) }
 
   def index
     if params[:search]
-      self.veterinarians = User.veterinarian_search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
+      self.veterinarians = Veterinarian.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -17,7 +17,7 @@ class VeterinariansController < ApplicationController
 
   def index_veterinarians
     if params[:search]
-      self.veterinarians = User.veterinarian_search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
+      self.veterinarians = Veterinarian.search(params[:search], params[:user_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 

@@ -5,7 +5,7 @@ class CreatePictures < ActiveRecord::Migration
       t.text :description
       t.string :image
       t.text :image_data
-      t.references :user, index: true, foreign_key: true
+      t.references :proprio, index: true, foreign_key: true
 
       t.timestamps null: false
     end

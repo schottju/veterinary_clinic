@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Terminarz
+  .panel-heading Calendrier
   .panel-body
     #veterinarians
       %h2#month
@@ -11,10 +11,8 @@
         %br
         - if Date.today <= date
           - if @veterinarian.on_vacation?(date)
-            = link_to "Urlop", '#', class: "btn btn-warning disabled"
-          - elsif @veterinarian.working_today?(date)
-            = link_to icon('plus'), new_user_appointment_path(params[:user_id], veterinarian_id: @veterinarian.id, day: date), title: 'Zapisz się na wizytę', class: "btn btn-success"
+            = link_to "Vacances", '#', class: "btn btn-warning disabled"
           - else
-            = link_to "Dzień wolny", '#', class: "btn btn-warning disabled"
+            = link_to "Journée de repos", '#', class: "btn btn-warning disabled"
         - else
           %h4= "-"

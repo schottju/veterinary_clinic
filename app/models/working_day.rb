@@ -2,7 +2,7 @@ class WorkingDay < ActiveRecord::Base
   belongs_to :veterinarian
 
   def custom_label_method
-    "##{id} #{'Pon' if monday} #{'Wt' if tuesday} #{'Śr' if wednesday} #{'Czw' if thursday}
-     #{'Pt' if friday} #{'Sob' if saturday} #{'Niedz' if sunday}"
+    "##{id} #{'Lun' if monday} #{'Mar' if tuesday} #{'Mer' if wednesday} #{'Jeu' if thursday}
+     #{'Ven' if friday} #{'Sam' if saturday} #{'Dim' if sunday}"
   end
 end

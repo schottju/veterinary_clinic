@@ -8,7 +8,7 @@ class SpeciesController < ApplicationController
   def create
     @species = Species.new(species_params)
     if @species.save
-      redirect_to dictionaries_path(tab: 'species'), notice: 'Gatunek został pomyślnie dodany.'
+      redirect_to dictionaries_path(tab: 'species'), notice: 'Espèce crée.'
     else
       render :new
     end
@@ -21,7 +21,7 @@ class SpeciesController < ApplicationController
   def update
     @species = Species.find(params[:id])
     if @species.update(species_params)
-      redirect_to dictionaries_path(tab: 'species'), notice: 'Gatunek został pomyślnie edytowany.'
+      redirect_to dictionaries_path(tab: 'species'), notice: 'Espèce modifiée.'
     else
       render :edit
     end

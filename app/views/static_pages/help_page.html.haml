@@ -2,10 +2,10 @@
   .col-md-2
   .col-md-8
     .panel.panel-default
-      .panel-heading Pomoc
+      .panel-heading Aide
       .panel-body
         - if current_user.nil?
-          .alert.alert-success.help_page= link_to "Przypomnienie hasła.", new_password_path(User)
-          .alert.alert-success.help_page.help_page= link_to "Ponowne wysłanie instrukcji odblokowania konta.", new_unlock_path(User)
-        .alert.alert-success.help_page= link_to "Ponowne wysłanie potwierdzenia adresu email.", new_confirmation_path(User)
+          .alert.alert-success.help_page= link_to "Mot de passe oublié.", new_password_path(User)
+          .alert.alert-success.help_page.help_page= link_to "Envoyez instructions pour dévérouiller votre compte.", new_unlock_path(User)
+        .alert.alert-success.help_page= link_to "Re-confirmer email.", new_confirmation_path(User)
   .col-md-2

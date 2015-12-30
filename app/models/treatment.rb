@@ -1,14 +1,13 @@
 class Treatment < ActiveRecord::Base
-  enum status: [ :odblokowany, :zablokowany ]
+  enum status: [ :actif, :inactif ]
 
   has_and_belongs_to_many :medical_records
+  has_and_belongs_to_many :hospits
 
-  validates_presence_of :name, :cost, :status
-  validates_numericality_of :cost, greater_than_or_equal_to: 0
-  validates_format_of :cost, with: /\A\d+(?:\.\d{0,2})?\z/
+  validates_presence_of :name, :status
 
   def custom_label_method
-    "##{id} #{name} #{"(zablokowane)" if status == "zablokowany"}"
+    "##{id} #{name} #{"(inactif)" if status == "inactif"}"
   end
 
   private

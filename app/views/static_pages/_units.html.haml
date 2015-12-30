@@ -3,19 +3,19 @@
   = hidden_field_tag :sort, params[:sort]
   = hidden_field_tag :tab, 'units'
   .form-inline
-    = text_field_tag :search, params[:search], placeholder: 'Wpisz nazwę jednostki', class: 'form-control'
-    = submit_tag "Szukaj", name: nil, class: 'btn btn-default'
+    = text_field_tag :search, params[:search], placeholder: 'Entrez le nom de unité', class: 'form-control'
+    = submit_tag "Recherche", name: nil, class: 'btn btn-default'
 
     .pull-right
-      = link_to 'Dodaj jednostkę', new_unit_path, class: "btn btn-default"
+      = link_to 'Ajouter unité', new_unit_path, class: "btn btn-default"
 
 - if @units.empty?
-  .alert.alert-warning.table-warning Brak rekordów.
+  .alert.alert-warning.table-warning Aucun enregistrement.
 - else
   %table.table.table-striped
     %thead
       %tr
-        %th= sortable 'name', "Nazwa"
+        %th= sortable 'name', "Nom"
         %th= sortable 'status', "Status"
         %th
     %tbody
@@ -25,7 +25,7 @@
           %td= change_blank_to_dash(unit.status)
           %td
             .pull-right
-              = link_to icon('edit'), edit_unit_path(unit), title: 'Edytuj', class: "btn btn-default"
+              = link_to icon('edit'), edit_unit_path(unit), title: 'Modifier', class: "btn btn-default"
 
   .flickr_pagination
     = will_paginate @units, param_name: 'units_page'
