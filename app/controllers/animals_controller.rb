@@ -2,17 +2,20 @@
 class AnimalsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
-#  before_action :authenticate_proprio!, only: [ :index, :show ]
-#  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
-#  expose(:user) { User.find(params[:user_id]) }
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
   expose(:proprio) { Proprio.find(params[:proprio_id]) }
-#  expose(:proprios) { proprio.find(params[:proprio_id]) }
+  expose(:medical_record) { Medical_record.find(params[:Medical_record_id]) }
   expose(:animal, attributes: :animal_params)
   expose(:animals) { proprio.animals.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
 
+#  def searchas
+#    @animals = Animal.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:proprios_page], per_page: 20)
+#  end
+
   def index
     if params[:search]
-      self.animals = Animal.search(params[:search], params[:proprio_id]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
+      self.animals = Animal.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8)
     end
   end
 
@@ -20,6 +23,7 @@ class AnimalsController < ApplicationController
     @hospits = proprio.hospits.order(created_at: :desc).limit(8)
     @pictures = animal.pictures.order(:created_at).paginate(page: params[:pictures_page], per_page: 10)
     @medical_records = animal.medical_records.order(:created_at).paginate(page: params[:medical_records_page], per_page: 10)
+#    @animal1 = animal.medical_records.order(:id).map { |animal|  [ "Nom: #{animal.name}"] }
   end
 
   def new

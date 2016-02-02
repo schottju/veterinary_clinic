@@ -14,4 +14,12 @@ class MedicalRecordDecorator < Draper::Decorator
     "#{self.try(:disease).try(:name)}"
   end
 
+  def consultation
+    "#{medical_record.anamnesis}. #{medical_record.description}"
+  end
+
+  def name_of_animal
+    "#{self.try(:animal_ids).try(:animal).try(:name)}"
+  end
+
 end

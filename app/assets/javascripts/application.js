@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery_nested_form
 //= require turbolinks
-//= require_tree .
 //= require bootstrap
 //= require moment
-//= require moment/pl.js
+//= require moment/fr.js
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require cocoon

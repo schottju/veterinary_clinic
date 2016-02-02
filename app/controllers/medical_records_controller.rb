@@ -10,6 +10,7 @@ helper_method :sort_column, :sort_direction
   expose(:medoc, attributes: :medoc_params)
   expose(:medical_record, attributes: :medical_record_params)
   expose(:user) { User.find(params[:user_id]) }
+  expose(:animal) { Animal.find(params[:animal_id]) }
   expose(:proprio) { Proprio.find(params[:proprio_id]) }
 #  expose(:veterinarian) { Veterinarian.find(params[:user_id]) }
   expose(:medical_records) { proprio.medical_records.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 8) }
@@ -22,6 +23,7 @@ helper_method :sort_column, :sort_direction
   end
 
   def show
+    @animal = Animal.where(proprio_id: proprio.id).map { |animal| [ "#{animal.name.titleize}" ] }
   end
 
   def new
@@ -31,17 +33,17 @@ helper_method :sort_column, :sort_direction
     @medocs = Medoc.order(:name).where(status: "actif")
     @treatments = Treatment.order(:name).where(status: "actif")
     @pictures = Picture.where(proprio_id: proprio.id).map { |picture| [ "Nom: #{picture.name}, Description: #{picture.description}", picture.id  ] }
-    @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "ID: #{animal.id_number}, nom: #{animal.name}, #{animal.try(:species).try(:name)}, #{animal.description}", animal.id ] }
+    @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "#{animal.name.titleize}, #{animal.try(:species).try(:name)}, #{animal.description}, ID: #{animal.id_number}", animal.id ] }
 #    resource.build_medoc
   end
 
   def create
-    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
+#    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
 
-    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
-      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
-      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
-    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
+#    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
+#      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
+#      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
+#    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
 
     if medical_record.save
       redirect_to proprio_medical_records_path, notice: 'Nouvelle entrée dans le fichier crée.'
@@ -52,7 +54,7 @@ helper_method :sort_column, :sort_direction
       @diseases = Disease.order(:name).where(status: "actif")
       @treatments = Treatment.order(:name).where(status: "actif")
       @pictures = Picture.where(proprio_id: proprio.id).map { |picture| [ "Nom: #{picture.name}, description: #{picture.description}", picture.id  ] }
-      @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "ID: #{animal.id_number}, nom: #{animal.name}, #{animal.try(:species).try(:name)}, #{animal.description}", animal.id ] }
+      @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "#{animal.name.titleize}, #{animal.try(:species).try(:name)}, #{animal.description}, ID: #{animal.id_number}", animal.id ] }
       render :new
     end
   end
@@ -64,17 +66,17 @@ helper_method :sort_column, :sort_direction
     @diseases = Disease.order(:name).map { |disease| [ "#{disease.name} #{"(Inactif)" if disease.inactif?}", disease.id ] }
     @treatments = Treatment.order(:name).map { |treatment| [ "#{treatment.name} #{"(Inactif)" if treatment.inactif?}", treatment.id ] }
     @pictures = Picture.where(proprio_id: proprio.id).map { |picture| [ "Nom: #{picture.name}, description: #{picture.description}", picture.id  ] }
-    @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "ID: #{animal.id_number}, nom: #{animal.name}, #{animal.try(:species).try(:name)}, #{animal.description}", animal.id ] }
+    @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "#{animal.name.titleize}, #{animal.try(:species).try(:name)}, #{animal.description}, ID: #{animal.id_number}", animal.id ] }
 #    resource.build_medoc
   end
 
   def update
-    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
+#    medical_record.additional_cost = change_comma_to_period(params[:medical_record][:additional_cost])
 
-    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
-      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
-      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
-    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
+#    params[:medical_record][:medicines_attributes].values.each_with_index do |medicine, i|
+#      medical_record.medicines[i].price = change_comma_to_period(medicine[:price])
+#      medical_record.medicines[i].amount = change_comma_to_period(medicine[:amount])
+#    end if params[:medical_record] and params[:medical_record][:medicines_attributes]
 
     if medical_record.save
       redirect_to proprio_medical_record_path, notice: 'La fiche a été modifiée.'
@@ -85,7 +87,7 @@ helper_method :sort_column, :sort_direction
       @diseases = Disease.order(:name).map { |disease| [ "#{disease.name} #{"(Inactif)" if disease.inactif?}", disease.id ] }
       @treatments = Treatment.order(:name).map { |treatment| [ "#{treatment.name} #{"(Inactif)" if treatment.inactif?}", treatment.id ] }
       @pictures = Picture.where(proprio_id: proprio.id).map { |picture| [ "Nom: #{picture.name}, description: #{picture.description}", picture.id  ] }
-      @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "ID: #{animal.id_number}, nom: #{animal.name}, #{animal.try(:species).try(:name)}, #{animal.description}", animal.id ] }
+      @animals = Animal.where(proprio_id: proprio.id).map { |animal| [ "#{animal.name.titleize}, #{animal.try(:species).try(:name)}, #{animal.description}, ID: #{animal.id_number}", animal.id ] }
 #      resource.build_medoc
       render :edit
     end
@@ -98,9 +100,9 @@ helper_method :sort_column, :sort_direction
 
     def medical_record_params
       params.require(:medical_record).permit(
-          :anamnesis, :description, :comment, :poids, :proprio_id, :user_id, :veterinarian_id, :additional_cost, :total_cost, :disease_id,
+          :anamnesis, :description, :comment, :poids, :proprio_id, :user_id, :veterinarian_id, :disease_id,
           treatment_ids: [], picture_ids: [], animal_ids: [],
-          medicines_attributes: [ :id, :name, :description, :amount, :grace_period, :price, :serial_number, :dosage, :unit_id, :medoc_id, :_destroy ],
+          medicines_attributes: [ :id, :name, :description, :serial_number, :dosage, :medoc_id, :_destroy ],
           comments_attributes: [ :id, :num, :comment, :_destroy ]
       )
     end
@@ -113,5 +115,3 @@ helper_method :sort_column, :sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
-
-#enregistrement de nouveaux medocs

@@ -10,10 +10,10 @@
           %tbody
             %tr
               %th Prénom:
-              %td= change_blank_to_dash(proprio.first_name)
+              %td= change_blank_to_dash(proprio.first_name.capitalize)
             %tr
               %th Nom:
-              %td= change_blank_to_dash(proprio.last_name)
+              %td= change_blank_to_dash(proprio.last_name.capitalize)
             %tr
               %th Téléphone:
               %td= change_blank_to_dash(proprio.phone_number)
@@ -26,6 +26,9 @@
             %tr
               %td
           %tbody
+            %tr
+              %th Numéro:
+              %td= change_blank_to_dash(proprio.house_number)
             %tr
               %th Rue:
               %td= change_blank_to_dash(proprio.street)
@@ -66,21 +69,21 @@
       %table.table.table-striped
         %thead
           %tr
-            %th N° d'identification
             %th Nom
             %th Statut
             %th Sexe
             %th Espèce
+            %th N° d'identification
             %th.btn-row-2
 
         %tbody
           - @animals.each do |animal|
             %tr
-              %td= change_blank_to_dash(animal.id_number)
-              %td= change_blank_to_dash(animal.name)
+              %td= change_blank_to_dash(animal.name.capitalize)
               %td= change_blank_to_dash(animal.statut)
               %td= change_blank_to_dash(animal.gender)
               %td= change_blank_to_dash(animal.try(:species).try(:name))
+              %td= change_blank_to_dash(animal.id_number)
               %td
                 .pull-right
                   = link_to icon('list-alt'), proprio_animal_path(proprio, animal), title: 'Détails', class: "btn btn-default"
@@ -92,6 +95,8 @@
 .panel.panel-default
   .panel-heading Consultations
   .panel-body
+    .pull-right
+      = link_to "Nouvelle consult", new_proprio_medical_record_path(proprio), class: "btn btn-default"
     - if @medical_records.empty?
       .alert.alert-warning.table-warning Pas de fichier.
       .pull-right
@@ -100,20 +105,19 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Cause consultation
-            %th Maladie ou vaccin
+            %th Animal
+            %th Description consultation
             %th Vétérinaire
-            %th Détails
             %th.date-row Date
             %th.btn-row-2
 
         %tbody
           - @medical_records.each do |medical_record|
             %tr
-              %td= change_blank_to_dash(medical_record.anamnesis)
-              %td= change_blank_to_dash(medical_record.decorate.name_of_disease)
-              %td= change_blank_to_dash(medical_record.veterinarian.user.last_name)
-              %td= change_blank_to_dash(medical_record.description)
+            - medical_record.animals.each do |animal|
+              %td= change_blank_to_dash(animal.name.capitalize)
+              %td= change_blank_to_dash(medical_record.decorate.consultation)
+              %td= change_blank_to_dash(medical_record.veterinarian.user.last_name.capitalize)
               %td= change_blank_to_dash(medical_record.created_at.to_date)
               %td
                 .pull-right
@@ -133,8 +137,8 @@
       %table.table.table-striped
         %thead
           %tr
-            %th Cause hospitalisation
-            %th Diagnostic ou suspicion
+            %th Animal
+            %th Cause
             %th Vétérinaire
             %th Observations
             %th.date-row Date
@@ -143,8 +147,9 @@
         %tbody
           - @hospits.each do |hospit|
             %tr
+            - hospit.animals.each do |animal|
+              %td= change_blank_to_dash(animal.name.capitalize)
               %td= change_blank_to_dash(hospit.anamnesis)
-              %td= change_blank_to_dash(hospit.decorate.name_of_disease)
               %td= change_blank_to_dash(hospit.veterinarian.user.last_name)
               %td= change_blank_to_dash(hospit.description)
               %td= change_blank_to_dash(hospit.created_at.to_date)
@@ -158,16 +163,16 @@
 .panel.panel-default
   .panel-heading Photos
   .panel-body
+    .pull-right
+      = link_to "Ajouter", new_proprio_picture_path(proprio), class: "btn btn-default"  
     - if @pictures.empty?
       .alert.alert-warning.table-warning Pas de photos.
-      .pull-right
-        = link_to "Ajouter", new_proprio_picture_path(proprio), class: "btn btn-default"
     - else
       %table.table.table-striped
         %thead
           %tr
-            %th Nom
             %th Animal
+            %th Nom
             %th Image
             %th Description
             %th.btn-row-2
@@ -175,8 +180,8 @@
         %tbody
           - @pictures.each do |picture|
             %tr
-              %td= change_blank_to_dash(picture.name)
               %td= change_blank_to_dash(picture.animal.name)
+              %td= change_blank_to_dash(picture.name)
               %td= link_to image_tag(picture.image, width: 100), picture.image.url
               %td= change_blank_to_dash(picture.description)
               %td
@@ -185,4 +190,4 @@
                   = link_to icon('edit'), edit_proprio_picture_path(proprio, picture), title: 'Modifier', class: "btn btn-default"
       .pull-right
         = link_to "Ajouter", new_proprio_picture_path(proprio), class: "btn btn-default"
-        = link_to "Plus", proprio_pictures_path(proprio), class: "btn btn-default"
+        = link_to "Listing images", proprio_pictures_path(proprio), class: "btn btn-default"

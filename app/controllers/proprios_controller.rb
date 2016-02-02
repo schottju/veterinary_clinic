@@ -1,20 +1,6 @@
 class PropriosController < ApplicationController
   helper_method :sort_column, :sort_direction
 
-#  def create
-#    @proprio = Proprio.new(params[:proprio])
-#    proprio.first_name = change_comma_to_period(params[:proprio][:first_name])
-#    proprio.last_name = change_comma_to_period(params[:proprio][:last_name])
-#    proprio.phone_number = change_comma_to_period(params[:proprio][:phone_number])
-#    if proprio.save
-#      redirect_to proprio_path(proprio), notice: 'Propriétaire crée avec succès.'
-#    else
-#       render :new
-#    end
-
-#  end
-
-#   before_action :authenticate_user!, only: [ :index, :show ]
    before_action :authenticate_veterinarian!, only: [ :new, :create, :edit, :update ]
 
   expose(:proprio, attributes: :proprio_params)
@@ -30,7 +16,7 @@ class PropriosController < ApplicationController
   end
 
   def show
-    @animals = proprio.animals.order(created_at: :desc).limit(3)
+    @animals = proprio.animals.order(created_at: :desc).limit(10)
     @medical_records = proprio.medical_records.order(created_at: :desc).limit(8)
     @hospits = proprio.hospits.order(created_at: :desc).limit(8)
     @pictures = proprio.pictures.order(created_at: :desc).limit(3)

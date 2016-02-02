@@ -39,10 +39,11 @@ ActiveRecord::Schema.define(version: 20161126003333) do
     t.integer  "gender"
     t.float    "age"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "proprio_id"
     t.integer  "species_id"
+    t.integer  "statut",      default: 0
   end
 
   add_index "animals", ["proprio_id"], name: "index_animals_on_proprio_id", using: :btree
@@ -143,10 +144,8 @@ ActiveRecord::Schema.define(version: 20161126003333) do
     t.string   "poids"
     t.integer  "proprio_id"
     t.integer  "veterinarian_id"
-    t.float    "addictional_cost"
-    t.float    "total_cost"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "disease_id"
   end
 
@@ -184,8 +183,6 @@ ActiveRecord::Schema.define(version: 20161126003333) do
     t.text     "comment"
     t.integer  "proprio_id"
     t.integer  "veterinarian_id"
-    t.float    "additional_cost"
-    t.float    "total_cost"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "poids"
@@ -247,19 +244,14 @@ ActiveRecord::Schema.define(version: 20161126003333) do
   create_table "medicines", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "amount"
-    t.integer  "grace_period"
-    t.float    "price"
     t.string   "serial_number"
     t.text     "dosage"
-    t.integer  "unit_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "medoc_id"
   end
 
   add_index "medicines", ["medoc_id"], name: "index_medicines_on_medoc_id", using: :btree
-  add_index "medicines", ["unit_id"], name: "index_medicines_on_unit_id", using: :btree
 
   create_table "medicines_medocs", id: false, force: :cascade do |t|
     t.integer "medicine_id", null: false
@@ -302,6 +294,12 @@ ActiveRecord::Schema.define(version: 20161126003333) do
     t.string   "zip_code"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "searchas", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "species", force: :cascade do |t|
@@ -407,7 +405,6 @@ ActiveRecord::Schema.define(version: 20161126003333) do
   add_foreign_key "medical_records", "proprios"
   add_foreign_key "medical_records", "veterinarians"
   add_foreign_key "medicines", "medocs"
-  add_foreign_key "medicines", "units"
   add_foreign_key "pictures", "animals"
   add_foreign_key "pictures", "proprios"
   add_foreign_key "vacations", "veterinarians"

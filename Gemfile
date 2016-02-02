@@ -15,7 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'puma', '= 2.14.0'
+gem 'puma'
 gem 'devise'
 gem 'gravtastic'
 gem 'bootstrap-sass'
@@ -24,8 +24,9 @@ gem 'font-awesome-sass', '~> 4.4.0'
 gem 'haml-rails'
 gem 'mini_magick'
 gem 'country_select'
-gem 'simple_form', '~> 3.1.0rc'
+gem 'simple_form'
 gem 'simple_form_fancy_uploads'
+gem 'nested_form'
 gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
@@ -35,7 +36,7 @@ gem 'ffaker'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'enum_help'
 gem 'will_paginate', '~> 3.0.6'
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'carrierwave'
 gem 'carrierwave-postgresql'
@@ -46,10 +47,13 @@ gem 'countries'
 gem 'cookies_eu'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+gem 'graphviz'
+
 
 group :development do
   gem 'html2haml'
-  gem 'rails-erd'
+#  gem 'rails-erd'
   gem 'hirb'
   gem 'awesome_print'
 end

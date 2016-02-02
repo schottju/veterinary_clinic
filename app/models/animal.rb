@@ -1,6 +1,7 @@
 class Animal < ActiveRecord::Base
   enum gender: [ :male, :femelle, :F_neutered, :M_neutered ]
   enum statut: [ :vivant, :DCD ]
+
   belongs_to :proprio
   belongs_to :species
   has_many :pictures
@@ -14,9 +15,13 @@ class Animal < ActiveRecord::Base
 
   private
 
-    def self.search(query, proprio_id)
-      where("(lower(id_number) like :q OR lower(name) like :q) AND proprio_id = :u", { q: "%#{query.downcase}%", u: proprio_id })
-    end
+  def self.search(search)
+      joins(:proprio).where("(lower(animals.name) LIKE ? or lower(animals.id_number) LIKE ?)", "%#{search}%", "%#{search}%")
+  end
+
+#def self.search(query)
+#  where("(lower(id_number) like :q OR lower(name) like :q", { q: "%#{query}%" })
+#end
 
     def trim(num)
       if num.blank?
